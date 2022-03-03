@@ -1,0 +1,16 @@
+P, K = map(int,input().split())
+D = 1
+while True:
+  # 소수찾아서 계속 수를 올리다가 K가 넘는 시점에서 그냥 GOOD 출력
+  # 소수 찾는 방법은 P를 계속 D로 나눔.
+  # 만약에 P가 D로 나누어떨어졌다? >>> 그러면 나누어떨어뜨린 D를 체크하면 됨
+  # 그러고나서 D가 K보다 작으면 BAD
+  # 그런데 D가 K보다 크면 GOOD이니까 굳이 D를 꼭 찾아내지 않아도 괜찮음
+  D += 1
+  if D>K:
+    print('GOOD')
+    break
+  if P%D == 0:
+    if D<K:
+      print('BAD', D)
+      break

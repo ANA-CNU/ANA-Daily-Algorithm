@@ -1,0 +1,11 @@
+N = int(input())
+remain = 0
+while True:
+  if remain == 1:
+    print(0)
+    break
+  if N==1:
+    print(1)  
+    break
+  remain = N%2
+  N = N/2
