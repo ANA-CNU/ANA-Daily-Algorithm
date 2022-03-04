@@ -1,0 +1,11 @@
+K, L = map(int,input().split())
+n = 1
+while True:
+  n+=1
+  if n>=L:
+    print('GOOD')
+    break
+  if K%n==0:
+    if n<L:
+      print('BAD',n)
+      break
