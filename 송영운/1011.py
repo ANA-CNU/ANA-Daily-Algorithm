@@ -1,11 +1,8 @@
 import math
-from collections import deque
 input = __import__('sys').stdin.readline
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):
-        q = deque()
-
         x, y = map(int, input().split())
         d = y - x
         d_sqrt = int(math.sqrt(d)) + 1
