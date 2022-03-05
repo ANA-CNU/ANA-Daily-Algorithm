@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main() {
+
+	int N, W, H, L;
+	int result;
+	scanf("%d %d %d %d", &N, &W, &H, &L);
+	result=(W / L)*(H/L);
+	if (result > N)
+		result = N;
+	printf("%d", result);
+	return 0;
+}
