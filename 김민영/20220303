@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main(void) {
+	int si, bun, time;
+	scanf("%d %d", &si, &bun);
+	scanf("%d", &time);
+	int time1 = time / 60;
+	int time2 = time % 60;
+	int result1 = si + time1;
+	int result2 = bun + time2;
+	if (result1 >= 24) {
+			result1 = result1 - 24;
+	}
+	if (result2 >=60) {
+			result2 = result2 - 60;
+			result1 = result1 + 1;
+	}
+	if (result1 > 23) {
+		result1 = result1 - 24;
+	}
+	printf("%d %d", result1, result2);
+
+	return 0;
+}

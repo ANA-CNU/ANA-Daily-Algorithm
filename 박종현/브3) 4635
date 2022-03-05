@@ -1,0 +1,18 @@
+while True:
+  n = int(input())
+  if n == -1:
+    break
+  else:
+    time = []
+    miles = 0
+    
+    for i in range(n):
+      s, t = map(int,input().split())
+      time.append(t)
+      
+      if i>0:
+        miles += s*(time[i]-time[i-1])
+      else:
+        miles += s*time[i]
+    
+    print(miles,"miles")

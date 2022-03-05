@@ -1,0 +1,21 @@
+word = list(input())
+num = []
+for w in word:
+  W = ord(w)
+  if 64<W<68:
+    num.append(3)
+  elif 67<W<71:
+    num.append(4)
+  elif 70<W<74:
+    num.append(5)
+  elif 73<W<77:
+    num.append(6)
+  elif 76<W<80:
+    num.append(7)
+  elif 79<W<84:
+    num.append(8)
+  elif 83<W<87:
+    num.append(9)
+  elif 86<W<91:
+    num.append(10)
+print(sum(num))
