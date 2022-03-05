@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 
-public class Main {
+public class 10818 {
 	
 	public static void main(String[] args) throws IOException{
 		
