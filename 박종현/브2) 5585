@@ -1,0 +1,7 @@
+change = 1000 - int(input())
+cnt = 0
+coin = [500, 100, 50, 10, 5, 1]
+for x in coin:
+  cnt += change//x
+  change %= x
+print(cnt)
