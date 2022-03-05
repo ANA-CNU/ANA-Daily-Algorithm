@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int X, N, result = 3,last;
+    scanf("%d", &N);
+    // N=>=3+4X N==입력값
+    if (N < 7) {
+        result = N;
+        if (N == 6)
+            result = 4;
+    }
+    else {
+        X = (N - 3) / 4;
+        last = N - (3 + 4 * X);
+        if (X % 2 == 0) {
+            result = result + last;
+            if (result > 5)
+                result = result - 2;
+        }
+        
+        else{
+            result = result - last;
+        if (result <1)
+            result = result + 2;
+        }
+    }
+    printf("%d", result);
+}
