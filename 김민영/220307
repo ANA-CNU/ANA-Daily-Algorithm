@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main(void) {
+	int a, b, c, r = 0;
+	scanf_s("%d %d %d", &a, &b, &c);
+	if (a >= b && a >= c) {
+		if (b > c) {
+			r = b;
+		}
+		else {
+			r = c;
+		}
+	}
+	if (b >= a && b >= c) {
+		if (a > c) {
+			r = a;
+		}
+		else {
+			r = c;
+		}
+	}
+	if (c >= b && c >= a) {
+		if (b > a) {
+			r = b;
+		}
+		else {
+			r = a;
+		}
+	}
+	
+	printf("%d", r);
+}
