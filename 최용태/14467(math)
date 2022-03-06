@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main()
+{
+	int N; 
+	int cow[11] = {-1,-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+	int num, T_or_F;
+	int count=0;
+	scanf("%d", &N);
+
+	for (int i = 0; i < N; i++) {
+		scanf("%d %d", &num, &T_or_F);
+		if (cow[num] == -1) {
+			cow[num] = T_or_F;
+			continue;
+		}
+		if (cow[num] != T_or_F)
+			count++;
+		cow[num] = T_or_F;
+	}
+	printf("%d", count);
+}
