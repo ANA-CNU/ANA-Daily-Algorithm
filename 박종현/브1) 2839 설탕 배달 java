@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int Kg = sc.nextInt();
+		int adjust = 0;
+		
+		int Q = Kg/5 - adjust;
+		int R = Kg%5 + 5*adjust;
+		
+		for (;;) {
+			Q = Kg/5 - adjust;
+			R = Kg%5 + 5*adjust;
+			if (R%3 != 0) {
+				adjust += 1;
+			}else if (R%3 == 0) {
+				break;
+			}
+		}
+		if ( Q < 0 ) {
+			System.out.println(-1);
+		}else if ( Q >= 0 ) {
+			int bag = Q + (R/3);
+			System.out.println(bag);
+		}
+		
+	}
+}

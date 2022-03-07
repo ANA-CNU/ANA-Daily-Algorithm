@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main(void) {
+	long long a, b, c; 
+	int res;
+	scanf("%lld %lld %lld", &a, &b, &c);
+	if (c - b <= 0) {
+		res = -1;
+	}
+	else {
+		res = (a/(c - b)) + 1;
+	}
+	printf("%d", res);
+}

@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main()
+{
+	
+	int N;
+	int result = 1;
+	int parted = 1;
+	scanf("%d", &N);
+	N++;
+	parted=(N / 2)+1;
+	if (N % 2 != 0)
+		result = parted * parted;
+	else
+		result = parted * (parted-1);
+
+	printf("%d", result);
+}

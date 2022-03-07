@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main(void) {
+	int n, k, arr[1000], count = 1,result;
+	scanf_s("%d %d", &n, &k);
+	for (int i = 1; i <= n; i++) {
+		if (n % i == 0) {
+			arr[count] = i;
+			count++;
+		}
+	}
+	if (count <= k) {
+		result = 0;
+	}
+	else {
+		result = arr[k];
+	}
+		printf("%d", result);
+
+	
+}
