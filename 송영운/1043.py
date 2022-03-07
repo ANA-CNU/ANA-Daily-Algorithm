@@ -8,7 +8,7 @@ if __name__ == "__main__":
     for i in range(m):
         participant = list(map(int, input().split()))
         participant.pop(0)
-        party.append(participant)
+        party.append(set(participant))
 
     visit_party = [False]*m
     while True:
@@ -16,14 +16,10 @@ if __name__ == "__main__":
         for i in range(len(party)):
             if visit_party[i] == True:
                 continue
-            for man_num in party[i]:
-                if man_num in s:
-                    for man in party[i]:
-                        s.add(man)
-                    count += 1
-                    visit_party[i] = True
-                    break
-
+            if len(s & party[i]) != 0:
+                s = s | party[i]
+                visit_party[i] = True
+                count += 1
         if count == 0:
             break
     print(visit_party.count(False))
