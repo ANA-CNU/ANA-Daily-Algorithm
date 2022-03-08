@@ -1,0 +1,4 @@
+import math
+A,B,V = map(int,input().split())
+R = V-A
+print(math.ceil(R/(A-B)+1))
