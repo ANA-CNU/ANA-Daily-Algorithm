@@ -1,0 +1,11 @@
+N, K = map(int,input().split())
+K = (N/2<K)*(N-K) or K      # 뒤에 for문에서 더 큰 연산을 하지 않도록 K를 K>N이면 N-K로, K<=N이면 K의 값을 가진다.
+if K==0:
+  print(1)
+else:
+  a= 1
+  b= 1
+  for i in range(K):
+    a *= N-i
+    b *= K-i
+  print(a//b)
