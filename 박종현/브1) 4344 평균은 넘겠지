@@ -1,0 +1,12 @@
+for _ in range(int(input())):
+  a = list(map(int,input().split()))
+  N = a[0]
+  S = a[1:]
+  average = sum(S)/len(S)
+
+  AverUpStudent = 0
+  for x in S:
+    if x > average :
+      AverUpStudent += 1
+  R = 100 * AverUpStudent/len(S)
+  print("{:.3f}%".format(R))
