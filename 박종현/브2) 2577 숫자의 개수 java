@@ -1,0 +1,90 @@
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		int C = sc.nextInt();
+		
+		long result = A*B*C;
+		
+		//String S = String.valueOf(result);
+		//System.out.println(S);
+		
+		List<Long> NumList = new ArrayList();
+		
+		for (;;) {
+			long R = result %10;
+			NumList.add(R);
+			
+			result /= 10;
+			if (result==0) {
+				break;
+			}
+		}
+//		System.out.println(NumList); // 숫자가 역순으로 정렬 됐으므로 다시 역순으로 뒤집어주자.
+		
+		List<Long> NumList2 = new ArrayList();
+		for (int i=0; i<NumList.size(); i++) {
+			NumList2.add(NumList.get(NumList.size()-i-1));
+		}
+//		System.out.println(NumList2);
+		int zero = 0;
+		int one = 0;
+		int two = 0;
+		int three = 0;
+		int four = 0;
+		int five = 0;
+		int six = 0;
+		int seven = 0;
+		int eight = 0;
+		int nine = 0;
+		for (int i=0; i<NumList2.size();i++) {
+			if (NumList2.get(i)==0) {
+				zero+= 1;
+			}
+			if (NumList2.get(i)==1) {
+				one++;
+			}
+			if (NumList2.get(i)==2) {
+				two++;
+			}
+			if (NumList2.get(i)==3) {
+				three++;
+			}
+			if (NumList2.get(i)==4) {
+				four++;
+			}
+			if (NumList2.get(i)==5) {
+				five++;
+			}
+			if (NumList2.get(i)==6) {
+				six++;
+			}
+			if (NumList2.get(i)==7) {
+				seven+= 1;
+			}
+			if (NumList2.get(i)==8) {
+				eight++;
+			}
+			if (NumList2.get(i)==9) {
+				nine++;
+			}
+		}
+		System.out.println(zero);
+		System.out.println(one);
+		System.out.println(two);
+		System.out.println(three);
+		System.out.println(four);
+		System.out.println(five);
+		System.out.println(six);
+		System.out.println(seven);
+		System.out.println(eight);
+		System.out.println(nine);
+
+	}
+}
