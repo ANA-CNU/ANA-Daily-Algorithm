@@ -1,1 +1,22 @@
+cnt = 0
+for _ in range(int(input())):
+  word = input()
+  buffer = []
+  check = 0
+  for i in range(len(word)-1):
+    L = word[i]
+    if L != word[i+1]: #알파벳이 달라졌음 -> 그룹이 끝난거임
+      if L in buffer: # 알파벳이 버퍼에 있는 알파벳인지 확인. 없으면 추가하고 있으면 중지
+        check =1
+        break
+      else:
+        buffer.append(L)
+  
+  if len(word)>1:
+    if word[-1] in buffer:
+      check = 1
 
+  if check == 0:
+    cnt += 1
+
+print(cnt)
