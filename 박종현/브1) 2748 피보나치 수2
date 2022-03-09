@@ -1,0 +1,5 @@
+F = [0,1]
+N=int(input())
+for i in range(N):
+  F.append(F[i]+F[i+1])
+print(F[N])
