@@ -1,0 +1,20 @@
+word = input()
+al = list(range(97,123)) # 알파벳 아스키코드 넘버 리스트
+Alphabet = [] # al의 아스키코드를 알파벳으로 바꿔 담을 리스트
+buffer = [] #중복된 알파벳이 등장했을 때 처음에 나온 위치로 유지하기 위해 확인용으로 사용할 리스트
+Al = [] #알파벳의 처음 위치를 기록하는 리스트
+for x in range(26):
+  Al.append(-1) # 알파벳이 등장하지 않으면 -1을 출력해야하므로 초기값을 -1로 설정
+
+for i in range(len(al)):
+  Alphabet.append(chr(al[i])) #알파벳으로 바꾸어 담는 중
+
+for w in range(len(word)):
+  for a in range(len(Alphabet)):
+    if word[w]==Alphabet[a]: # 입력한 문자의 맨 앞 알파벳부터 확인.
+      if word[w] not in buffer: # buffer에 없다는 건 그 알파벳이 처음 나온 것을 의미하므로
+        buffer.append(word[w])  # 위치 기록해주고, 버퍼에 넣음으로서 위치를 업데이트하지 않도록 함
+        Al[a]=w # 위치 기록
+
+for j in range(26):
+  print(Al[j],end=' ')
