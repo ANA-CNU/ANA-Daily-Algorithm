@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main(void){
+    int arr[7];
+    for (int i=0;i<=6;i++){
+        scanf("%d",&arr[i]);
+    }
+    int sum=0,min=101;
+    for (int j=0;j<=6;j++){
+        if(arr[j]%2!=0){
+            sum=sum+arr[j];
+            if(arr[j]<=min){
+                min=arr[j];
+            }
+        }
+    }
+    if (sum==0){
+        printf("-1");
+    }
+    else{
+        printf("%d\n",sum);
+        printf("%d",min);
+    }
+    
+}
