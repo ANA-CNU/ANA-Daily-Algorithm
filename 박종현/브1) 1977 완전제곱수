@@ -1,0 +1,11 @@
+M = int(input())
+N = int(input())
+p = []
+for i in range(M,N+1):
+  if i**(1/2) % 1 ==0:
+    p.append(i)
+if sum(p)==0:
+  print(-1)
+else:
+  print(sum(p))
+  print(p[0])
