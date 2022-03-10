@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main()
+{
+	int N,i;
+	long long A,B;
+	scanf("%d", &N);
+	for (i = 0; i < N; i++) {
+		scanf("%lld %lld", &A, &B);
+		printf("yes\n");
+	}
+	return 0;
+}
