@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.Stack;
+public class superred{
+    public static void main(String[] args){
+    	
+       Scanner sc=new Scanner(System.in);
+       
+       int i,j,N=0;
+       int T=sc.nextInt();
+       String buf; // 입력받을 버퍼
+       
+       char C[];
+       
+       for(i=0;i<T;i++) {
+    	  Stack<Character> stackType=new Stack<Character>();
+    	  buf=sc.next();
+    	  C=buf.toCharArray();
+    	 
+    	  for(j=0;j<buf.length();j++) {
+    		 if(C[j]=='(')
+    		  stackType.push(C[j]);
+    		 else if(C[j]==')') {
+    			if(stackType.isEmpty()) {
+    				N++;
+    				break;
+    			}
+    			else
+    				stackType.pop();
+    		 }
+    		 if(N>0)
+    			 break;
+    	  }
+    	  
+    	  if(!stackType.isEmpty()||N>0) {
+    		  N=0;
+    		  System.out.println("NO");
+    		  }
+    	  else
+    		  System.out.println("YES");	  
+       }
+    }
+}
+    	   
