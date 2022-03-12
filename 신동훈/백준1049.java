@@ -1,4 +1,3 @@
-package 그리디;
 
 import annotation.boj.BOJ;
 
