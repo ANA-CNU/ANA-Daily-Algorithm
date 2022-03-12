@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main(void){
+    int N,ans,cute=0,notcute=0;
+    scanf("%d",&N);
+    for(int i=1;i<=N;i++){
+        scanf("%d",&ans);
+        if(ans==0){
+            notcute++;
+        }
+        else{
+            cute++;
+        }
+    }
+    if (notcute>cute){
+        printf("Junhee is not cute!");
+    }
+    else{
+        printf("Junhee is cute!");
+    }
+}
