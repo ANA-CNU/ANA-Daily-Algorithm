@@ -24,7 +24,6 @@ public class 백준1753 {
     private static ArrayList<ArrayList<Node>> graph = new ArrayList<>();
 
 
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] ints = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
