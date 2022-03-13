@@ -1,0 +1,5 @@
+words = list(input().split('-'))
+Str = ""
+for i in range(len(words)):
+  Str += words[i][0]
+print(Str)
