@@ -10,14 +10,7 @@ if __name__ == "__main__":
     lecture.sort(key=lambda x:x[1])
     q = []
     for l in lecture:
-        if len(q) < l[1]:
-            heappush(q, l[0])
-        else:
-            min_price= heappop(q)
-            if min_price > l[0]:
-                heappush(q, min_price)
-            else:
-                heappush(q, l[0])
+        heappush(q, l[0])
+        if len(q) > l[1]:
+            heappop(q)
     print(sum(q))
-
-
