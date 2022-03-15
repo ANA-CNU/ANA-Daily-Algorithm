@@ -2,7 +2,6 @@ from heapq import heappush, heappop
 input = __import__('sys').stdin.readline
 if __name__ == "__main__":
     n = int(input())
-    answer = 0
     lecture = []
     for _ in range(n):
         p, d = map(int, input().split())
