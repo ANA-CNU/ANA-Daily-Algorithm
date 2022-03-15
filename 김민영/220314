@@ -1,0 +1,14 @@
+#include <stdio.h>
+int main(void){
+    int K,H,W,N;
+    scanf("%d",&K);
+    for(int i=1;i<=K;i++){
+        scanf("%d %d %d",&H,&W,&N);
+        int floor=N%H,num=(N/H)+1;
+        if (floor==0){
+            floor=H;
+            num=N/H;
+        }
+        printf("%d%02d\n",floor,num);
+    }
+}

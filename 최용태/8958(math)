@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main{
+	public static class Start{
+    	private Scanner sc=new Scanner(System.in);
+		private static int _N,_length,result=0,bonus=0;
+		private String _str;
+		private char _charAt;
+		
+		public Start() {
+			setOrder();
+			String buf =sc.nextLine();
+		}
+		public void run() {
+			for(int j=0; j<N();j++) {
+				inputString();
+				getStringLength(str());
+				for(int i=0;i<Length();i++) {
+					if(charO_X(i)=='O') {
+						result+=(1+bonus);
+						bonus++;
+					}
+					else
+						bonus=0;
+				}
+				
+				System.out.println(result);
+				result=bonus=0;
+			}
+		}
+		public void setOrder(){
+			this._N=sc.nextInt();
+		}
+		public int N() {
+			return this._N;
+		}
+		public char charO_X(int num){
+			this._charAt=str().charAt(num);
+			return this._charAt;
+		}
+		public int Length(){
+			return this._length;
+		}
+		public void getStringLength(String str) {
+			this._length=str.length();
+		}
+		public String str() {
+			return this._str;
+		}
+		public void inputString() {
+			this._str=sc.nextLine();
+		}
+	
+	}
+	
+    public static void main(String[] args){
+    	Start O_X = new Start();
+    	O_X.run();
+    }
+}
+    	   
