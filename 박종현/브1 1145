@@ -1,0 +1,12 @@
+a,b,c,d,e = map(int,input().split())
+num = [a,b,c,d,e]
+n = 2
+while True:
+  buffer = []
+  for i in range(5):
+    if n%num[i]==0:
+      buffer.append(0)
+  if len(buffer)>2:
+    print(n)
+    break
+  n+=1
