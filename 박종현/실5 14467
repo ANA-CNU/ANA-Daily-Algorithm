@@ -1,0 +1,15 @@
+cow = []
+for i in range(10):   # >>> [[], [], [], [], [], [], [], [], [], []]
+  cow.append([])      # >>>  1번 2번 3번 4번 5번 6번 7번 8번 9번 10번 소
+
+N=int(input()) #시행횟수
+for _ in range(N):
+  num, lo = map(int,input().split()) #소에 매겨진 숫자(number), 위치(location)
+  cow[num-1].append(lo) # cow 리스트에 소 위치를 담음
+
+cnt=0 #소가 움직인 횟수
+for i in range(10):   # 1번소부터 10번소까지 모두 돌아보기 위함
+  for j in range(1,len(cow[i])):
+    if cow[i][j-1] != cow[i][j]:  # 만약 원소(요소)의 값이 앞뒤가 다르면 움직인 것이라 판단, 소가 움직인 횟수 +1
+      cnt+=1
+print(cnt)  # 결과 출력
