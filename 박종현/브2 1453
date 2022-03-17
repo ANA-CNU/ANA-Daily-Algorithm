@@ -1,0 +1,11 @@
+N = int(input())
+num = list(map(int,input().split()))
+re = {}
+buffer = []
+for i in num:
+  if i not in re:
+    re[i] = 1
+  else:
+    re[i]+=1
+    buffer.append(i)
+print(len(buffer))

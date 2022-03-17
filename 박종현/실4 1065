@@ -1,0 +1,19 @@
+# 다른 방법으로 풀이 예정
+n = int(input())
+p = list(range(1,n+1))
+
+cnt = 0
+for i in range(n):
+  s = str(p[i])
+  if len(s)<=2:
+    cnt+=1
+
+  elif len(s)>2:
+    check = 0
+    for x in range(len(s)-2):
+      if int(s[x])-int(s[x+1]) == int(s[x+1])-int(s[x+2]):
+        check+=1
+    if check == len(s)-2:
+      cnt+=1
+    
+print(cnt)
