@@ -1,0 +1,18 @@
+# 브1 부녀회장이 될테야
+
+for _ in range(int(input())):
+  k = int(input())
+  n = int(input())
+  Z_Floor = list(range(1,n+1)) # 0층 사람들 (1호부터 n호까지)
+  resident = [] # 주민 수를 담을 리스트
+  resident.append(Z_Floor)
+  for i in range(k): # 1층부터 k층까지 사람 수를 구할거임
+    floor = [] # (i+1)층 각 호 사람들 수를 담을 리스트, 층마다 초기화 해줌.
+    for j in range(n): # 1호부터 n호까지
+      floor.append(sum(resident[i][0:j+1])) # 주민 수를 담을 리스트에서 1~n호까지 사람 수를 인덱싱해와서 인덱싱 한 수를 모두 더해줌
+                                            # 안 더해주면 리스트가 진짜 이상하게 꼬임
+                                            # 그 이유는 리스트 안에 자기가 데려와야 하는 주민 수를
+                                            # 리스트로 계속 가져오기만 해서 m차원 리스트가 되어버리기 때문.
+    resident.append(floor)
+
+  print(resident[-1][-1])
