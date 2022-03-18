@@ -13,4 +13,4 @@ for _ in range(n):
             x[i-1] = str(tmp)
         x[i] = "0"
     print(''.join(x))
-            
+    
