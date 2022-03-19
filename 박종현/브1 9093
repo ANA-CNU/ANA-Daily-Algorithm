@@ -1,0 +1,11 @@
+for _ in range(int(input())):
+  string = list(input().split())
+  s_re = []
+  for i in range(len(string)):
+    word=""
+    for j in range(len(string[i])):
+      word += string[i][-1-j]
+    s_re.append(word)
+
+  for x in s_re:
+    print(x,end=' ')
