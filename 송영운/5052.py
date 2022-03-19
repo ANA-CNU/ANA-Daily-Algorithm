@@ -5,7 +5,6 @@ if __name__ == "__main__":
         n = int(input())
         phone_number = [input().strip() for _ in range(n)]
         phone_number.sort()
-
         YesNo = True
         s = set()
         for pn in phone_number:
