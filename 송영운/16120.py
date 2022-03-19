@@ -4,13 +4,9 @@ if __name__ == "__main__":
     stack = []
     for i in range(len(line)):
         if line[i] == 'A':
-            if i + 1 < len(line):
-                if len(stack) >= 2 and line[i+1] == 'P':
-                    for _ in range(2):
-                        stack.pop()
-                else:
-                    print('NP')
-                    exit()
+            if i+1 < len(line) and len(stack) >= 2 and line[i+1] == 'P':
+                for _ in range(2):
+                    stack.pop()
             else:
                 print('NP')
                 exit()
