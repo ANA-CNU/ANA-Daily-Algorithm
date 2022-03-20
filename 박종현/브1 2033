@@ -1,0 +1,15 @@
+N = list(input()) # 수를 문자 리스트로 받음
+
+leng = len(N)
+for i in range(leng): # 받은 수들을 int로 캐스팅함
+  N[i] = int(N[i])
+
+for x in range(leng-1): # 1의자리 수 부터 반올림 시작
+  if N[-1-x] >=5: # n의 자리 수가 5보다 크거나 같으면 올림
+    N[-1-x]=0
+    N[-1-x-1] += 1
+  else:   # 5보다 작으면 내림
+    N[-1-x]=0
+    
+for y in N:
+  print(y,end='') #리스트에서 값 출력
