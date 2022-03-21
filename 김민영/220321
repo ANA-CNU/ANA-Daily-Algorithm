@@ -1,0 +1,60 @@
+//SUN, MON, TUE, WED, THU, FRI, SAT
+import java.util.Scanner;
+public class Main{
+        public static void main(String[] args){
+            Scanner sc=new Scanner(System.in);
+            int x,y,count;
+            x=sc.nextInt();
+            y=sc.nextInt();
+            String[] day=new String[]{"MON","TUE","WED","THU","FRI","SAT","SUN","MON","TUE","WED","THU","FRI","SAT","SUN"};
+            if(x==1||x==10){
+                for(int i=0;i<7;i++){
+                    if((y-1)%7==i){
+                        System.out.printf("%s",day[i]);
+                    }
+                }
+            }
+            if(x==5){
+                for(int i=0;i<7;i++){
+                    if((y-1)%7==i){
+                        System.out.printf("%s",day[i+1]);
+                    }
+                }
+            }
+            if(x==8){
+                for(int i=0;i<7;i++){
+                    if((y-1)%7==i){
+                        System.out.printf("%s",day[i+2]);
+                    }
+                }
+            }
+            if(x==2||x==3||x==11){
+                for(int i=0;i<7;i++){
+                    if((y-1)%7==i){
+                        System.out.printf("%s",day[i+3]);
+                    }
+                }
+            }
+            if(x==6){
+                for(int i=0;i<7;i++){
+                    if((y-1)%7==i){
+                        System.out.printf("%s",day[i+4]);
+                    }
+                }
+            }
+            if(x==9||x==12){
+                for(int i=0;i<7;i++){
+                    if((y-1)%7==i){
+                        System.out.printf("%s",day[i+5]);
+                    }
+                }
+            }
+            if(x==4||x==7){
+                for(int i=0;i<7;i++){
+                    if((y-1)%7==i){
+                        System.out.printf("%s",day[i+6]);
+                    }
+                }
+            }
+        }
+}
