@@ -1,0 +1,16 @@
+N, L = input().split()
+p = []
+cnt = 0
+while True:
+  checker = 0
+  cnt+=1
+  
+  for x in str(cnt):
+    if x==L:
+      checker = 1
+
+  if checker == 0:
+    p.append(cnt)
+  if len(p)==int(N):
+    break
+print(p[-1])
