@@ -1,0 +1,21 @@
+N = int(input())
+
+if N>10000: # 일정한 수 이상으로 되면 정답이 대개 입력값의 7/10 보다 큰 수에서 나타남.
+  n = int(N*(7/10))
+elif N>=1000:
+  n = N//2
+else:
+  n = 1
+
+while True:
+  y = n
+  Str = str(n)
+  for x in Str:
+    y += int(x)
+  if y==N:
+    print(n)
+    break
+  elif n>N:
+    print(0)
+    break
+  n += 1

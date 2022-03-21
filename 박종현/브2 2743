@@ -1,0 +1,2 @@
+words = input()
+print(len(words))

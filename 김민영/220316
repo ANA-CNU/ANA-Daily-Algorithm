@@ -1,0 +1,37 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a, b, c;
+		a=sc.nextInt();
+		b=sc.nextInt();
+		c=sc.nextInt();
+		int mult=a*b*c;
+		int k=10;
+		int[] arr = new int[10];
+		int n;
+		if(mult>=1000000&&mult<10000000) {
+			n=7;
+			}
+		else if(mult<100000000) {
+			n=8;
+		}
+		else {
+			n=9;
+		}
+		
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<10;j++) {
+				if(mult%k==j) {
+					arr[j]=arr[j]+1;
+				}
+			}
+			mult=mult/k;
+		}
+		for(int l=0;l<10;l++) {
+			System.out.printf("%d\n", arr[l]);
+		}
+	}
+
+}

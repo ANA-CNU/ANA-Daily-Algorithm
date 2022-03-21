@@ -1,0 +1,10 @@
+N= int(input())
+buffer = list(map(int,input().split()))
+
+M= int(input())
+check = list(map(int,input().split()))
+
+for x in check:
+  print((x in buffer)*1 or 0)
+  
+# 이분탐색 알고리즘은 이 문제에 어떻게 써야되는지 하나도 이해가 안 된다
