@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		String str=sc.next();
+
+		int digit=str.length()-1;
+		int resultNum=0;
+		int N=sc.nextInt();
+		char[] Array=new char[str.length()];
+		Array=str.toCharArray();
+		
+		for(int i=0;i<str.length();i++) {
+			if(Character.isDigit(Array[i])==true){
+				int num = Character.getNumericValue(Array[i]);
+				int result=N;
+				int currentDigit=digit;
+					if(currentDigit>0) {
+						while(currentDigit>1) {
+							result*=N;
+							currentDigit--;
+						}
+					}
+					else
+						result=1;
+					
+				resultNum =resultNum+result*num;
+				digit--;
+			}
+			else {
+				int num = Array[i]-55;
+				int result=N;
+				int currentDigit=digit;
+				if(currentDigit>0) {
+					while(currentDigit>1) {
+						result*=N;
+						currentDigit--;
+					}
+				}
+				else
+					result=1;
+				resultNum =resultNum+result*num;
+				digit--;
+			}
+		}
+		System.out.println(resultNum);
+	}
+}
