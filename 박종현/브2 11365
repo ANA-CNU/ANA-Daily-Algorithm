@@ -1,0 +1,8 @@
+while True:
+  S = input()
+  if S == 'END':
+    break
+  ans = ""
+  for i in range(len(S)):
+    ans += S[-1-i]
+  print(ans)
