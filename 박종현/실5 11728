@@ -1,0 +1,6 @@
+SizeA, SizeB = map(int,input().split())
+A = list(map(int,input().split()))
+B = list(map(int,input().split()))
+ans = sorted(A+B)
+for x in ans:
+  print(x,end=' ')
