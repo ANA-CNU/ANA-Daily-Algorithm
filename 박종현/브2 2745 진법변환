@@ -1,0 +1,10 @@
+N, B = input().split()
+B = int(B)
+AL = list(range(65,91))
+ans = []
+for i in range(len(N)):
+  if ord(N[i]) in AL: # 영문자인 경우
+    ans.append((ord(N[i])-55) * (B**(len(N)-i-1)))
+  else: # 숫자인 경우
+    ans.append((ord(N[i])-48) * (B**(len(N)-i-1)))
+print(sum(ans))
