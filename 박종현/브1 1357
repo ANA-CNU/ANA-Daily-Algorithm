@@ -1,0 +1,9 @@
+def Rev(n):
+  sn = str(n)
+  ans = ""
+  for i in range(len(sn)):
+    ans+=sn[-1-i]
+  return int(ans)
+
+X, Y = map(int,input().split())
+print(Rev(Rev(X)+Rev(Y)))
