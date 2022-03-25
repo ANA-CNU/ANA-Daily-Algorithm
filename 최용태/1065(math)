@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    scanf("%d", &N);
+    int count = 0;
+    if (N == 1000)
+        N--;
+   
+    while (N>0) {
+        int digit100 = N / 100;
+        int digit10 = N / 10 - digit100 * 10;
+        int digit1 = N - N/10*10;
+        if (digit100!=0){
+            if ((digit1 - digit10) == (digit10 - digit100))
+                count++;
+        }
+        else if(digit10==0){
+            count = count + digit1;
+            break;
+        }
+        else
+            count++;
+     
+        N--;
+    }
+    printf("%d", count);
+}
