@@ -1,0 +1,7 @@
+n = int(input())
+a = str(5**(n))
+ans = ""
+for i in range(n-len(a)):
+  ans+='0'
+ans+=a
+print('0.',ans,sep='')
