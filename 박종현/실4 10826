@@ -1,0 +1,9 @@
+n = int(input())
+F = [0,1]
+for i in range(n-1):
+  F.append((F[0]+F[1]))
+  del F[0]
+if n==0:
+  print(0)
+else:
+  print(F[-1])
