@@ -3,7 +3,7 @@ package first;
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class Main {
+public class 1978 {
 	public static void main(String[] args) {
 		
 		Scanner input = new Scanner(System.in);
