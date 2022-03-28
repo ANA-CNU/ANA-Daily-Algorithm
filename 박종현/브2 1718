@@ -1,0 +1,12 @@
+encoding = ['z']
+for i in range(25):
+  encoding.append(chr(i+97))
+S = list(input())
+key = input()
+for i in range(len(S)):
+  if S[i]==' ':
+    continue
+  else:
+    S[i] = encoding[ord(S[i])-ord(key[i%len(key)])]
+ans = "".join(S)
+print(ans)
