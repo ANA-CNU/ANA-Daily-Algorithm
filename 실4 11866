@@ -1,0 +1,22 @@
+def d(List, num):
+  li = List
+  num -= len(List)
+  if len(List)<=num:
+    return d(li, num)
+  return num
+
+N, K = map(int,input().split())
+l = list(range(1,N+1))
+li = list(map(str, l))
+ans = []
+Index=K-1
+while True:
+  a = li.pop(Index)
+  ans.append(a)
+  Index+=K-1
+  if len(li)==0:
+    break
+  if Index>=len(li):
+    Index = d(li, Index)
+
+print("<",', '.join(ans),">",sep='')
