@@ -1,0 +1,13 @@
+n = input()
+tmp = []
+check=0
+for i in range(len(n)-1):
+  tmp.append(int(n[i+1]) - int(n[i]))
+  if i!=0:
+    if tmp[i]!=tmp[i-1]:
+      check=1
+      break
+if check==0:
+  print("◝(⑅•ᴗ•⑅)◜..°♡ 뀌요미!!")
+else:
+  print("흥칫뿡!! <(￣ ﹌ ￣)>")
