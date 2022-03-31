@@ -1,0 +1,23 @@
+for _ in range(int(input())): # testcase
+  w = input() 
+  p = [] 
+  cnt = 0
+
+  for i in w:
+    if cnt==0 and i==')':
+      cnt=999
+      break
+    if i == '(':
+      cnt += 1
+      p.append('(')
+    else:
+      if len(p)==0:
+        break
+      else:
+        p.pop(-1)
+        cnt-=1
+
+  if cnt != 0:
+    print("NO")
+  elif cnt == 0:
+    print("YES")
