@@ -1,0 +1,18 @@
+ja, mo =1, 1
+n = 0
+for i in range(int(input())-1):
+  if n%2==0:
+    if ja==1:
+      mo+=1
+      n+=1
+      continue
+    ja-=1
+    mo+=1
+  else:
+    if mo==1:
+      ja+=1
+      n+=1
+      continue
+    ja+=1
+    mo-=1
+print("%d/%d"%(ja,mo))

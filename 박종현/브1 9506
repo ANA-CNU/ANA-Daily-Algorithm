@@ -1,0 +1,21 @@
+n = 0
+while True:
+  n = int(input())
+  if n==-1:
+    break
+  yack = [1]
+  c = 2
+  while True:
+    if n%c==0:
+      if c==n:
+        break
+      yack.append(c)
+    c+=1
+  if sum(yack) == n:
+    print(n,'= ',end='')
+    for i in range(len(yack)):
+      print(yack[i],end=' ')
+      if i!=len(yack)-1:
+        print('+ ',end='')
+  if len(yack) == 1 or sum(yack) != n:
+    print("%d is NOT perfect."%(n))
