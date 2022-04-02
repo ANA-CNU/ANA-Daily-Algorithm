@@ -1,0 +1,9 @@
+exp = input()
+num = []
+num = exp.split('-')
+for i in range(len(num)):
+  if '+' in num[i]:
+      num[i]= sum(map(int,num[i].split('+')))
+  else:
+      num[i]= int(num[i])
+print(num[0]-sum(num[1:]))
