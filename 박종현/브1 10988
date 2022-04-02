@@ -1,5 +1,5 @@
 w = input()
-if w[:len(w)//2] == w[len(w)//2+1:][::-1] or w[:len(w)//2] == w[len(w)//2:][::-1]: # w길이가 짝수일때, 홀수일때
+if w[:len(w)//2] == w[len(w)//2+1:][::-1] or w[:len(w)//2] == w[len(w)//2:][::-1]: # w길이가 홀수일때, 짝수일때
   print(1)
 else:
   print(0)
