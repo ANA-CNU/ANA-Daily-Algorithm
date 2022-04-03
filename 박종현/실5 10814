@@ -1,0 +1,14 @@
+ages = []
+names = []
+for i in range(int(input())): #입력한 정수만큼 회원 정보를 받는다.
+  inform = input().split() 
+  ages.append(int(inform[0]))
+  names.append(inform[1])
+
+while len(ages)!=0 or len(names)!=0: 
+  MIN = min(ages)         # 최소연령부터 차례대로 출력
+  idx = ages.index(MIN)   # 최소연령이 있는 인덱스넘버
+  for age in ages:
+    if age==MIN:      # 먼저 등록했으면서 최소연령인 회원을 먼저 출력
+      print(ages.pop(idx),names.pop(idx))
+      break               # pop을 이용하기 때문에 인덱스오류를 대비해서 break 후 다시 while문반복

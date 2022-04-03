@@ -1,0 +1,9 @@
+n = int(input())
+rope = []
+for i in range(n):
+  rope.append(int(input()))
+rope.sort()
+result = []
+for i in range(n):
+  result.append(rope[i] * (n-i))
+print(max(result))
