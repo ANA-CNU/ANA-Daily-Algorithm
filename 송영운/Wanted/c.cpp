@@ -28,12 +28,12 @@ int main()
     }
 
     vector<int> e_dp(1);
-    for(int i =1; i<=e_num; i++){
+    for(int i = 1; i <= e_num; i++){
         e_dp.push_back((i-1) + 2*e_dp.back());
     }
 
     int ans = 0;
-    for(int i = 1; i<w_count.size(); i++){
+    for(int i = 1; i < w_count.size(); i++){
         int e_num_i_to_end = e_num - e_count[i];
         ans += w_count[i] * e_dp[e_num_i_to_end];
     }
