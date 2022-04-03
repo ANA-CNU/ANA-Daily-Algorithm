@@ -1,0 +1,6 @@
+for i in range(int(input())):
+  P = [1,1,1]
+  for k in range(3,int(input())):
+    P.append(P[0] + P[1])
+    del P[0]
+  print(P[-1])  
