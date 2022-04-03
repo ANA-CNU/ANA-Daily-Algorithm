@@ -29,7 +29,7 @@ public class Main{
 				newlist[k++]=arr[l];
 		}
 		
-		for(l=left;l<=right;l++)
+		for(l=left;l<=right;l++) // l=0일때 시간초과 발생
 			arr[l]=newlist[l];
 	}
 	public static void parted(Arr[] arr,int left,int right) {
