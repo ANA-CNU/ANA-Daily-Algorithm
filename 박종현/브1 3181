@@ -1,0 +1,7 @@
+excp = ['i', 'pa', 'te', 'ni', 'niti', 'a', 'ali', 'nego', 'no', 'ili']
+word = input().split()
+ans = ""
+for w in range(len(word)):
+  if w==0 or word[w] not in excp:
+    ans += word[w][0].upper()
+print(ans)
