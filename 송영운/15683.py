@@ -1,246 +1,91 @@
 import copy
 import sys
 
-
+def up(x, y):
+    while x > 0:
+        x -= 1
+        if board[x][y] == 0:
+            board[x][y] = -1
+        elif board[x][y] == 6:
+            break
+def down(x, y):
+    while x < n - 1:
+        x += 1
+        if board[x][y] == 0:
+            board[x][y] = -1
+        elif board[x][y] == 6:
+            break
+def right(x, y):
+    while y < m - 1:
+        y += 1
+        if board[x][y] == 0:
+            board[x][y] = -1
+        elif board[x][y] == 6:
+            break
+def left(x, y):
+    while y > 0:
+        y -= 1
+        if board[x][y] == 0:
+            board[x][y] = -1
+        elif board[x][y] == 6:
+            break
 
 def check(c):
-    global min_num
-    global board
-    global n, m
-
+    global min_num, board, n, m
     x, y = cctv[c]
-    dx, dy = x, y
     temp_board = copy.deepcopy(board)
     for i in range(4):
-        x, y = dx, dy
         if board[x][y] == 1:
             if i == 0:
-                while x > 0:
-                    x -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                up(x, y)
             elif i == 1:
-                while y < m-1:
-                    y += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                right(x, y)
             elif i == 2:
-                while x < n-1:
-                    x += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                down(x, y)
             elif i == 3:
-                while y > 0:
-                    y -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                left(x, y)
         elif board[x][y] == 2:
             if i == 0 or i == 2:
-                while x > 0:
-                    x -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while x < n-1:
-                    x += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                up(x, y)
+                down(x, y)
             elif i == 1 or i == 3:
-                while y > 0:
-                    y -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                y = dy
-                while y < m-1:
-                    y += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                right(x, y)
+                left(x, y)
         elif board[x][y] == 3:
             if i == 0:
-                while x > 0:
-                    x -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while y < m-1:
-                    y += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                up(x, y)
+                right(x, y)
             elif i == 1:
-                while x < n-1:
-                    x += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while y < m-1:
-                    y += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                down(x, y)
+                right(x, y)
             elif i == 2:
-                while x < n-1:
-                    x += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while y > 0:
-                    y -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                down(x, y)
+                left(x, y)
             elif i == 3:
-                while x > 0:
-                    x -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while y > 0:
-                    y -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                up(x, y)
+                left(x, y)
         elif board[x][y] == 4:
             if i == 0:
-                while x > 0:
-                    x -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while y < m-1:
-                    y += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x, y = dx, dy
-                while y > 0:
-                    y -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                up(x, y)
+                right(x, y)
+                left(x, y)
             elif i == 1:
-                while x > 0:
-                    x -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while x < n-1:
-                    x += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while y < m-1:
-                    y += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                up(x, y)
+                down(x, y)
+                right(x, y)
             elif i == 2:
-                while x < n-1:
-                    x += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while y < m-1:
-                    y += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x, y = dx, dy
-                while y > 0:
-                    y -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                down(x, y)
+                right(x, y)
+                left(x, y)
             elif i == 3:
-                while x > 0:
-                    x -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while x < n-1:
-                    x += 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
-                x = dx
-                while y > 0:
-                    y -= 1
-                    if board[x][y] == 0:
-                        board[x][y] = -1
-                    elif board[x][y] == 6:
-                        break
+                up(x, y)
+                down(x, y)
+                left(x, y)
         elif board[x][y] == 5:
-            while x > 0:
-                x -= 1
-                if board[x][y] == 0:
-                    board[x][y] = -1
-                elif board[x][y] == 6:
-                    break
-            x = dx
-            while x < n-1:
-                x += 1
-                if board[x][y] == 0:
-                    board[x][y] = -1
-                elif board[x][y] == 6:
-                    break
-            x = dx
-            while y < m-1:
-                y += 1
-                if board[x][y] == 0:
-                    board[x][y] = -1
-                elif board[x][y] == 6:
-                    break
-            x, y = dx, dy
-            while y > 0:
-                y -= 1
-                if board[x][y] == 0:
-                    board[x][y] = -1
-                elif board[x][y] == 6:
-                    break
+            up(x, y)
+            down(x, y)
+            right(x, y)
+            left(x, y)
         if c+1 < len(cctv):
             check(c+1)
         else:
