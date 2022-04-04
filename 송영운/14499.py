@@ -35,8 +35,8 @@ if __name__ == "__main__":
     instructions = list(map(int, input().split()))
     #1:윗면 2:북 3:동 4:서 5:남 6:밑
     dice = [0]*(7)
-    #1 동 2서 3 북 4 남
     dice[6] = board[x][y]
+    # 1 동 2서 3 북 4 남
     dxdy = [(), (0, 1), (0, -1), (-1, 0), (1, 0)]
     for i in instructions:
         dx, dy = x + dxdy[i][0], y + dxdy[i][1]
