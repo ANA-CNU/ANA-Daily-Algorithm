@@ -1,0 +1,10 @@
+import itertools
+while True:
+  tmp = input().split()
+  if tmp[0]=='0':
+    break
+  T, numbers = tmp[0], tmp[1:]
+  answer = list(map(list,itertools.combinations(numbers,6)))
+  for i in range(len(answer)):
+    print(' '.join(answer[i]))
+  print()
