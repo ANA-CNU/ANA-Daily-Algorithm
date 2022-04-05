@@ -119,4 +119,3 @@ if __name__ == "__main__":
                 if board[i][j] == 0:
                     count += 1
         print(count)
-        exit()
