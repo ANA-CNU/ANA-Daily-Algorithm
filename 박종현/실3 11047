@@ -1,0 +1,11 @@
+coin = []
+n, target = map(int,input().split())
+for i in range(n):
+  coin.append(int(input()))
+ans = 0
+for c in coin[::-1]:
+  ans += target//c
+  target%=c
+  if target==0:
+    break
+print(ans)
