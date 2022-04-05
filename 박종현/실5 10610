@@ -1,0 +1,17 @@
+num = int(input())
+chk = 0
+nums = []
+for i in str(num):
+  chk+=int(i)
+  nums.append(int(i))
+if chk%3!=0:
+  print(-1)
+else:
+  nums = sorted(nums,reverse=True)
+  ans = ""
+  for n in nums:
+    ans+=str(n)
+  if int(ans)%30!=0:
+    print(-1)
+  else:
+    print(ans)

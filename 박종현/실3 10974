@@ -1,0 +1,7 @@
+import itertools
+nums = list(range(1,int(input())+1))
+tmp = list(map(list,itertools.permutations(nums)))
+ans = []
+for i in range(len(tmp)):
+  ans.append(list(map(str,tmp[i])))
+  print(' '.join(ans[i]))
