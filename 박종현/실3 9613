@@ -1,0 +1,14 @@
+import itertools
+def gcd(a,b):
+  while b!=0:
+    a, b = b, a%b
+  return a
+
+for _ in range(int(input())):
+  tmp = input().split()
+  n, nums = int(tmp[0]), list(map(int,tmp[1:]))
+  cases = list(map(list,itertools.combinations(nums,2)))
+  ans = 0
+  for case in cases:
+    ans += gcd(case[0],case[1])
+  print(ans)
