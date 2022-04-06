@@ -1,0 +1,13 @@
+def facto(n:int):
+  resul=1
+  for i in range(2,n+1):
+    resul*=i
+  return str(resul)
+
+n = int(input())
+cnt = 0
+for i in facto(n)[::-1]:
+  if i!='0':
+    break
+  cnt+=1
+print(cnt)
