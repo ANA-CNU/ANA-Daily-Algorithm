@@ -13,7 +13,7 @@ public class Q_2941 {
 		str = str.replace("nj", "f");
 		str = str.replace("s=", "g");
 		str = str.replace("z=", "h");
-		System.out.println(str);
+		System.out.println(str.length());
 	}
 
 }
