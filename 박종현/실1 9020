@@ -1,0 +1,21 @@
+def primeList(n):
+  sosu = list(range(2,n+1))
+  for i in sosu:
+    if i != 0 : #소수가 아니면
+      for k in range(i+i,n+1,i):
+        sosu[k-2]=0 #인덱스는 2부터 시작하니까 -2
+  prime = []
+  for num in sosu:
+    if num!=0:
+      prime.append(num)
+  return prime
+
+for _ in range(int(input())):
+  n = int(input())
+  prime = primeList(n)
+  parti = []
+  for i in range(len(prime)):
+    if n-prime[i] in prime:
+      parti.append([str(n-prime[i]), str(prime[i])])
+  
+  print(" ".join(parti[len(parti)//2]))
