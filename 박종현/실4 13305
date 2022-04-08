@@ -1,0 +1,22 @@
+town = int(input())
+D = list(map(int,input().split()))
+costL = list(map(int,input().split()))
+# 지금보다 싼 가격인 마을의 인덱스 구하기.
+idx = [0]
+tmp = costL[0]
+for i in range(1,town-1):
+  if tmp>=costL[i]:
+    tmp = costL[i]
+    idx.append(i)
+    continue
+#print("idx :",idx)
+#print("costL :",costL)
+cost = 0
+for i in range(len(idx)):
+  if i == len(idx)-1:
+    cost += sum(D[idx[i] : ]) * costL[idx[i]]
+    #print((D[idx[i]:], costL[idx[i]]))
+  else:
+    cost += sum(D[idx[i]:idx[i+1]]) * costL[idx[i]]
+    #print((D[idx[i]:idx[i+1]], costL[idx[i]]))
+print(cost)
