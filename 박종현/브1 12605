@@ -1,0 +1,7 @@
+p = []
+n = int(input())
+for i in range(n):
+  p.append(input().split())
+for i in range(n):
+  word = " ".join(p[i][::-1])
+  print("Case #%d:"%(i+1),word)
