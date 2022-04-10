@@ -1,0 +1,17 @@
+n, m = map(int,input().split())
+A = [] #행렬 A
+for i in range(n):
+  A.append(list(map(int,input().split())))
+B = [] #행렬 B
+for i in range(n):
+  B.append(list(map(int,input().split())))
+C = []
+for i in range(n):
+  C.append([])
+
+for i in range(n):
+  for k in range(m):
+    C[i].append(str(A[i][k]+B[i][k]))
+
+for i in range(n):
+  print(" ".join(C[i]))
