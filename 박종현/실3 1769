@@ -1,0 +1,17 @@
+x = int(input())
+cnt = 0
+if x//10 <= 0:
+  ans = (x%3==0)*"YES" or "NO"
+  print(cnt,ans,sep='\n')
+else:
+  while True:
+    tmp = 0
+    for i in str(x):
+      tmp += int(i)
+    cnt+=1
+    if tmp//10 <=0:
+      ans = (x%3==0)*"YES" or "NO"
+      print(cnt,ans,sep='\n')
+      break
+    else:
+      x = tmp
