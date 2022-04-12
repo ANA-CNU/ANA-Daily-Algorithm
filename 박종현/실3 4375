@@ -1,0 +1,9 @@
+while True:
+  try:
+    n = int(input())
+    one= int('1' * (len(str(n))))
+    while one%n!=0:
+      one = one*10 +1
+    print(len(str(one)))
+  except:
+    break;
