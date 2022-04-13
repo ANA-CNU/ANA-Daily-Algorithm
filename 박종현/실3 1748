@@ -1,0 +1,7 @@
+n = int(input())
+leng = len(str(n))
+ans = 0
+for i in range(1,leng):
+  ans += i * (10**i - 10**(i-1))
+ans += leng * (n - (10**(leng-1) -1))
+print(ans)
