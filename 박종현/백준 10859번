@@ -1,0 +1,21 @@
+def is_prime(n):
+  if n==2:
+    return True
+  if n<2 or n%2==0:
+    return False
+  i = 3
+  while i<int(n**0.5)+1:
+    if n%i == 0:
+      return False
+    i+=2
+  return True
+
+R = {0:'0', 1:'1', 2:'2', 5:'5', 8:'8', 6:'9', 9:'6' ,3:'n', 4:'n', 7:'n'}
+n = input()
+Rn_list = [R[int(s)] for s in n[::-1]]
+Rn = ''.join(Rn_list)
+
+if 'n' in Rn:
+  print("no")
+else:
+  print("yes" if is_prime(int(n)) and is_prime(int(Rn)) else "no")
