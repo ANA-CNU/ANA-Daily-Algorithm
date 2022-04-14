@@ -1,22 +1,18 @@
 import sys
 def binary_search(i):
     global plus_idx
-
     left = plus_idx
     right = len(liquid)-1
     min_ans = sys.maxsize
     min_x, min_y = 0, 0
     while left <= right:
         mid = (left + right)//2
+        if abs(min_ans) > abs(liquid[i] + liquid[mid]):
+            min_ans = liquid[i] + liquid[mid]
+            min_x, min_y = i, mid
         if -liquid[i] < liquid[mid]:
-            if abs(min_ans) > abs(liquid[i] + liquid[mid]):
-                min_ans = liquid[i] + liquid[mid]
-                min_x, min_y = i, mid
             right = mid - 1
         else:
-            if abs(min_ans) > abs(liquid[i] + liquid[mid]):
-                min_ans = liquid[i] + liquid[mid]
-                min_x, min_y = i, mid
             left = mid + 1
     return min_ans, min_x, min_y
 
