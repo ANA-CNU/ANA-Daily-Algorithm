@@ -1,0 +1,12 @@
+a, tg = map(int,input().split())
+cnt = 0
+while (a!=tg):
+  if a>tg and a%2==0:
+    a //= 2
+  elif (a>tg and a%2!=0):
+    a += 1
+  elif a<tg:
+    cnt += tg-a
+    break
+  cnt+=1
+print(cnt)
