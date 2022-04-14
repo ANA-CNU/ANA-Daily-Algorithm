@@ -11,7 +11,6 @@ if __name__ == "__main__":
             if j >= p[i]:
                 if dp[i-1][j] == '':
                     dp[i][j] = str(i-1) + dp[i][j-p[i]]
-                    #dp[i][j] = str(max(int(str(i-1) + dp[i][j-p[i]]), int(str(i-1) + dp[1][j-p[i]])))
                 else:
                     dp[i][j] = str(max(int(dp[i-1][j]), int(str(i-1) + dp[i][j-p[i]]),int(str(i-1) + dp[1][j-p[i]])))
             else:
