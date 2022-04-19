@@ -4,12 +4,10 @@ def binary_search(n, k):
     answer = 0
     while left <= right:
         mid = (left + right)//2
-        tmp = 0
+        count = 0
         for i in range(1, n+1):
-            tmp += min(mid // i, n)
-            if mid // i == 0:
-                break
-        if tmp >= k:
+            count += min(mid // i, n)
+        if count >= k:
             answer = mid
             right = mid - 1
         else:
