@@ -1,0 +1,11 @@
+y = []
+n = int(input()) #항의 개수
+for i in range(n):
+  y.append(list(map(int,input().split())))
+y2 = []
+for i in range(n):
+  y2.append([y[i][0]*y[i][1], y[i][1]-1])
+result = 0
+for i in range(n):
+  result += y2[i][0]
+print(result)
