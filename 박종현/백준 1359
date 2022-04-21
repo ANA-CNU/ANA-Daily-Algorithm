@@ -1,0 +1,17 @@
+def comb(n,r):
+  if n<r:
+    return 0
+  r = min(n-r, r)
+  mo = 1; ja = 1
+  for i in range(r):
+    ja *= n-i
+    mo *= i+1
+  return ja//mo
+
+num, ans, k = map(int,input().split())
+total = comb(num,ans) #모든 경우의 수
+result = 0 #당첨되는 경우의 수
+for i in range(ans-k+1):
+  result += comb(ans,k+i) * comb(num-ans,ans-k-i)
+
+print(result/total)
