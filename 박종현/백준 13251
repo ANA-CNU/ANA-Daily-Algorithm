@@ -1,0 +1,26 @@
+# 조약돌 꺼내기
+# https://www.acmicpc.net/problem/13251
+
+def comb(n,r):
+  if n < r:
+    return 0
+  r = min(n-r, r)
+  mo = 1
+  ja = 1
+  for i in range(r):
+    mo *= n-i
+    ja *= i+1
+  return mo//ja
+
+colors = int(input())
+count = list(map(int,input().split()))
+take = int(input())
+
+total = 0 # 모든 조약돌의 개수
+exist = 0 # 같은 색의 조약들을 집어드는 모든 경우의 수
+for c in count:
+  total += c
+  exist += comb(c,take)
+all = comb(total,take) # 조약들을 집어드는 모든 경우의 수
+
+print(exist/all)
