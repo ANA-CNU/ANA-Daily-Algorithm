@@ -1,0 +1,17 @@
+# N과 M 1
+# https://www.acmicpc.net/problem/15649
+def btk(ans,n,limit):
+  if len(ans) == limit:
+    for i in [*ans]:
+      print(i,end=' ')
+    print()
+    return
+  else:
+    for pick in range(1,n+1):
+      if pick in ans:
+        continue
+      ans.append(pick)
+      btk(ans,n,limit)
+      ans.pop()
+n, m = map(int,input().split())
+btk([],n,m)
