@@ -10,7 +10,7 @@ if __name__ == '__main__':
     
     M,K = map(int, sys.stdin.readline().rstrip().split(" "))
 
-    B = [0]  M
+    B = [0] * M
 
     for i in range(M):
         B[i] = list(map(int, sys.stdin.readline().rstrip().split(" ")))
