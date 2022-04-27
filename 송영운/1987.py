@@ -1,4 +1,3 @@
-from collections import deque
 input = __import__('sys').stdin.readline
 if __name__ == "__main__":
     r, c = map(int, input().split())
