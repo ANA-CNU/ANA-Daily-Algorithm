@@ -1,0 +1,47 @@
+def sorting(stringList):
+  arr = stringList
+  for i in range(len(arr)):
+    for k in range(i+1,len(arr)):
+      if ord(arr[i]) > ord(arr[k]) :
+        arr[i], arr[k] = arr[k], arr[i]
+  return arr
+
+def chk(arr): #모음 1개, 자음 2개 이상인지 확인하는 함수
+  moum = False
+  jaum = False
+  result = False
+  cnt_jaum = 0
+  for element in arr:
+    if element in ['a','e','i','o','u']:
+      moum = True
+    else:
+      cnt_jaum += 1
+      if cnt_jaum >= 2:
+        jaum = True
+    if moum and jaum:
+      result = True
+      break
+  return result
+
+def btk(ans, string, limit):
+  if len(ans) == limit:
+    tmp = [*ans]
+    if chk(tmp):
+      answer.append(tmp)
+    return
+  else:
+    for w in string:
+      if w in ans:
+        continue
+      if len(ans) > 0 and ord(w) < ord(ans[-1]):
+        continue
+      ans.append(w)
+      btk(ans, string, limit)
+      ans.pop()
+
+limit, count = map(int,input().split())
+string = sorting(list(input().split()))
+answer = []
+btk([],string,limit)
+for i in range(len(answer)):
+  print(''.join(answer[i]))
