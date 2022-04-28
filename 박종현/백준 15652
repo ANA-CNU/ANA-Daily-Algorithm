@@ -1,0 +1,14 @@
+def btk(arr, M, N):
+  if len(arr) == M:
+    print(' '.join([*arr]))
+    return 0
+  else:
+    for i in range(1,N+1):
+      if arr!=[] and i < int(arr[-1]):
+        continue
+      arr.append(str(i))
+      btk(arr,M,N)
+      arr.pop()
+
+N, M = map(int,input().split())
+btk([],M,N)
