@@ -1,0 +1,19 @@
+def btk(ans, nums, limit):
+  if len(ans) == limit:
+    memo.append([*ans])
+    return
+  else:
+    for n in nums:
+      if ans != [] and int(ans[-1]) > n:
+        continue
+      ans.append(str(n))
+      btk(ans, nums, limit)
+      ans.pop()
+
+N, M = map(int,input().split())
+nums = list(map(int,input().split()))
+nums.sort()
+memo = []
+btk([],nums, M)
+for m in memo:
+  print(' '.join(m))
