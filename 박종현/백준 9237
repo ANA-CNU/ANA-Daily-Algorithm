@@ -1,0 +1,9 @@
+count = int(input()) # 심으려는 나무의 개수
+trees = list(map(int,input().split())) # 나무들이 자라는 데에 필요한 일 수
+trees.sort(reverse=True) # 내림차순으로 정렬
+day = 1 # 나무가 다 자라는 날
+
+for t in range(count):
+  full_grow = t+1 + trees[t]
+  day = full_grow if full_grow > day else day
+print(day+1) # 이장님 초대하는 날
