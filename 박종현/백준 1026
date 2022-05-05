@@ -1,0 +1,13 @@
+def S(A:list, B:list, ans):
+  if A==[] or B==[]:
+    return ans
+  else:
+    idx_A = A.index(min(A))
+    idx_B = B.index(max(B))
+    ans += A.pop(idx_A) * B.pop(idx_B)
+    return S(A, B, ans)
+
+_ = int(input())
+A = list(map(int,input().split()))
+B = list(map(int,input().split()))
+print(S(A,B,0))

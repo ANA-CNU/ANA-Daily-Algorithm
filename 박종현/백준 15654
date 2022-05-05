@@ -1,0 +1,28 @@
+# N과 M 5
+# https://www.acmicpc.net/problem/15654
+def btk(arr, nums, limit):
+  if len(arr) == limit:
+    memo.append([*arr])
+    return
+  else:
+    for pick in nums:
+      if arr != [] and str(pick) in arr:
+        continue
+      arr.append(str(pick))
+      btk(arr, nums, limit)
+      arr.pop()
+def sorting(arr):
+  leng = len(arr)
+  for i in range(leng):
+    for k in range(i+1,leng):
+      if arr[i] > arr[k] :
+        arr[i], arr[k] = arr[k], arr[i]
+  return arr
+
+N, limit = map(int,input().split())
+memo = []
+nums = list(map(int,input().split()))
+nums = sorting(nums)
+btk([],nums,limit)
+for i in range(len(memo)):
+  print(' '.join(memo[i]))
