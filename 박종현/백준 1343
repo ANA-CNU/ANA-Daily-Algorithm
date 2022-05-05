@@ -1,0 +1,10 @@
+board = input().split('.')
+ans = ""
+for ele in board:
+  leng = len(ele)
+  if leng%2!=0:
+      ans = '-1.'
+      break
+  else:
+      ans += "AAAA"*(leng//4) + "BB"*((leng%4)//2) + "."
+print(ans[:-1])
