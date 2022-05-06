@@ -1,0 +1,10 @@
+import math
+
+string = input()
+L = len(string)
+cnt = 0
+for i in range(L-1):
+  if string[i] != string[i+1]:
+    cnt += 1
+cnt /= 2
+print(math.ceil(cnt))
