@@ -1,0 +1,9 @@
+word = []
+for i in range(int(input())):
+  tmp = input()
+  word.append(tmp)
+word = list(set(word))
+word.sort()
+word.sort(key=len)
+for w in word:
+  print(w)
