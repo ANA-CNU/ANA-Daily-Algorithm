@@ -1,0 +1,28 @@
+# mary : blue card, 짝수.
+# 홀수를 만드는 방법 : 홀+짝 or 짝+홀
+def count_odd(arr):
+  cnt = 0
+  for i in arr:
+    if i%2==1:
+      cnt+=1
+  return cnt
+
+while True:
+  n = int(input())
+  if n == 0:
+    break
+    
+  else:
+    Mary = list(map(int,input().split()))
+    John = list(map(int,input().split()))
+
+    odd_m = count_odd(Mary)
+    even_m = n - odd_m
+
+    odd_j = count_odd(John)
+    even_j = n - odd_j
+
+    ans = n
+    ans -= max(odd_m, even_j)-abs(odd_m - even_j)
+    ans -= max(odd_j, even_m)-abs(even_m - odd_j)
+    print(ans)
