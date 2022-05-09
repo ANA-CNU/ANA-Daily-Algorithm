@@ -1,0 +1,20 @@
+need, tc = map(int,input().split())
+
+min_pack = 1001  # 초기화
+min_piece = 1001 # 입력 범위가 0~1000 임.
+for i in range(tc):
+  pack, piece = map(int,input().split())
+  min_pack = pack if pack < min_pack else min_pack
+  min_piece = piece if piece < min_piece else min_piece
+
+if min_pack == 0 or min_piece == 0:
+  print(0)
+else:
+  if min_pack >= min_piece * 6:
+    print(min_piece*need)
+  else:
+    Q = need//6
+    R = need%6
+    ans = min_pack * Q
+    ans += min_piece*R if min_piece*R < min_pack else min_pack
+    print(ans)
