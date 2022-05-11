@@ -1,0 +1,19 @@
+def gcd(a,b):
+  while b!=0:
+    a, b = b, a%b
+  return a
+
+def sol(n,a):
+  if (n%a==0):
+    res = "{}/1".format(n//a)
+    return res
+  else:
+    GCD = gcd(n,a)
+    res = "{}/{}".format(n//GCD,a//GCD)
+    return res
+
+tc = int(input())
+ring = list(map(int,input().split()))
+first = ring[0]
+for i in range(1,tc):
+  print(sol(first,ring[i]))
