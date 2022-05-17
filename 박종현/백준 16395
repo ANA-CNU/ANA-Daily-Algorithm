@@ -1,0 +1,9 @@
+def comb(n, r):
+  mo = 1; ja = 1
+  r = r if n-r>r else n-r
+  for i in range(1,r+1):
+    ja *= n-i+1
+    mo *= i
+  return ja//mo
+n, r = map(int,input().split())
+print(comb(n-1,r-1))
