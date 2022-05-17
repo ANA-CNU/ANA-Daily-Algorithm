@@ -1,0 +1,15 @@
+import sys
+#input = sys.stdin.readline
+
+n = int(input())
+straw = []
+for i in range(n):
+  straw += [int(input())]
+straw.sort()
+
+ans = -1
+for i in range(n-1,1,-1):
+  if straw[i] < straw[i-1] + straw[i-2]:
+    ans = straw[i] + straw[i-1] + straw[i-2]
+    break
+print(ans)
