@@ -1,0 +1,23 @@
+def sol(need_length, trees):
+  left = -1; right = max(trees)+1
+  while left+1 < right:
+    mid = (left+right)//2
+
+    tmp = 0
+    for h in trees:
+      t = h - mid
+      tmp += t if t>0 else 0
+
+    if tmp == need_length:
+      return mid
+    elif tmp > need_length:
+      left = mid
+    elif tmp < need_length:
+      right = mid
+  return left
+
+tree_num, need_length = map(int,input().split())
+trees = list(map(int,input().split()))
+trees.sort()
+
+print(sol(need_length, trees))
