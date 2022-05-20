@@ -1,0 +1,7 @@
+N = int(input())
+val = 1
+tmp = N-1
+while val<tmp:
+    val += 1
+    tmp -= val
+print(val)
