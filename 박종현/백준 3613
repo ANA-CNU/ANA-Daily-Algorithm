@@ -1,0 +1,78 @@
+# https://www.acmicpc.net/problem/3613
+def JavaToCPP(string):
+    upper_alpha = list(range(65, 91))
+    res = ""
+    for w in string:
+        if w=="_":
+            return "Error!"
+        if ord(w) in upper_alpha:
+            res += "_" + w.lower()
+        else:
+            res += w
+    return res
+
+def CPPToJava(string):
+    res = ""
+    upper_alpha = list(range(65, 91))
+    Up = False
+    for w in string:
+        if ord(w) in upper_alpha:
+            return "Error!"
+        if w == "_":
+            Up = True
+        else:
+            if Up:
+                res += w.upper()
+                Up = False
+            else:
+                res += w
+    return res
+
+def sol(val_name):
+    e = "Error!"
+    upper_alpha = list(range(65,91))
+    # 맨 앞이 대문자면 에러
+    if val_name[0] != val_name[0].lower():
+        return e
+    # 맨 앞 or 맨 뒤가 _ 이면 에러
+    if val_name[0] == "_" or val_name[-1] == "_":
+        return e
+
+    all_somunja = True # 전부 소문자면 에러 / False : 대문자 존재.
+    under_bar= False
+    successive__ = False
+    for w in val_name:
+        if ord(w) in upper_alpha:
+            all_somunja = False
+        if w == '_':
+            under_bar = True
+            # _가 연속으로 나오면 에러
+            if successive__:
+                return e
+            successive__ = True
+        else:
+            successive__ = False
+
+    # 전부 소문자
+    if all_somunja and not under_bar:
+        return val_name
+
+    # 대문자와 '_'가 같이 존재
+    if not all_somunja and under_bar :
+        return e
+
+    java = False
+    cpp = False
+
+    if under_bar: cpp = True
+    if not all_somunja: java = True
+
+    if cpp and java:
+        return e
+    elif cpp:
+        return CPPToJava(val_name)
+    elif java:
+        return JavaToCPP(val_name)
+
+
+print(sol(input()))

@@ -1,0 +1,8 @@
+start, target = map(int,input().split())
+cnt = abs(start-target) #눌러야하는 버튼수 초기화
+
+for i in range(int(input())):
+  save = int(input())
+  tmp = abs(target-save) + 1
+  cnt = tmp if cnt > tmp else cnt
+print(cnt)

@@ -1,0 +1,15 @@
+t = input()
+s = input()
+
+while True:
+  if t == s:
+    print(1)
+    break
+  elif len(t) >= len(s):
+    print(0)
+    break
+  else:
+    if s[-1] == "A":
+      s = s[:-1]
+    else:
+      s = s[:-1][::-1]

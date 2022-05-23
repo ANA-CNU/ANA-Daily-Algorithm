@@ -1,0 +1,34 @@
+N = int(input())
+a, b, c, d, e, f = map(int,input().split())
+arr = [a, b, c, d, e, f]
+if N == 1:
+    print(sum(arr) - max(arr))
+else:
+    # 한 개
+    min1 = min(arr)
+
+    # 두 개
+    sum_two = [a+b, a+c, a+d, a+e,
+               b+c, b+d, b+f,
+               c+e, c+f,
+               d+e, d+f,
+               e+f]
+
+    min2 = min(sum_two)
+
+    # 세 개
+    sum_three = [a+b+c, d+a+e, d+a+b, c+a+e,
+           b+a+d, b+a+c, b+f+d, b+f+c,
+           c+a+b, c+a+e, c+e+f, c+b+f,
+           d+a+e, d+a+b, d+f+b, d+f+e,
+           e+a+d, e+a+c, e+f+d, e+f+c,
+           f+b+d, f+b+c, f+e+d, f+e+c]
+    min3 = min(sum_three)
+
+    side_one = min1 * (N-2)*(5*N -6)
+
+    side_two = 4 * min2 * ((N-1) + (N-2))
+    side_three = min3 * 4
+
+    ans = side_three + side_two + side_one
+    print(ans)

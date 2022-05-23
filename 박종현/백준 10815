@@ -1,0 +1,31 @@
+# https://www.acmicpc.net/problem/10815
+
+# 이분 탐색
+def binary_search(target, arr,m, M):
+  if m>target or M<target:
+    return 0
+  # 정렬된 배열 입력
+  mid = len(arr)//2
+  left = 0; 
+  right = len(arr)-1
+  while right - left >= 0:
+    if arr[mid] == target: #타겟을 찾았을 때
+      return 1
+    elif target > arr[mid]: # 타겟이 절반보다 클 때
+      left = mid+1
+    elif target < arr[mid]: # 타겟이 절반보다 작을 때
+      right = mid-1
+    mid = (left+right)//2
+  return 0
+
+sang = int(input())
+card_s = list(map(int,input().split()))
+card_s.sort()
+m = card_s[0]
+M = card_s[-1]
+
+chk = int(input())
+card_c = list(map(int,input().split()))
+
+for card in card_c:
+  print(binary_search(card,card_s,m,M),end=' ')

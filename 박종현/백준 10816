@@ -1,0 +1,30 @@
+# 이분 탐색
+def upperbound(t, arr):
+  s = -1; e = len(arr)
+  while s+1<e:
+    mid = (s+e)//2
+    if arr[mid] <= t:
+      s = mid
+    else:
+      e = mid
+  return e
+
+def lowerbound(t, arr):
+  lo = -1; hi = len(arr)
+  while lo+1<hi:
+    mid = (lo+hi)//2
+    if arr[mid] < t:
+      lo = mid
+    else:
+      hi = mid
+  return hi
+
+have = int(input())
+cards = list(map(int,input().split()))
+cards.sort()
+
+ck = int(input())
+chks = list(map(int,input().split()))
+
+for i in chks:
+  print(upperbound(i,cards) - lowerbound(i,cards),end=' ')

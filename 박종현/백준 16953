@@ -1,0 +1,18 @@
+# https://www.acmicpc.net/problem/16953
+s, t = map(int,input().split())
+cnt = 1
+# 4 92  무한 루프
+# 10 21 ValueError
+while s!=t:
+  if str(t)[-1] == "1":
+    t = int(str(t)[:-1])
+  elif t%2==0:
+    t //= 2
+  else:
+    cnt = -1
+    break
+  if t<s:
+    cnt = -1
+    break
+  cnt += 1
+print(cnt)

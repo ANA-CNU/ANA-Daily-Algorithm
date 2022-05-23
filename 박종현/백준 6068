@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+class Work{
+    int time; //일하는 데에 걸리는 시간
+    int deadline; //마감시간
+    Work(int t, int d){
+        this.time = t;
+        this.deadline = d;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        // 일의 개수 works
+        int works = sc.nextInt();
+        // 일에 대한 정보를 담을 Work 클래스 객체들.
+        Work task[] = new Work[works];
+
+        // 객체 배열의 각 원소마다 초기화 및 선언.
+        for (int i=0; i<works; i++){
+            int t = sc.nextInt();
+            int d = sc.nextInt();
+            task[i] = new Work(t,d);
+        }
+
+        // 객체배열의 데드라인을 기준으로 정렬중.
+        for (int i=0; i<works-1; i++){
+            for (int k=i+1; k<works; k++){
+                if (task[i].deadline > task[k].deadline){
+                    Work tmp = task[i];
+                    task[i] = task[k];
+                    task[k] = tmp;
+
+                }else if (task[i].deadline == task[k].deadline){
+                    if (task[i].time > task[k].time){
+                        Work tmp = task[i];
+                        task[i] = task[k];
+                        task[k] = tmp;
+                    }
+                }
+            }
+        }
+
+        int start = task[0].deadline - task[0].time;
+        int t = start;
+        ForCheck : while (t >= 0){
+            boolean all_suc = true;
+
+            Loop : for (int i=0; i<works; i++){
+                // 만약 늦잠을 start 만큼 잤을 때, 일을 제떄 못 끝내면?
+                // 늦잠잘 시간을 한 시간 빼고 다시 돌려보기
+                // 부가적으로 start를 t로 초기화.
+                // 정답인 양 출력 안되게 all_suc = false로 변경.
+                // 쓸데없는 반복 없애려 loop break
+                if (start + task[i].time > task[i].deadline){
+                    t -= 1;
+                    start = t;
+                    all_suc = false;
+                    break Loop;
+                }
+                //start + task[i].time <= task[i].deadline 인 경우.
+                start += task[i].time;
+            }
+            // for문에 대해 모든 순회를 통과를 했다면?
+            // t를 출력하면 된다.
+            if (all_suc){
+                System.out.println(t);
+                break ForCheck;
+            }
+        }
+        if (t < 0){
+            System.out.println(-1);
+        }
+
+    }
+}

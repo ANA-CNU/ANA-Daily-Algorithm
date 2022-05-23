@@ -1,0 +1,11 @@
+import sys
+input = sys.stdin.readline
+leng, tc = map(int,input().split())
+arr = list(map(int,input().split()))
+subarr = [0] * (leng+1)
+for i in range(1,leng+1):
+  subarr[i] = subarr[i-1] + arr[i-1]
+
+for _ in range(tc):
+  i, j = map(int,input().split())
+  print(subarr[j]-subarr[i-1])

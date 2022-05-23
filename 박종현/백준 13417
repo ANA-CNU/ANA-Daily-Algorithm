@@ -1,0 +1,14 @@
+# https://www.acmicpc.net/problem/13417
+
+t = int(input())
+for _ in range(t):
+  leng = int(input())
+  card = list(input().split())
+
+  result = str(card[0])
+  for i in range(1,leng):
+    if ord(card[i]) <= ord(result[0]):
+      result = card[i] + result
+    else:
+      result += card[i]
+  print(result)
