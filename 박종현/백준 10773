@@ -1,0 +1,8 @@
+memo = []
+for i in range(int(input())):
+    n = int(input())
+    if n==0:
+        memo.pop()
+    else:
+        memo += [n]
+print(sum(memo))
