@@ -1,0 +1,12 @@
+guest = []
+for i in range(int(input())):
+    guest += [int(input())]
+
+guest.sort(reverse=True)
+idx = 0; ans = 0
+for i in guest:
+    x = i - idx
+    if 1 <= x:
+        ans += x
+        idx += 1
+print(ans)
