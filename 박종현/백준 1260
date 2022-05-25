@@ -1,0 +1,39 @@
+from queue import Queue
+
+node_num, edge_num, start_node = map(int,input().split())
+graph = {}
+
+for i in range(1,1+node_num):
+    graph[i] = []
+
+for i in range(edge_num):
+    n1, n2 = map(int,input().split())
+    graph[n1] += [n2]
+    graph[n2] += [n1]
+
+# 정렬
+for i in range(node_num):
+    graph[1+i].sort()
+
+def dfs(graph, start, visited={}):
+    visited[start] = True
+    for node in graph[start]:
+        if node not in visited:
+            dfs(graph, node, visited)
+    return list(visited.keys())
+
+def bfs(graph, start):
+    visit = {}
+    q = Queue()
+    q.put(start)
+    while q.qsize() > 0:
+        node = q.get()
+        if node not in visit:
+            visit[node] = True
+            for n in graph[node]:
+                q.put(n)
+    return list(visit.keys())
+
+print(' '.join(list(map(str,dfs(graph, start_node)))))
+print(' '.join(list(map(str,bfs(graph, start_node)))))
+
