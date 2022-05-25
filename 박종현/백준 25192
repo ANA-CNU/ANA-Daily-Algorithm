@@ -1,0 +1,11 @@
+log = {}
+cnt = 0
+for i in range(int(input())):
+    chat = input()
+    if chat == "ENTER":
+        log = {}
+        continue;
+    if chat not in log:
+        log[chat] = True
+        cnt += 1
+print(cnt)
