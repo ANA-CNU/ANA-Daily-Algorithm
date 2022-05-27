@@ -1,0 +1,17 @@
+import sys
+
+nonlisten, nonlook = map(int, sys.stdin.readline().rstrip().split())
+nolit = set()
+nolok = set()
+for i in range(nonlisten):
+    name = sys.stdin.readline().rstrip()
+    nolit.add(name)
+for i in range(nonlook):
+    name = sys.stdin.readline().rstrip()
+    nolok.add(name)
+
+result = list(nolok & nolit)
+result.sort()
+print(len(result))
+for name in result:
+    print(name)
