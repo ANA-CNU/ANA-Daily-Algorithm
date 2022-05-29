@@ -1,0 +1,35 @@
+tc = int(input())
+for _ in range(tc):
+    command = input()
+    arr_len = int(input())
+    input_raw_arr = input()
+
+    raw_arr = list(map(str, input_raw_arr))
+    raw_arr.pop(0);
+    raw_arr.pop(-1)
+
+    arr = (''.join(raw_arr)).split(',')
+
+    error = False  # True: 에러 on, False: 정상작동중
+    head = True  # True: 앞부터 읽기, False : 뒤부터 읽기
+    for quri in command:
+        if quri == 'R':
+            head = not head
+        elif quri == 'D':
+            if arr != [] and arr != ['']:
+                if head:
+                    arr.pop(0)
+                else:
+                    arr.pop()
+            else:
+                print("error")
+                error = True
+                break
+
+    if not error:
+        if not head:
+            arr = arr[::-1]
+        ans = "["
+        ans += ','.join(arr)
+        ans += "]"
+        print(ans)
