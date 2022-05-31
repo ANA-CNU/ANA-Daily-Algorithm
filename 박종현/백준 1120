@@ -1,0 +1,12 @@
+A, B = input().split()
+lengA = len(A)
+compare = len(B) - lengA
+
+ans = 10**9
+for i in range(compare+1):
+    differ = 0
+    for k in range(lengA):
+        if A[k] != B[i+k]:
+            differ+=1
+    ans = min(ans, differ)
+print(ans)
