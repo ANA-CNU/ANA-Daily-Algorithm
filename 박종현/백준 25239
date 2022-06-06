@@ -1,0 +1,41 @@
+def setTime(command):
+    global hh, mm
+    if "HOUR" in command:
+        hh += int(command[0])
+    elif "MIN" in command:
+        mm += int(command[:2])
+        hh += mm//60
+        mm %= 60
+    if hh>=12:
+        hh%=12
+def territory(hh):
+    if 0<=hh and hh<2:
+        return 1
+    if 2<=hh and hh<4:
+        return 2
+    if 4<=hh and hh<6:
+        return 3
+    if 6<=hh and hh<8:
+        return 4
+    if 8<=hh and hh<10:
+        return 5
+    if 10<=hh and hh<12:
+        return 6
+hh, mm = map(int, input().split(":"))
+clock = list(map(int, input().split()))
+
+event = int(input())
+for i in range(event):
+    time, command = input().split()
+    time = float(time)
+    if time >= 60: #1분이 지나면 종료
+        break
+
+    if command == "^": # 키보드 위쪽 키 = 봉인
+        terri = territory(hh)
+        clock[terri-1] = 0
+    else:
+        setTime(command)
+
+
+print(100 if sum(clock) > 100 else sum(clock))
