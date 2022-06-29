@@ -1,0 +1,15 @@
+# https://www.acmicpc.net/problem/16435
+
+fruit_num, SnakeBird = map(int,input().split())
+
+fruit = list(map(int,input().split()))
+fruit.sort()
+
+while True:
+    if fruit == [] or SnakeBird < fruit[0]:
+        break
+    if SnakeBird >= fruit[0]:
+        SnakeBird += 1
+        fruit.pop(0)
+
+print(SnakeBird)

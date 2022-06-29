@@ -1,0 +1,12 @@
+arr_len = int(input())
+arr = list(map(int, input().split()))
+tmp = list(set(arr))
+tmp.sort()
+dic = {}
+idx = 0
+for num in tmp:
+    dic[num] = idx
+    idx += 1
+
+for num in arr:
+    print(dic[num],end=' ')

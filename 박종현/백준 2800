@@ -1,0 +1,35 @@
+string = input()
+expression = {}
+
+def sol(s):
+    if s in expression:
+        return
+    expression[s] = True
+    leng = len(s)
+    for i in range(leng):
+        if s[i] == "(":
+            cnt = 1
+            close_idx = 0
+            for k in range(i + 1, leng):
+                if s[k] == "(":
+                    cnt += 1
+                elif s[k] == ")":
+                    cnt -= 1
+                    if cnt == 0:
+                        close_idx = k;
+                        break;
+            # print(s[i], s[close_idx], close_idx)
+            string = s[:i] + s[i + 1:close_idx]
+            if close_idx < leng and i < close_idx:
+                string += s[close_idx + 1:]
+            sol(string)
+    return
+
+sol(string)
+del expression[string]
+keys = list(expression.keys())
+keys.sort()
+for ele in keys:
+    print(ele)
+
+# (1+2*(3+4)+5+(6*7)+8)

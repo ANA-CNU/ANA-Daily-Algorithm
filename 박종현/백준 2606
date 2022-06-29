@@ -1,0 +1,31 @@
+# https://www.acmicpc.net/problem/2606
+from queue import Queue
+
+def bfs(graph):
+    visit = {}
+    q = Queue()
+
+    q.put('1')
+
+    while q.qsize()>0:
+        node = q.get()
+        if node not in visit:
+            visit[node] = True
+            for nextNode in graph[node]:
+                q.put(nextNode)
+    return len(list(visit.keys()))-1
+
+# 그래프 생성 및 초기화
+graph = {}
+com_count = int(input())
+for i in range(1,com_count+1):
+    graph[str(i)] = []
+
+# the number of pair
+n = int(input())
+for i in range(n):
+    c1, c2 = input().split()
+    graph[c1] += [c2]
+    graph[c2] += [c1]
+
+print(bfs(graph))

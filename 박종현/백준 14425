@@ -1,0 +1,12 @@
+import sys
+input = sys.stdin.readline
+n, m = map(int, input().split())
+string = set()
+for i in range(n):
+    string.add(input())
+answer = 0
+for i in range(m):
+    compare = input()
+    if compare in string:
+        answer += 1
+print(answer)

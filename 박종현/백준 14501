@@ -1,0 +1,26 @@
+N = int(input())
+
+# 상담 일정 생성 및 선언
+schedule = []
+for i in range(N):
+    t, p = map(int, input().split())
+    schedule.append([t, p])
+
+memo = set()
+def sol(arr, limit, idx=0, ans=0,depth=0):
+    newIdx = idx + arr[idx][0]  # 새로운 idx
+    ans += arr[idx][1];
+    if newIdx >= limit: # 퇴사날을 넘어서는 날이 나오면 그냥 결과를 리턴함.
+        if newIdx > limit:
+            ans -= arr[idx][1];
+        memo.add(ans);
+        return
+    else:
+        for i in range(newIdx, limit): #limit == N
+            sol(arr, limit, i, ans, depth+1)
+    return
+
+for i in range(N):
+    sol(schedule, N, i);
+print(max(memo))
+

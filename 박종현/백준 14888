@@ -1,0 +1,38 @@
+import math
+N = int(input())
+
+nums = list(map(int, input().split()))
+oper = list(map(int, input().split()))
+
+result = set()
+
+def sol(plus, minus, multiple, divide, order=[],ans=nums.pop(0),recursive_cnt=1):
+    if recursive_cnt == N:
+        print(order, ans)
+        result.add(ans)
+        return
+    b = nums[recursive_cnt-1]
+    if plus:
+        order.append('+')
+        sol(plus-1, minus, multiple, divide, order, ans + b, recursive_cnt+1)
+        order.pop()
+    if minus:
+        order.append('-')
+        sol(plus, minus-1, multiple, divide, order, ans - b, recursive_cnt + 1)
+        order.pop()
+    if multiple:
+        order.append('*')
+        sol(plus, minus, multiple-1, divide, order, ans * b, recursive_cnt + 1)
+        order.pop()
+    if divide:
+        order.append('/')
+        if ans < 0 :
+            sol(plus, minus, multiple, divide - 1, order, -(-ans // b), recursive_cnt + 1)
+        else:
+            sol(plus, minus, multiple, divide - 1, order, ans // b, recursive_cnt + 1)
+        order.pop()
+    return
+
+sol(oper[0], oper[1], oper[2], oper[3])
+print(max(result))
+print(min(result))
