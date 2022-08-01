@@ -1,48 +1,28 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+import javax.swing.*;
+import java.awt.event.*;
 
 public class Main {
-
-	static int count1;
-	static int count0;
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		int T = sc.nextInt();
-		int total1 = 0, total0 = 0;
-		int tmp1 = 0, tmp0 = 0;
-		int ttmp1 = 0, ttmp0 = 0;
-
-		for (int j = 0; j < T; j++) {
-			int N = sc.nextInt();
-			if (N < 2) {
-				if (N == 0) {
-					total1 = 0;
-					total0 = 1;
-				}
-				else if (N == 1) {
-					total0=0;
-					total1 = 1;
-				}
-			} else {
-				total1 = 1;
-				tmp1 = 1;
-				total0 = 1;
-				tmp0 = 1;
-
-				ttmp1 = 1;
-				ttmp0 = 0;
-				for (int i = 2; i < N; i++) {
-					total1 = tmp1 + ttmp1;
-					total0 = tmp0 + ttmp0;
-
-					ttmp1 = tmp1;
-					tmp1 = total1;
-					ttmp0 = tmp0;
-					tmp0 = total0;
-				}
-			}
-			System.out.println(total0 + " " + total1);
+		int N=Integer.parseInt(br.readLine());
+		int[] zero=new int[41];
+		int[] one=new int[41];
+		zero[0]=1;
+		one[1]=1;
+		for(int i=2;i<41;i++) {
+			zero[i]+=zero[i-2]+zero[i-1];
+			one[i]+=one[i-2]+one[i-1];
 		}
+		
+		for(int i=0;i<N;i++) {
+			int n=Integer.parseInt(br.readLine());
+				bw.write(zero[n]+" "+one[n]+"\n");
+		}
+		bw.flush();
 	}
 }
+
