@@ -1,0 +1,16 @@
+n = int(input())
+arr = list(map(int, input().split()))
+
+# elem 을 가장 큰 수로하는 최장증가부분수열.
+D = [1] * (n)
+D2 = [1] * (n)
+for i in range(n):
+    elem = arr[i]
+    for j in range(i):
+        if arr[j] < elem:
+            D[i] = max(D[j]+1, D[i])
+    # 동시에 elem 을 시작으로 하는 최장감소부분수열 구해주기
+    for j in range(0, i):
+        if arr[j] > elem:
+            D2[i] = max(D[j]+1, D[i], D2[j]+1, D2[i])
+print(max(D2))
