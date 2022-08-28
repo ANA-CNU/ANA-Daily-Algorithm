@@ -1,0 +1,26 @@
+n = int(input())
+# 소수 구하기
+sosu = [True] * (n+1)
+m = int(n**0.5)
+for i in range(2, m+1):
+    if sosu[i]:
+        for j in range(i+i, n+1, i):
+            sosu[j] = False
+primeNum = [i for i in range(2,n+1) if sosu[i]]
+
+leng = len(primeNum)
+prefix = [0]*(leng+1)
+for i in range(leng):
+    prefix[i+1] = prefix[i] + primeNum[i]
+
+low, high = 0, 1
+cnt = 0
+while high <= leng:
+    summ = prefix[high] - prefix[low]
+    if summ == n:
+        cnt += 1
+    if summ < n:
+        high += 1
+    elif n <= summ:
+        low += 1
+print(cnt)
