@@ -1,0 +1,20 @@
+n, target = map(int, input().split())
+arr = list(map(int, input().split()))
+
+prefix = [0]*(n+1)
+for i in range(n):
+    prefix[i+1] = prefix[i] + arr[i]
+
+low, high = 0, 1
+ans = 10**8 +1
+while high <= n:
+    ssum = prefix[high] - prefix[low]
+    if ssum >= target:
+        low += 1
+        ans = min(high - low + 1, ans)
+    else:
+        high += 1
+if ans == 10**8 +1:
+    print(0)
+else:
+    print(ans)
