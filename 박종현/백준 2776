@@ -1,0 +1,23 @@
+import sys
+input = sys.stdin.readline
+print = sys.stdout.write
+
+def binSear(t, arr):
+    l, r = -1, len(arr)
+    while l+1 < r:
+        m = (l+r)//2
+        if arr[m] == t:
+            return 1
+        elif arr[m] < t:
+            l = m
+        else:
+            r = m
+    return 0
+
+for i in range(int(input())):
+    n = int(input())
+    arr1 = sorted(list(map(int, input().split())))
+    m = int(input())
+    arr2 = list(map(int, input().split()))
+    for elem in arr2:
+        print(str(binSear(elem, arr1))+'\n')
