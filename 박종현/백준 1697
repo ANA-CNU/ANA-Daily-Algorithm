@@ -1,0 +1,25 @@
+from queue import Queue
+
+A, B = map(int, input().split())
+
+q = Queue()
+q.put((A,0))
+visited = {}
+while q:
+    x, t = q.get()
+    if x == B:
+        print(t)
+        break
+
+    if x+1 not in visited:
+        q.put((x + 1, t + 1))
+        visited[x+1] = True
+
+    if x-1 not in visited:
+        if x-1 >= 0 :
+            q.put((x - 1, t + 1))
+            visited[x-1] = True
+
+    if x*2 < 200002 and x*2 not in visited:
+        q.put((x * 2, t + 1))
+        visited[x*2] = True
