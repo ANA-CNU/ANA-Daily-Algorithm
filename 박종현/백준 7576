@@ -1,0 +1,42 @@
+from collections import deque
+n, m = map(int, input().split())
+box = [list(map(int, input().split())) for _ in range(m)]
+
+# 우선 box에서 1의 위치(좌표)를 모두 파악한다.
+# 그리고나서 그 좌표들을 queue에 put 한다.
+# queue의 원소들을 pop하며 0이라면 [i][j]+1로 바꾼다.
+# 가장 큰 수를 가지고 있는 토마토가 바로 이 문제의 정답이다.
+
+dq = deque()
+for i in range(m):
+    for j in range(n):
+        if box[i][j] == 1:
+            dq.append([i,j])
+
+def BFS(dq):
+    # dx dy technic
+    # 동 남 서 북
+    di, dj = [0, 1, 0, -1], [1, 0, -1, 0]
+
+    while dq:
+        i, j = dq.popleft()
+        for dirc in range(4):
+            ni, nj = i+di[dirc], j+dj[dirc]
+            if 0<=ni and ni<m and 0<=nj and nj<n: #범위 내에 있는가
+                if box[ni][nj] == 0:
+                    box[ni][nj] = box[i][j] + 1
+                    dq.append([ni, nj])
+    return
+
+BFS(dq)
+
+MAX = -10**3
+for line in box:
+    for tomato in line:
+        if tomato == 0:
+            MAX = 0
+            break
+        MAX = max(MAX, tomato)
+    else: continue
+    break
+print(MAX-1) #토마토가 이미 익어 있는 것이 0일차부터 1부터 시작하니깐 가장 큰 값에 -1
