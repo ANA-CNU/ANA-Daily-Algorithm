@@ -1,0 +1,29 @@
+from collections import deque
+Y, X = map(int, input().split())
+paint = [list(map(int, input().split())) for _ in range(Y)]
+
+# 동 남 서 북
+dy, dx = [0, 1, 0, -1], [1, 0, -1, 0]
+
+area = 0
+cnt_paint = 0
+for y in range(Y):
+    for x in range(X):
+        if paint[y][x] == 1:
+            paint[y][x], tmp = 2, 1
+            cnt_paint += 1
+            
+            q = deque()
+            q.append((y, x))
+
+            while q:
+                i, j = q.popleft()
+
+                for dirc in range(4):
+                    ni, nj = i+dy[dirc], j+dx[dirc]
+                    if 0<=ni and ni<Y and 0<=nj and nj<X and paint[ni][nj] == 1:
+                        tmp += 1
+                        paint[ni][nj] = 2
+                        q.append((ni, nj))
+            area = max(tmp, area)
+print(cnt_paint,"\n",area,sep='')
