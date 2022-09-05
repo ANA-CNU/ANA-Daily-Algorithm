@@ -1,0 +1,35 @@
+from collections import deque
+
+n = int(input())+1
+a, b = map(int, input().split())
+m = int(input())
+
+# 그래프 초기화
+graph = {}
+for _ in range(m):
+    x, y = map(int, input().split())
+    if x in graph:
+        graph[x] += [y]
+    else:
+        graph[x] = [y]
+
+    if y in graph:
+        graph[y] += [x]
+    else:
+        graph[y] = [x]
+q = deque()
+q.append((a,0))
+visited = [0]*n
+while q:
+    relative, kinship = q.popleft()
+    if visited[relative] == 1:
+        continue
+    if relative == b:
+        print(kinship)
+        break
+    visited[relative] = 1
+    for node in graph[relative]:
+        if visited[node] == 0:
+            q.append((node, kinship+1))
+else:
+    print(-1)
