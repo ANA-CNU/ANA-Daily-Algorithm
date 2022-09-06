@@ -1,0 +1,37 @@
+from collections import deque
+
+N, M = map(int, input().split())
+graph = {}
+for _ in range(M):
+    a, b = map(int, input().split())
+    if a not in graph:
+        graph[a] = [b]
+    else: graph[a] += [b]
+    if b not in graph:
+        graph[b] = [a]
+    else: graph[b] += [a]
+
+MIN = 10**8
+ans = 0
+
+q = deque()
+for i in range(1, N+1):
+    kevin_baker = 0
+
+    q.append((i, 0))
+
+    visited = {}
+    while q:
+        user, t = q.popleft()
+        if user in visited:
+            continue
+        visited[user] = True
+
+        for friend in graph[user]:
+            q.append((friend, t+1))
+        kevin_baker+=t
+    if MIN > kevin_baker:
+        MIN = kevin_baker
+        ans = i
+
+print(ans)
