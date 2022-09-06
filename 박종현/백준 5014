@@ -1,0 +1,39 @@
+from collections import deque
+
+buliding, now, goal, up, down = map(int, input().split())
+if now == goal:
+    print(0)
+    exit(0)
+graph = {}
+graph[now] = []
+if now+up <= buliding:
+    graph[now] += [now+up]
+if now-down > 0 :
+    graph[now] += [now-down]
+
+q = deque()
+q.append((graph[now], 1))
+
+visited = {}
+while q:
+    # type : list, int
+    positions, t = q.popleft() # t = 엘리베이터를 눌러야 하는 횟수
+    if positions == []:
+        continue
+    if goal in positions:
+        print(t)
+        break
+
+    for floor in positions:
+        if floor in visited:
+            continue
+        visited[floor] = True
+        graph[floor] = []
+        if floor + up <= buliding:
+            graph[floor] += [floor + up]
+        if floor - down > 0:
+            graph[floor] += [floor - down]
+        q.append((graph[floor], t+1))
+    # print(positions, t)
+else:
+    print("use the stairs")
