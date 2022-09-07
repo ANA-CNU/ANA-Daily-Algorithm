@@ -1,0 +1,28 @@
+from collections import deque
+
+grid = [ list(map(int, input().split())) for _ in range(5) ]
+r,c = map(int, input().split())
+
+q = deque()
+q.append((r,c,0))
+grid[r][c] = 100
+# 남 서 북 동
+dr, dc = [1, 0, -1, 0], [0, -1, 0 ,1]
+while q:
+    r, c, t = q.popleft()
+    if grid[r][c] == 1:
+        print(t)
+        break
+    for dirc in range(4):
+        nr, nc = r+dr[dirc], c+dc[dirc]
+        if 0<=nr and nr<5 and 0<=nc and nc<5:
+            if grid[nr][nc] == 0:
+                grid[nr][nc] = 2
+                q.append((nr,nc,t+1))
+            if grid[nr][nc] == 1:
+                print(t+1)
+                break
+    else: continue
+    break
+
+else: print(-1)
