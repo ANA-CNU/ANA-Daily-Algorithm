@@ -1,0 +1,54 @@
+from collections import deque
+
+N = int(input())
+grid = [list(input()) for _ in range(N)]
+
+weakness = [[0] * N for _ in range(N)]
+for i in range(N):
+    for j in range(N):
+        if grid[i][j] in ['R', 'G']:
+            weakness[i][j] = 'R'
+        else:
+            weakness[i][j] = 'B'
+
+# 북 동 남 서
+dy, dx = [-1, 0, 1, 0], [0, 1, 0, -1]
+
+# 일반사람
+area = 0
+for i in range(N):
+    for j in range(N):
+        if grid[i][j] == '0':
+            continue
+        q = deque()
+        q.append((i, j))
+        color = grid[i][j]
+        area += 1
+        while q:
+            y, x = q.popleft()
+            for dirc in range(4):
+                ny, nx = y+dy[dirc], x+dx[dirc]
+                if 0<=ny and ny<N and 0<=nx and nx<N:
+                    if color != grid[ny][nx]:
+                        continue
+                    grid[ny][nx] = '0'
+                    q.append((ny,nx))
+weak = 0
+for i in range(N):
+    for j in range(N):
+        if weakness[i][j] == '0':
+            continue
+        q = deque()
+        q.append((i, j))
+        color = weakness[i][j]
+        weak += 1
+        while q:
+            y, x = q.popleft()
+            for dirc in range(4):
+                ny, nx = y+dy[dirc], x+dx[dirc]
+                if 0<=ny and ny<N and 0<=nx and nx<N:
+                    if color != weakness[ny][nx]:
+                        continue
+                    weakness[ny][nx] = '0'
+                    q.append((ny,nx))
+print(area, weak)
