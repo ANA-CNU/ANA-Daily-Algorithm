@@ -1,0 +1,39 @@
+from collections import deque
+import sys
+input = sys.stdin.readline
+# 불의 위치 모두 탐색
+# 지훈이의 위치로부터 BFS. 그와 동시에 불의 위치로부터도 BFS한다.
+
+r, c = map(int, input().split())
+maze = [list(input()) for _ in range(r)]
+# 지훈이부터 움직인다.
+# popleft 할거니까 지훈이는 appendleft, 불은 append
+info = deque()
+for i in range(r):
+    for j in range(c):
+        if maze[i][j] == 'F':
+            info.append((i, j, 'F', 1))
+        if maze[i][j] == 'J':
+            info.appendleft((i, j, 'J', 1))
+
+# 북 동 남 서
+dy, dx = [1, 0, -1, 0], [0, 1, 0, -1]
+while info:
+    y, x, chr, t = info.popleft()
+    if (y == 0 or y == r - 1) or (x == 0 or x == c - 1):
+        if maze[y][x] == 'J':
+            print(t)
+            break
+    for dirc in range(4):
+        # 지훈은 이동. 불도 이동
+        # 지훈이 맵에서 사라지면 IMPOSSIBLE
+        # 불은 지훈을 덮어 쓰기 가능.
+        ny, nx = y + dy[dirc], x + dx[dirc]
+
+        if 0 <= ny and ny < r and 0 <= x and nx < c:
+            # maze[ny][nx]가 '#' or 'F'일때는 이동할 필요 X
+            if maze[ny][nx] == '.' or (maze[ny][nx] == 'J' and chr == 'F'):
+                maze[ny][nx] = chr  # J or F 이동
+                info.append((ny, nx, chr, t + 1))
+else:
+    print("IMPOSSIBLE")
