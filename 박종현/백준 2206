@@ -1,0 +1,31 @@
+from collections import deque
+
+n, m = map(int, input().split())
+grid = [list(input()) for _ in range(n)]
+
+q = deque()
+q.append((0, 0, 0, 1)) #좌표, 벽뚫은 횟수, 이동횟수(=시간)
+dy, dx = [0, 1, 0, -1], [1, 0, -1, 0]  # 동 남 서 북
+
+# 부순 상태[1]에서 [y][x]를 지났는가?
+# 안 부순 상태[0]에서 [y][x]를 지났는가?
+visited = [[[False]*m for i in range(n)] for ii in range(2)]
+
+while q:
+    y, x, t, move = q.popleft()
+    if y == n - 1 and x == m - 1:
+        print(move)
+        break
+    for i in range(4):
+        ny, nx = y + dy[i], x + dx[i]
+        if 0 <= ny and ny < n and 0 <= nx and nx < m:
+            if grid[ny][nx] == '1':
+                if t < 1 and not visited[t][ny][nx]:
+                    q.append((ny, nx, t+1, move + 1))
+                    visited[t][ny][nx] = True
+                continue
+            if not visited[t][ny][nx]:
+                q.append((ny, nx, t, move + 1))
+                visited[t][ny][nx] = True
+else:
+    print(-1)
