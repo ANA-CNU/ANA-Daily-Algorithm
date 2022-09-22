@@ -1,0 +1,51 @@
+from collections import deque
+import sys
+
+input = sys.stdin.readline
+print = sys.stdout.write
+
+# 북 동 남 서
+dy, dx = [-1, 0, 1, 0], [0, 1, 0, -1]
+
+tc = int(input())
+for _ in range(tc):
+    q = deque()
+    column, row = map(int, input().split())
+    grid = []
+    for r in range(row):
+        R = list(input())  # 행 입력
+        grid.append(R)
+        for c in range(column):
+            if R[c] == '@':
+                q.appendleft((r, c, 0, '@'))  # 상근이의 위치와 이동횟수, 상근이
+            if R[c] == '*':
+                q.append((r, c, 0, '*'))  # 불의 위치와 이동횟수(이동횟수는 딱히 필요하지 않을 예정), 불
+
+    while q:
+        y, x, move, char = q.popleft()
+
+        # 상근이의 탈출조건 (상근이여야 하고, 맵의 가장자리에 있어야 하고, 그 위치엔 상근이가 서 있어야 한다.)
+        if char == '@' and (y == 0 or y == row - 1 or x == 0 or x == column - 1) and grid[y][x] == '@':
+            print(str(move + 1) + '\n')
+            break
+        for dirc in range(4):
+            ny, nx = y + dy[dirc], x + dx[dirc]
+
+            # 범위 안에 있는가?
+            if 0 <= ny and ny < row and 0 <= nx and nx < column:
+                # 상근이인가?
+                if char == '@':
+                    # 상근이는 '.'으로만 움직일 수 있다.
+                    if grid[ny][nx] == '.':
+                        grid[ny][nx] = '@'
+                        # 큐에 상근이의 위치 업데이트
+                        q.append((ny, nx, move + 1, char))
+                # 불인가?
+                elif char == '*':
+                    # 불은 '.', '@'으로 움직일 수 있다.
+                    if grid[ny][nx] in ['.', '@']:
+                        grid[ny][nx] = '*'
+                        # 큐에 불의 위치 업데이트
+                        q.append((ny, nx, move + 1, char))
+    else:
+        print("IMPOSSIBLE\n")
