@@ -1,0 +1,34 @@
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+column, row, height = map(int, input().split())
+grid = [[list(map(int, input().split())) for r in range(row)] for h in range(height)]
+
+dz, dy, dx = [1, -1, 0, 0, 0, 0], [0, 0, 1, -1, 0, 0], [0, 0, 0, 0, 1, -1]
+
+q = deque()
+unripe_tomato = 0   # 덜 익은 토마토
+for h in range(height):
+    for r in range(row):
+        for c in range(column):
+            if grid[h][r][c] == 1:
+                q.append((h, r, c, 0))
+            elif grid[h][r][c] == 0:
+                unripe_tomato += 1
+date = 0    # 모두 다 익는 데에 걸리는 기간
+while q:
+    z, y, x, t = q.popleft()
+    for i in range(6):
+        nz, ny, nx = z + dz[i], y + dy[i], x + dx[i]
+        if 0 <= nz and nz < height and 0 <= ny and ny < row and 0 <= nx and nx < column:
+            if grid[nz][ny][nx] == 0:
+                grid[nz][ny][nx] = 1
+                date = max(t+1, date)
+                q.append((nz, ny, nx, t + 1))
+                unripe_tomato -= 1    # 안 익은 토마토가 익었으니 하나씩 차감
+
+if unripe_tomato > 0:   # 안 익은 게 하나라도 있으면 문제 조건에 맞지 않으므로 -1을 출력.
+    print(-1)
+else:
+    print(date)
