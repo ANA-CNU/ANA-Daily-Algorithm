@@ -1,0 +1,34 @@
+from collections import deque
+import sys
+input = sys.stdin.readline
+# 북 동 남 서
+dy, dx = [-1, 0, 1, 0], [0, 1, 0, -1]
+
+R, C, K = map(int, input().split())
+grid = [[0]*C for _ in range(R)]
+for _ in range(K):
+    y, x = map(int, input().split())
+    grid[y-1][x-1] = 1 #음쓰
+
+def BFS(i, j):
+    q = deque()
+    q.append((i, j))
+    cnt = 1
+    while q:
+        y, x = q.popleft()
+        for dirc in range(4):
+            ny, nx = y + dy[dirc], x + dx[dirc]
+            if 0 <= ny and ny < R and 0 <= nx and nx < C:
+                if grid[ny][nx] == 1:
+                    q.append((ny, nx))
+                    grid[ny][nx] = 0
+                    cnt += 1
+    return cnt
+
+area = 0
+for i in range(R):
+    for j in range(C):
+        if grid[i][j] == 1:
+            grid[i][j] = 0
+            area = max(BFS(i, j), area)
+print(area)
