@@ -1,0 +1,43 @@
+from collections import deque
+
+dz, dy, dx = [1, -1, 0, 0, 0, 0], [0, 0, 1, -1, 0, 0], [0, 0, 0, 0, 1, -1]
+
+while True:
+    L, R, C = map(int, input().split())
+
+    if L == 0 and R == 0 and C == 0:  # 종료 조건
+        break
+
+    q = deque()
+
+    cube = []
+    for z in range(L):
+        tmp = []
+        for r in range(R):
+            inp_tmp = list(input())
+            if len(q) == 0:
+                for i in range(C):
+                    if inp_tmp[i] == 'S':  # 시작점
+                        q.append((z, r, i, 0))
+            tmp.append(inp_tmp)
+        input()
+        cube.append(tmp)
+
+    while q:
+        z, y, x, t = q.popleft()
+        for i in range(6):
+            nz, ny, nx = z+dz[i], y+dy[i], x+dx[i]
+            if 0<=nz<L and 0<=ny<R and 0<=nx<C: # 범위 내에 있는가?
+                if cube[nz][ny][nx] == '.':
+                    cube[nz][ny][nx] = 'S'
+                    q.append((nz, ny, nx, t+1))
+                
+                elif cube[nz][ny][nx] == 'E':
+                    print(f"Escaped in {t+1} minute(s).")
+                    break
+        else:
+            #for문이 break를 겪지 않고 그냥 종료되면 while을 break하지 않고 그냥 넘김
+            continue
+        break #for문이 break로 종료되면 while도 break로 종료하여 else문을 실행시키지 않음
+    else:
+        print("Trapped!")
