@@ -1,0 +1,47 @@
+from collections import deque
+import sys
+
+input = sys.stdin.readline
+print = sys.stdout.write
+
+q = deque()
+
+R, C = map(int, input().split())
+grid = []
+D = [0, 0]
+for i in range(R):
+    string = input()
+    for j in range(C):
+        if string[j] == 'S':
+            q.appendleft((i, j, 0, 'S', False))
+        elif string[j] == '*':
+            q.append((i, j, 0, '*', False))
+        elif string[j] == 'D':
+            D = [i, j]
+    grid.append(list(string))
+
+water_visited = [[False] * R for _ in range(C)]
+dy, dx = [1, -1, 0, 0], [0, 0, 1, -1]
+while q:
+    y, x, move, char, goal = q.popleft()
+    if goal and char == 'S' and [y, x] == D:  # 종료
+        print(str(move) + '\n')
+        break
+
+    for i in range(4):
+        ny, nx = y + dy[i], x + dx[i]
+        if 0 <= ny and ny < R and 0 <= nx and nx < C:
+            # 고슴도치
+            if char == 'S' and grid[y][x] == 'S': # grid[y][x]가 S가 아니라면 이미 물에 잠긴 것.
+                if grid[ny][nx] == '.':
+                    grid[ny][nx] = char
+                    q.append((ny, nx, move + 1, char, False))
+                elif grid[ny][nx] == 'D':
+                    q.append((ny, nx, move + 1, char, True))
+            # 물
+            elif char == '*':
+                if grid[ny][nx] in ['.', 'S']:
+                    grid[ny][nx] = char
+                    q.append((ny, nx, move + 1, char, False))
+else:
+    print("KAKTUS\n")
