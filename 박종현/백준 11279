@@ -1,0 +1,60 @@
+import sys
+
+input = sys.stdin.readline
+print = sys.stdout.write
+heap = [0]
+# heapSize = len(heap) - 1
+
+def insert_max_heap(x: int):
+    heap.append(x)  # 말단에 x 추가
+
+    child = len(heap) - 1  # 힙사이즈, 말단 노드
+    while child > 1:
+        parent = child // 2
+        if heap[child] > heap[parent]:
+            heap[child], heap[parent] = heap[parent], heap[child]
+            child = parent
+        else:
+            break
+    # print(' '.join(map(str, heap))+'\n')
+    return
+
+def get_child_node(node): # max heap에서
+    if len(heap) - 1 >= node*2 + 1:
+        if heap[node*2] > heap[node*2 +1]:
+            return node*2
+        else:
+            return node*2 + 1
+    elif len(heap) - 1 == node * 2: #오른쪽 자식이 없을 수도 있어서 이렇게 함
+        return node*2
+    return -1
+
+def del_max_heap():
+    if len(heap) == 1:
+        return 0
+
+    return_value = heap[1]
+    heap[1] = heap[-1]
+    parent = 1
+    heap.pop()
+    while 1:
+        child = get_child_node(parent)
+        if child == -1:
+            break
+        if heap[parent] < heap[child]:
+            heap[parent], heap[child] = heap[child], heap[parent]
+            parent = child
+        else:
+            break
+
+    return return_value
+
+
+N = int(input())
+for _ in range(N):
+    n = int(input())
+    # print(' '.join(map(str, heap))+'\n')
+    if n == 0:
+        print(str(del_max_heap()) + '\n')
+    else:
+        insert_max_heap(n)
