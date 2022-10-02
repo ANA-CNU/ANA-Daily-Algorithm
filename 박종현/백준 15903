@@ -1,0 +1,12 @@
+import heapq
+
+n, m = map(int, input().split())
+heap = list(map(int, input().split()))
+heapq.heapify(heap)
+
+for _ in range(m):
+    z = heapq.heappop(heap) + heapq.heappop(heap)
+    for i in range(2):
+        heapq.heappush(heap, z)
+
+print(sum(heap))
