@@ -1,0 +1,14 @@
+import heapq
+
+heap = []
+N = int(input())
+for _ in range(N):
+    heapq.heappush(heap, int(input()))
+ans = 0
+while heap:
+    if len(heap) == 1:
+        break
+    x = heapq.heappop(heap) + heapq.heappop(heap)
+    ans += x
+    heapq.heappush(heap, x)
+print(ans)
