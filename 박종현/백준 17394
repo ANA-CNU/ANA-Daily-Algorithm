@@ -1,0 +1,45 @@
+from collections import deque
+
+# 소수 판정
+a = 10 ** 6 + 1
+b = int(a ** 0.5) + 1
+sosu = [True] * a
+for i in range(2, b):
+    if sosu[i]:
+        for j in range(i + i, a, i):
+            sosu[j] = False
+
+# 문제 해결
+tc = int(input())
+for _ in range(tc):
+    N, A, B = map(int, input().split())
+    prime = 0
+    for i in range(A, B + 1):
+        if sosu[i]:
+            prime += 1
+    if prime == 0:
+        print(-1)
+        continue
+
+    q = deque()
+    q.append((N, 0))
+    visited = [0] * a
+    while q:
+        life, t = q.popleft()
+        if sosu[life] and A <= life and life <= B:
+            print(t)
+            break
+        if not visited[life // 2]:
+            q.append((life // 2, t + 1))
+            visited[life // 2] = 1
+        if not visited[life // 3]:
+            q.append((life // 3, t + 1))
+            visited[life // 3] = 1
+        if life + 1 <= a - 1 and not visited[life + 1]:
+            q.append((life + 1, t + 1))
+            visited[life + 1] = 1
+        if 0 <= life - 1 and not visited[life - 1]:
+            q.append((life - 1, t + 1))
+            visited[life - 1] = 1
+    else:
+        print(-1)
