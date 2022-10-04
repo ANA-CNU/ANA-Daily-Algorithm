@@ -1,0 +1,14 @@
+import heapq, sys
+input = sys.stdin.readline
+print = sys.stdout.write
+
+for _ in range(int(input())):
+    n = int(input())
+    heap = list(map(int, input().split()))
+    heapq.heapify(heap)
+    cnt = 0
+    while len(heap) > 1:
+        x = heapq.heappop(heap) + heapq.heappop(heap)
+        cnt += x
+        heapq.heappush(heap, x)
+    print(str(cnt)+"\n")
