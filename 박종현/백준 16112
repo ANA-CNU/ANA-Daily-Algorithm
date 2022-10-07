@@ -1,0 +1,10 @@
+n, k = map(int, input().split())
+arr = sorted(list(map(int, input().split())))
+total_exp = 0
+activated_arcaine_stone = 0
+
+for i in range(n):
+    total_exp += arr[i] * activated_arcaine_stone
+    if activated_arcaine_stone < k :
+        activated_arcaine_stone += 1
+print(total_exp)
