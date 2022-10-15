@@ -1,0 +1,21 @@
+import sys, heapq
+
+input = sys.stdin.readline
+print = sys.stdout.write
+
+tc = int(input())
+for _ in range(tc):
+    n = int(input())
+    arr = list(map(int, input().split()))
+    heapq.heapify(arr)
+
+    if len(arr) == 1:
+        print("1\n")
+        continue
+
+    ans = 1
+    while len(arr) > 1:
+        tmp = heapq.heappop(arr) * heapq.heappop(arr)
+        ans = (ans * tmp) % (10 ** 9 + 7)
+        heapq.heappush(arr, tmp)
+    print(str(ans)+'\n')
