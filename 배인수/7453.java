@@ -3,52 +3,26 @@ import java.util.*;
 
 public class Main {
 
-  static int[] left, right;
-
-  static int lowerBound(long key) {
-    int start = 0;
-    int end = right.length;
-
-    while(start < end) {
-      int mid = (start+end)/2;
-      if(right[mid] < key) start = mid+1;
-      else end = mid;
-    }
-    return end;
-  }
-
-  static int upperBound(long key) {
-    int start = 0;
-    int end = right.length;
-
-    while(start < end) {
-      int mid = (start+end)/2;
-      if(right[mid] <= key) start = mid+1;
-      else end = mid;
-    }
-    return end;
-  }
-
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st;
 
     int n = Integer.parseInt(br.readLine());
-    int[] a = new int[n];
-    int[] b = new int[n];
-    int[] c = new int[n];
-    int[] d = new int[n];
+    long[] a = new long[n];
+    long[] b = new long[n];
+    long[] c = new long[n];
+    long[] d = new long[n];
 
     for(int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
-      a[i] = Integer.parseInt(st.nextToken());
-      b[i] = Integer.parseInt(st.nextToken());
-      c[i] = Integer.parseInt(st.nextToken());
-      d[i] = Integer.parseInt(st.nextToken());
+      a[i] = Long.parseLong(st.nextToken());
+      b[i] = Long.parseLong(st.nextToken());
+      c[i] = Long.parseLong(st.nextToken());
+      d[i] = Long.parseLong(st.nextToken());
     }
 
-    left = new int[n*n];
-    right = new int[n*n];
+    long[] left = new long[n*n];
+    long[] right = new long[n*n];
 
     int idx = 0;
     for(int i = 0; i < n; i++) {
@@ -58,12 +32,30 @@ public class Main {
         idx++;
       }
     }
+    Arrays.sort(left);
     Arrays.sort(right);
 
     long ans = 0;
-    for(long l : left) {
-      ans += upperBound(-l)-lowerBound(-l);
+    int leftIdx = 0;
+    int rightIdx = right.length-1;
+
+    while(leftIdx <= left.length-1 && rightIdx >= 0) {
+      long sum = left[leftIdx]+right[rightIdx];
+      if(sum > 0) rightIdx--;
+      else if(sum < 0) leftIdx++;
+      else {
+        int preLeftIdx = leftIdx;
+        int preRightIdx = rightIdx;
+
+        while(leftIdx <= left.length-1 &&
+            left[leftIdx] == left[preLeftIdx]) leftIdx++;
+        while(rightIdx >= 0 &&
+            right[rightIdx] == right[preRightIdx]) rightIdx--;
+
+        ans += (long)(leftIdx-preLeftIdx)*(preRightIdx-rightIdx);
+      }
     }
+
     System.out.println(ans);
   }
 }
