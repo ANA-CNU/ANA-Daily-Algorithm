@@ -1,0 +1,42 @@
+from collections import deque
+import sys
+
+input = sys.stdin.readline
+print = sys.stdout.write
+
+
+def make4(number: int, arr: list):
+    ret = []
+    for i in range(4):
+        ret += [int(''.join(arr)) - int(arr[i]) * (10 ** (3 - i)) + (number * 10 ** (3 - i))]
+    return ret
+
+
+n = 10000
+m = int(n ** 0.5) + 1
+sosu = [True] * (n + 1)
+for i in range(2, m):
+    if sosu[i]:
+        for j in range(i + i, n + 1, i):
+            sosu[j] = False
+prime = [i for i in (1000, n) if sosu[i]]
+
+tc = int(input())
+for _ in range(tc):
+    s, e = map(int, input().split())
+    q = deque()
+    q.append((s, 0))
+
+    visited = [0] * 8999
+    while q:
+        now, t = q.popleft()
+        if now == e:
+            print(str(t) + '\n')
+            break
+        decomposition = list(str(now))
+        for i in range(10):
+            _list = make4(i, decomposition)
+            for num in _list:
+                if num > 1000 and sosu[num] and not visited[num - 1000]:
+                    q.append((num, t + 1))
+                    visited[num - 1000] = 1
