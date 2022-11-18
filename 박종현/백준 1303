@@ -1,0 +1,29 @@
+c, r = map(int, input().split())
+grid = [list(input()) for _ in range(r)]
+
+# 북 동 남 서
+dy, dx = [-1, 0, 1, 0], [0, 1, 0, -1]
+
+
+def DFS(y, x):
+    cnt = 1
+    character = grid[y][x]
+    grid[y][x] = '0'
+    for d in range(4):
+        ny, nx = y + dy[d], x + dx[d]
+        if 0 <= ny and ny < r and 0 <= nx and nx < c and character == grid[ny][nx]:
+            cnt += DFS(ny, nx)
+
+    return cnt
+
+
+power = {'W': 0, 'B': 0}
+
+for i in range(r):
+    for j in range(c):
+        char = grid[i][j]
+        if grid[i][j] in ['W', 'B']:
+            p = DFS(i, j)
+            power[char] += p ** 2
+
+print(' '.join(list(map(str, list(power.values())))))
