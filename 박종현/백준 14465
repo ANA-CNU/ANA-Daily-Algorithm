@@ -1,0 +1,15 @@
+N, K, B = map(int, input().split())
+
+_list = [0] * (N + 1)
+for _ in range(B):
+    n = int(input())
+    _list[n] += 1
+
+prefix = [0] * (N + 1)
+for i in range(1,N+1):
+    prefix[i] = _list[i] + prefix[i-1]
+
+ans = 10**8
+for i in range(K, N+1):
+    ans = min(ans, prefix[i] - prefix[i-K+1])
+print(ans)
