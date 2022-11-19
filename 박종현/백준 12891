@@ -1,0 +1,22 @@
+S, P = map(int, input().split())
+DNA = input()
+condition = list(map(int, input().split()))
+
+ACGT = {'A': 0, 'C': 1, 'G': 2, 'T': 3}
+
+prefix = [[0, 0, 0, 0]]
+for i in range(S):
+    tmp = [0, 0, 0, 0]
+    tmp[ACGT[DNA[i]]] += 1
+    tmp2 = [ai + bi for ai, bi in zip(tmp, prefix[i])]
+    prefix.append(tmp2)
+
+ans = 0
+for i in range(P, S+1):
+    tmp = [ai - bi for ai, bi in zip(prefix[i], prefix[i-P])]
+    for a, c in zip(tmp, condition):
+        if a < c:
+            break
+    else:
+        ans += 1
+print(ans)
