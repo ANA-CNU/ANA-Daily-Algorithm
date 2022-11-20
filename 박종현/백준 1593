@@ -1,0 +1,29 @@
+def alphabet(Char):
+    ascci = ord(Char)
+    if ascci < 97:
+        return ascci - 65 + 26
+    return ascci - 97
+
+g, s = map(int, input().split())
+W = input()
+S = input()
+
+Wl, Sl = [0]*52, [0]*52
+for char in W:
+    Wl[alphabet(char)] += 1
+
+tmp = []
+ans = 0
+for i in range(s):
+    char = S[i]
+    if i >= g:
+        c = tmp[i-g]
+        Sl[alphabet(c)] -= 1
+    Sl[alphabet(char)] += 1
+    for j in range(52):
+        if Sl[j] < Wl[j]:
+            break
+    else:
+        ans += 1
+    tmp += [char]
+print(ans)
