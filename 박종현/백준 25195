@@ -1,0 +1,34 @@
+from collections import deque
+
+N, M = map(int, input().split())
+graph = {}
+for _ in range(M):
+    u, v = map(int, input().split())
+    if u not in graph:
+        graph[u] = [v]
+    else:
+        graph[u] += [v]
+
+S = int(input())
+Sl = set(map(int, input().split()))
+
+q = deque()
+q.append(1)  # 중간에 팬클럽 곰곰이를 만나면 True로 바꾸기
+satisfied = False
+while q:
+    node = q.popleft()
+    if node in Sl:
+        continue
+        
+    if node in graph:  # next_node가 존재한다는 의미
+                       # u -> v 그래프이고, u(출발노드)가 존재하면 v(도착노드)가 존재한다는 의미. 즉, u(=node)가 없다면 v(=next_node)도 없음
+        for next_node in graph[node]:
+            q.append(next_node)
+    else:  # 끝까지 탐색했다는 의미
+        satisfied = True
+        break
+
+if satisfied:
+    print("yes")
+else:
+    print("Yes")
