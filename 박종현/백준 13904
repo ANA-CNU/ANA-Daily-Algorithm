@@ -1,0 +1,29 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+hw = []
+D = 0
+for _ in range(n):
+    dead, ramen = map(int, input().split())
+    D = max(D, dead)
+    hw.append((ramen, dead))
+
+hw.sort(key=lambda x: (x[0], x[1]))
+_list = [0] * D
+
+for _ in range(n):
+    r, d = hw.pop()
+    idx = d - 1
+    small = idx
+    for i in range(idx, -1, -1):
+        if _list[i] == 0:
+            _list[i] = r
+            break
+        if _list[small] > _list[i]:
+            small = i
+    else:
+        _list[small] = max(_list[small], r)
+
+print(sum(_list))
