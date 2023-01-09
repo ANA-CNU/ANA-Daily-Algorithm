@@ -1,0 +1,85 @@
+import java.util.*;
+import java.io.*;
+
+public class Main{
+    static long arr[];
+    static long maxtree[], mintree[];
+    static int N, M;
+    public static void maxinit(int node, int start, int end) {
+        if(start == end){
+            maxtree[node] = arr[start];
+        }else{
+            maxinit(node * 2, start, (start + end) / 2);
+            maxinit(node * 2 + 1, (start + end) / 2 + 1, end);
+            maxtree[node] = Math.max(maxtree[node * 2], maxtree[node * 2 + 1]);
+        }
+    }
+    public static void mininit(int node, int start, int end){
+        if(start == end){
+            mintree[node] = arr[start];
+        }else{
+            mininit(node * 2, start, (start + end) / 2);
+            mininit(node * 2 + 1, (start + end) / 2 + 1, end);
+            mintree[node] = Math.min(mintree[node * 2], mintree[node * 2 + 1]);
+        }
+    }
+
+    public static long find(int node, int start, int end, int left, int right, boolean min) {
+        if(left > end || right < start) {
+            if(min){
+                return Long.MAX_VALUE;
+            }else{
+                return Long.MIN_VALUE;
+            }
+        }
+        if(left <= start && end <= right){
+            if(min){
+                return mintree[node];
+            }else{
+                return maxtree[node];
+            }
+        }
+        long l = find(node * 2, start, (start + end) / 2, left, right, min);
+        long r = find(node * 2 + 1, (start + end)/ 2 + 1, end, left, right, min);
+        if(min){
+            return Math.min(l, r);
+        }else{
+            return Math.max(l, r);
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        arr = new long[N + 1];
+        maxtree = new long[4 * N];
+        mintree = new long[4 * N];
+
+        for(int i = 1; i < N + 1; i++){
+            int temp = Integer.parseInt(br.readLine());
+
+            arr[i] = temp;
+        }
+
+        maxinit(1, 1, N);
+        mininit(1, 1, N);
+
+        while (M --> 0) {
+            st = new StringTokenizer(br.readLine());
+            int left = Integer.parseInt(st.nextToken());
+            int right = Integer.parseInt(st.nextToken());
+
+            long min = find(1, 1, N, left, right, true);
+            long max = find(1, 1, N, left, right, false);
+
+            sb.append(min).append(" ").append(max).append('\n');
+        }
+
+        System.out.print(sb);
+    }
+}
