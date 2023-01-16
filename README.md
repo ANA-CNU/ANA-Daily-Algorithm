@@ -1,4 +1,4 @@
-# 2023-ANA-Daily-Algorithm
+# ANA-Daily-Algorithm
 <br/>
 
 <br/>
