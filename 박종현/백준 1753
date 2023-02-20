@@ -1,0 +1,31 @@
+import heapq
+
+V, E = map(int, input().split())
+start = int(input())
+
+INF = float('inf')
+graph = [[] for i in range(V+1)]
+# graph = {i: [] for i in range(1, V + 1)}
+
+for _ in range(E):
+    u, v, w = map(int, input().split())
+    graph[u] += [(v, w)]
+
+distances = [INF] * (V + 1)
+distances[start] = 0
+
+# [[시작점에서 노드까지 가는 거리, 노드]]
+queue = [[distances[start], start]]
+
+while queue:
+    current_distance, current_node = heapq.heappop(queue)
+    if current_distance < distances[current_node]:
+        continue
+    for next_destination, next_distance in graph[current_node]:
+        distance = next_distance + current_distance
+        if distance < distances[next_destination]:
+            distances[next_destination] = distance
+            heapq.heappush(queue, [distance, next_destination])
+
+for i in range(1, V + 1):
+    print("INF" if (k := distances[i]) == INF else k)
