@@ -90,4 +90,6 @@ class tree{
 //        update(start,mid,idx*2,what,value);
 //        update(mid+1,end,idx*2+1,what,value);
 //    }
+
+
 }
