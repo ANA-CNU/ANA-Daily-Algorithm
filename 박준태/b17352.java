@@ -52,12 +52,14 @@ class Graph{
         if(x==parent[x]) return x;
         return parent[x]=find_root(parent[x]);
     }
+    //1 2, 2 3, 4 5
     public void union_root(int x, int y){
-        x=find_root(x);
-        y=find_root(y);
+        x=find_root(x);//1 2 4
+        y=find_root(y);//2 3 5
         if(x!=y){
-            parent[x]=y;
+            parent[x]=y;//[2,2,3,4,5] [2,3,3,4,5] [2,3,3,5,5]
         }
+    }
 //    public void dfs(int R){
 //        if(visit[R]){
 //            return;
@@ -68,5 +70,4 @@ class Graph{
 //            dfs(i);
 //        }
 //    }
-    }
 }
