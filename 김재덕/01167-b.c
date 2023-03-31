@@ -17,6 +17,8 @@ void graph_release(Graph *g);
 void graph_add_edge(Graph *g, int u, int v, int w);
 Edge graph_dfs(Graph *g, int u);
 
+/* `valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./bin/01167-b.out` */
+
 int main(void) {
     int n;
 
@@ -59,7 +61,7 @@ Graph *graph_create(int V) {
     Graph *g = malloc(sizeof(*g));
 
     g->adjacency = malloc(V * sizeof(*(g->adjacency)));
-    g->visited = malloc(V * sizeof(*(g->visited)));
+    g->visited = calloc(V, sizeof(*(g->visited)));
     g->V = V;
 
     for (int i = 0; i < V; i++) {

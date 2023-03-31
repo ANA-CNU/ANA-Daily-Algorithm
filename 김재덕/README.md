@@ -1,3 +1,10 @@
+```console
+$ make clean && make
+$ valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./bin/main.out
+```
+
+---
+
 ```
                                  /%/.        .**      .                         
                        #%%%.   &,/%%%%     #%%%(,%/   %%%&                      
