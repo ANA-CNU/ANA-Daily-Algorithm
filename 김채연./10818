@@ -1,0 +1,7 @@
+N = int(input())
+nums = list(map(int, input().split()))
+
+nums.sort()
+a=str(nums[0])
+b=str(nums[N-1])
+print(a+" "+b)
