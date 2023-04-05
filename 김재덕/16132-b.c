@@ -20,7 +20,7 @@ int main(void) {
 
         // 그리고 0부터 `sum`까지의 각 집합의 모든 원소의 합
         for (int i = 0; i < n + 1; i++)
-            dp[i] = malloc((sum + 1) * sizeof(**dp));
+            dp[i] = calloc((sum + 1), sizeof(**dp));
 
         dp[0][0] = 1LL;
 
