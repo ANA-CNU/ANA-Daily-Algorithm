@@ -1,0 +1,14 @@
+N = int(input())
+a = int(input())
+b = []
+if N == 1:
+    print(0)
+    exit()
+for i in range(N-1):
+    b.append(int(input()))
+c = 0
+while a <= max(b):
+    a+=1
+    b[b.index(max(b))] -= 1
+    c+=1
+print(c)

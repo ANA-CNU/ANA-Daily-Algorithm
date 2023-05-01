@@ -1,0 +1,6 @@
+n = int(input())
+for _ in range(n):
+    cnt, string = input().split()
+    for char in string:
+        print(char * int(cnt), end='')
+    print()

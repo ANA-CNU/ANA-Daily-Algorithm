@@ -1,0 +1,3 @@
+list = input().split()
+l=len(list)
+print(l)
