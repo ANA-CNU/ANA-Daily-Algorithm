@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int Sa, Sb, S, cnt;
+        float a, b;
+        cnt = 0;
+        a = in.nextInt();
+        b = in.nextInt();
+        Sa = in.nextInt();
+        Sb = in.nextInt();
+        S = in.nextInt();
+
+        while (true) {
+            if (Sa < S)
+                break;
+            Sa = Sa - S;
+            cnt ++;
+            if (b < a) {
+                break;
+            }
+            a = ((b * S) + (a * Sa))/(Sa + S);
+            Sa = Sa + S;
+            if (Sb < S)
+                break;
+            Sb = Sb - S;
+            b = (Sb * b)/(Sb + S);
+            Sb = Sb + S;
+        }
+
+        if (cnt == 0 || cnt >50)
+            System.out.print("gg");
+
+        else {
+            int i;
+            String hex = "";
+
+            while (cnt > 0) {
+                i = cnt % 16;
+
+                if (i < 10) {
+                    hex = i + hex;
+                }
+                else {
+                    hex = (char) ('A' + i - 10) + hex;
+                }
+
+                cnt /= 16;
+            }
+
+            System.out.print(hex);
+        }
+
+    }
+
+}
