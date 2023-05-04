@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int i, n, a[];
+        n = in.nextInt();
+        a = new int[n];
+        for (i = 0; i < n; i++)
+        {
+            a[i] = in.nextInt();
+        }
+        Arrays.sort(a);
+        StringBuilder st = new StringBuilder();
+        for(int j : a)
+        {
+            st.append(j).append("\n");
+        }
+        System.out.println(st);
+    }
+}
