@@ -1,0 +1,9 @@
+n = int(input())
+a = list(map(float, input().split()))
+a.sort()
+for i in range (n):
+  a[i] = a[i]/a[n-1]*100
+y = 0
+for j in range(n):
+  y = y + a[j]
+print(y/n)
