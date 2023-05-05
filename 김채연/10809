@@ -1,0 +1,8 @@
+a = input()
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+idx = [-1] * 26  
+for i in range(len(s)):
+    c = s[i]
+    if idx[alphabet.index(c)] == -1:
+        idx[alphabet.index(c)] = i
+print(' '.join(map(str, idx)))

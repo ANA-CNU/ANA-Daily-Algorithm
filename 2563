@@ -1,0 +1,11 @@
+a = [[0 for i in range(100)]for i in range(100)]
+N = int(input())
+for _ in range(N):
+    c,b = list(map(int,input().split()))
+    for i in range(c,c+10):
+        for j in range(89-b,99-b):
+            a[i][j] = 1
+sum = 0
+for i in range(100):
+    sum += a[i].count(1)
+print(sum)
