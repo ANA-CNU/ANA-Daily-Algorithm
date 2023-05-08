@@ -94,7 +94,7 @@ int dfs(int cur, int flow) {
 
     int size = adj[cur].size();
 
-    for (int &i = check[cur]; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         int next = adj[cur][i];
         int w = c[cur][next] - f[cur][next];
 
