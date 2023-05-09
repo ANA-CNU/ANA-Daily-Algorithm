@@ -1,0 +1,17 @@
+N,M = list(map(int,input().split()))
+package = 1000
+one = 1000
+for _ in range(M):
+    a,b = list(map(int,input().split()))
+    package = a if package>a else package
+    one = b if one>b else one
+money = 0
+if package > one*6:
+    package = one*6
+money += (N//6)*package
+N %= 6
+if N*one > package:
+    money += package
+else:
+    money+= N*one
+print(money)
