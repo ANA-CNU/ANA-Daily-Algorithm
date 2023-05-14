@@ -1,0 +1,7 @@
+ax, ay = map(int, input().split())
+bx, by = map(int, input().split())
+a = ax*by+bx*ay
+b = ay*by
+while b>0:
+    a, b = b, a%b
+print(f"{(ax*by+bx*ay)//a} {ay*by//a}")
