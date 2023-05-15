@@ -1,0 +1,32 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int x, y, w, h, n1, n2;
+        x = in.nextInt();
+        y = in.nextInt();
+        w = in.nextInt();
+        h = in.nextInt();
+
+        if(x <= w-x) {
+            n1 = x;
+        }
+        else {
+            n1 = w-x;
+        }
+        if(y <= h-y) {
+            n2 = y;
+        }
+        else {
+            n2 = h-y;
+        }
+        if(n1 <= n2) {
+            System.out.print(n1);
+        }
+        else {
+            System.out.print(n2);
+        }
+    }
+}
