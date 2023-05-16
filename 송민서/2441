@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N, i, j, k;
+        N = scanner.nextInt();
+
+        for (i = 1; i <= N; i++) {
+            for (j = 1; j < i; j++) {
+                System.out.print(" ");
+            }
+
+            for (k = i; k <= N; k++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+        }
+
+        scanner.close();
+    }
+}
+
