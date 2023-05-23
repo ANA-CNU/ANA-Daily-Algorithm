@@ -1,0 +1,18 @@
+x = int(input())
+x1 = 64
+for i in range (5, -1, -1):
+    x1 = x1 - 2**i
+    if x1<=x:
+        break
+cnt = 1
+for j in range(i-1, -1, -1):
+    if x1==x:
+        break
+    x1 = x1 + 2**j
+    cnt +=1
+    if x1>x:
+        x1 = x1 - 2**j
+        cnt -=1
+if x ==64:
+    cnt = 1
+print(cnt)
