@@ -1,0 +1,33 @@
+package a;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class 백준_5800번 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		StringBuilder sb = new StringBuilder();
+		int a = sc.nextInt();
+		for (int i = 0; i < a; i++) {
+			int n = sc.nextInt();
+			Integer[] list = new Integer[n];
+			for (int k = 0; k < n; k++) {
+				list[k] = sc.nextInt();
+			}
+			Arrays.sort(list, Collections.reverseOrder());
+			int Min = list[n - 1];
+			int max = list[0];
+			int sub = Integer.MIN_VALUE;
+			for (int k = 0; k < list.length - 1; k++) {
+				sub = Math.max(list[k] - list[k + 1], sub);
+			}
+			sb.append("Class " + (i + 1) + "\n");
+			sb.append("Max " + max + "," + " Min " + Min + "," + " Largest gap " + sub + "\n");
+		}
+		System.out.println(sb);
+	}
+
+}
