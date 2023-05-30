@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+	public static int ans(int stRow, int stCol, String[] board) {
+		String[] orgBoard = { "WBWBWBWB", "BWBWBWBW" };
+		int wchess = 0;
+		for (int i = 0; i < 8; i++) {
+			int row = stRow + i;
+			for (int j = 0; j < 8; j++) {
+				int col = stCol + j;
+				if (board[row].charAt(col) != orgBoard[row % 2].charAt(j))
+					wchess++;
+			}
+		}
+		return Math.min(wchess, 64 - wchess);
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int row = sc.nextInt();
+		int col = sc.nextInt();
+		sc.nextLine();
+
+		String[] chess = new String[row];
+		for (int i = 0; i < row; i++)
+			chess[i] = sc.nextLine();
+
+		int sol = Integer.MAX_VALUE;
+		for (int i = 0; i <= row - 8; i++) {
+			for (int j = 0; j <= col - 8; j++) {
+				int curSol = ans(i, j, chess);
+				if (sol > curSol)
+					sol = curSol;
+			}
+		}
+		System.out.println(sol);
+	}
+}
