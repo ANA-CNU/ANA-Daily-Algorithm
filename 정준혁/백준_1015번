@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+
+        int[] arr = new int[N];
+        int[] order = new int[N];
+        boolean[] visited = new boolean[N];
+
+        for (int i = 0; i < N; i++)
+            arr[i] = scanner.nextInt();
+
+        for (int i = 0; i < N; i++) {
+            int min = Integer.MAX_VALUE;
+            int minIdx = -1;
+
+            for (int j = 0; j < N; j++) {
+                if (visited[j])
+                    continue;
+
+                if (min > arr[j]) {
+                    min = arr[j];
+                    minIdx = j;
+                }
+            }
+
+            order[minIdx] = i;
+            visited[minIdx] = true;
+        }
+
+        for (int i = 0; i < N; i++)
+            System.out.print(order[i] + " ");
+        System.out.println();
+    }
+}
