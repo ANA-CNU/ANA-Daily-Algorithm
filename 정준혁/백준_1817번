@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt(), m = sc.nextInt();
+		int[] list = new int[n];
+		if (n == 0) {
+			System.out.println(0);
+			return;
+		}
+		for (int i = 0; i < n; i++) {
+			list[i] = sc.nextInt();
+		}
+		int box = 1;
+		int w = 0;
+		for (int i = 0; i < n; i++) {
+			w += list[i];
+			if (w > m) {
+				box++;
+				w = list[i];
+			}
+		}
+		System.out.println(box);
+	}
+
+}
+
