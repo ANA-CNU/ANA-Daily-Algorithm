@@ -1,0 +1,23 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+
+public class Main{
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str = br.readLine();
+		HashSet<String> h = new HashSet<>();
+		for (int i = 0; i < str.length(); i++) {
+			for (int k = i + 1; k <= str.length(); k++) {
+				if (!h.contains(str.substring(i, k))) {
+					h.add(str.substring(i, k));
+				}
+			}
+		}
+		System.out.println(h.size());
+	}
+
+}
