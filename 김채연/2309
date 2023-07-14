@@ -1,0 +1,16 @@
+height = [0] * 9
+for i in range(9):
+    height[i] = int(input())
+height.sort()
+sumH = sum(height)
+
+try:
+    for i in range(9):
+        for j in range(i + 1, 9):
+            if sumH - height[i] - height[j] == 100:
+                del height[i]
+                del height[j - 1]
+                raise Exception()
+except Exception:
+    for k in range (len(height)):
+        print(height[k])
