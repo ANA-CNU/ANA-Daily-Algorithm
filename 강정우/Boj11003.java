@@ -9,18 +9,22 @@ public class Boj11003 {
         int n = Integer.parseInt(st.nextToken());
         int l = Integer.parseInt(st.nextToken());
         int[] arr = new int[n];
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        Deque<Integer> dq = new LinkedList<>();
+
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         for (int i = 0; i < n; i++) {
-            while (!pq.isEmpty() && pq.peek() < i - l + 1) {
-                pq.poll();
+            while (!dq.isEmpty() && dq.peekFirst() < i - l + 1) {
+                dq.pollFirst();
             }
-            pq.offer(i);
-            bw.write(arr[pq.peek()] + " ");
+            while (!dq.isEmpty() && arr[dq.peekLast()] > arr[i]) {
+                dq.pollLast();
+            }
+            dq.offerLast(i);
+            bw.write(arr[dq.peekFirst()] + " ");
         }
         bw.flush();
         bw.close();
