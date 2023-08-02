@@ -1,0 +1,14 @@
+word = list(input())
+leng = len(word)
+P = 1
+if leng%2==0:
+    n = leng//2
+else:
+    n = (leng//2)+1
+
+for i in range(n):
+    front = word[i]
+    back = word[leng-1-i]
+    if front != back:
+        P = 0
+print(P)
