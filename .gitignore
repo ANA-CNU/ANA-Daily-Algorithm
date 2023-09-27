@@ -1,3 +1,6 @@
 .DS_Store
 문다연/.DS_Store
 .idea
+.vscode
+*.bin
+.cph
