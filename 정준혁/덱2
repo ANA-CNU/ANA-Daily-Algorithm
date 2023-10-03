@@ -1,0 +1,70 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		Deque<Integer> dq = new ArrayDeque<>();
+		StringBuilder sb = new StringBuilder();
+		int n = sc.nextInt();
+		for (int i = 0; i < n; i++) {
+			int k = sc.nextInt();
+			if (k == 1) {
+				int x = sc.nextInt();
+				dq.addFirst(x);
+
+			} else if (k == 2) {
+				int x = sc.nextInt();
+				dq.addLast(x);
+			} else if (k == 3) {
+				if (!dq.isEmpty()) {
+					sb.append(dq.poll());
+					sb.append("\n");
+				} else {
+					sb.append("-1");
+					sb.append("\n");
+				}
+			} else if (k == 4) {
+				if (!dq.isEmpty()) {
+					sb.append(dq.pollLast());
+					sb.append("\n");
+				} else {
+					sb.append("-1");
+					sb.append("\n");
+				}
+			} else if (k == 5) {
+				sb.append(dq.size());
+				sb.append("\n");
+			} else if (k == 6) {
+				if (dq.isEmpty()) {
+					sb.append("1");
+					sb.append("\n");
+				} else {
+					sb.append("0");
+					sb.append("\n");
+				}
+			} else if (k == 7) {
+				if (!dq.isEmpty()) {
+					sb.append(dq.getFirst());
+					sb.append("\n");
+				} else {
+					sb.append("-1");
+					sb.append("\n");
+				}
+			} else if (k == 8) {
+				if (!dq.isEmpty()) {
+					sb.append(dq.getLast());
+					sb.append("\n");
+				} else {
+					sb.append("-1");
+					sb.append("\n");
+				}
+			}
+		}
+		System.out.println(sb);
+	}
+
+}
