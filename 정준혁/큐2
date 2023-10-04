@@ -1,0 +1,63 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		Deque<Integer> dq = new ArrayDeque<>();
+		int n = Integer.parseInt(br.readLine());
+		for (int i = 0; i < n; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			String s = st.nextToken();
+			switch (s) {
+			case "push":
+				int x = Integer.parseInt(st.nextToken());
+				dq.offer(x);
+				break;
+			case "pop":
+				if (!dq.isEmpty()) {
+					sb.append(dq.poll() + "\n");
+				} else {
+					sb.append("-1" + "\n");
+				}
+				break;
+			case "size":
+				sb.append(dq.size() + "\n");
+				break;
+			case "empty":
+				if (dq.isEmpty()) {
+					sb.append("1" + "\n");
+					break;
+				} else {
+					sb.append("0" + "\n");
+					break;
+				}
+			case "front":
+				if (!dq.isEmpty()) {
+					sb.append(dq.getFirst() + "\n");
+					break;
+				} else {
+					sb.append("-1" + "\n");
+					break;
+				}
+			case "back":
+				if (!dq.isEmpty()) {
+					sb.append(dq.getLast() + "\n");
+					break;
+				} else {
+					sb.append("-1" + "\n");
+					break;
+				}
+			}
+		}
+		System.out.println(sb);
+	}
+
+}
