@@ -15,6 +15,7 @@ const sendPrizeRank = async () => {
   const recentSolved = getRecentSolved(monthlyCommits);
 
   let result = `\`${recentSolved[0].userName}\` 님이 새로운 문제를 해결해서 추첨 결과가 바뀌었습니다.\n`;
+  result += `https://ana-cnu.github.io/bada/ 에서 확인하세요!\n\n`;
 
   for (let i = 0; i < prizeRank.length; i++) {
     result += `${i + 1}. \`${prizeRank[i]}\`: ${
