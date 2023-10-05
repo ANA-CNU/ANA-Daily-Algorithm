@@ -1,0 +1,28 @@
+name: Run JavaScript on Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_js:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14" # You can specify your desired Node.js version
+
+      - name: Install Dependencies
+        run: |
+          cd .github/workflows/anabada
+          npm install
+
+      - name: Run JavaScript
+        run: |
+          export DISCORD_WEBHOOK_URL="${{ secrets.DISCORD_WEBHOOK_URL }}"
+          node .github/workflows/anabada/main.js
