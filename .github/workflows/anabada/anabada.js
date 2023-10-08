@@ -96,15 +96,17 @@ export const getSolveCountByUser = (monthlyCommits) => {
   return solveCountByUser;
 };
 
-export const getPrizeRank = (solveCountByUser, seed = "ANA") => {
+export const getPrizeRank = (solveCountByUser) => {
   const weightedUserNames = [];
+  let seed = "";
 
   for (const [userName, commitCount] of Object.entries(solveCountByUser)) {
     for (let i = 0; i < commitCount; i++) {
       weightedUserNames.push(userName);
     }
   }
-
+  
+  seed = `ANA-${weightedUserNames.length}`
   const shuffledUserNames = shuffleWithSeed(weightedUserNames, seed);
   const prizeRank = [...new Set(shuffledUserNames)];
 
