@@ -23,7 +23,7 @@ export const getMonthlyCommits = async () => {
     // Build the URL to list commits for the current month on the current page
     const commitsUrl = `${baseApiUrl}/repos/${repoOwner}/${repoName}/commits?since=${currentYear}-${currentMonth
       .toString()
-      .padStart(2, "0")}-01T00:00:00Z&page=${page}&per_page=${perPage}`;
+      .padStart(2, "0")}-01T00:00:00+09:00&page=${page}&per_page=${perPage}`;
 
     // Fetch commits for the current page
     const response = await fetch(commitsUrl);
