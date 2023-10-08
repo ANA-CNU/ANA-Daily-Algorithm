@@ -123,7 +123,7 @@ export const getRecentSolved = (monthlyCommits) => {
 };
 
 export const filterBlackList = (monthlyCommits) => {
-  const blackList = ["sion-k"];
+  const blackList = ["sion-k", "Sion Kim", "Seongbin Hong"];
   const filteredCommits = [];
 
   monthlyCommits.forEach((commit) => {
