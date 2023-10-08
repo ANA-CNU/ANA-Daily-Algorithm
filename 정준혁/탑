@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		Stack<Integer> stack = new Stack<>();
+		Stack<Integer> idx = new Stack<>();
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for (int i = 1; i <= n; i++) {
+			int num = Integer.parseInt(st.nextToken());
+			while (true) {
+				if (!stack.isEmpty()) {
+					int top = stack.peek();
+					if (top > num) {
+						sb.append(idx.peek() + " ");
+						stack.push(num);
+						idx.push(i);
+						break;
+					} else {
+						stack.pop();
+						idx.pop();
+					}
+				} else {
+					sb.append("0" + " ");
+					stack.push(num);
+					idx.push(i);
+					break;
+				}
+			}
+		}
+		System.out.println(sb);
+	}
+}
