@@ -142,7 +142,7 @@ export const getRecentSolved = (monthlyCommits) => {
 };
 
 export const filterBlackList = (monthlyCommits) => {
-  const blackList = ["sion-k", "Sion Kim", "VertexToEdge"];
+  const blackList = ["sion-k", "Sion Kim", "VertexToEdge","spicypotato0823"];
   const filteredCommits = [];
 
   monthlyCommits.forEach((commit) => {

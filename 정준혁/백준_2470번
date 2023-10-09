@@ -1,0 +1,44 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		int list[] = new int[n];
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < n; i++) {
+			list[i] = Integer.parseInt(st.nextToken());
+		}
+		Arrays.sort(list);
+		int start = 0;
+		int end = list.length - 1;
+		int max = Integer.MAX_VALUE;
+
+		int lqd1 = 0;
+		int lqd2 = 0;
+		int tmp;
+		int total;
+		while (start < end) {
+			total = list[start] + list[end];
+			tmp = Math.abs(total);
+			if (tmp < max) {
+				max = tmp;
+				lqd1 = list[start];
+				lqd2 = list[end];
+			}
+			if (total > 0) {
+				end--;
+			} else {
+				start++;
+			}
+		}
+		System.out.println(lqd1 + " " + lqd2);
+	}
+
+}
