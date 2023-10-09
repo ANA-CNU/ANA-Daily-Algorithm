@@ -53,12 +53,23 @@ export const getMonthlyCommits = async () => {
   return monthlyCommits;
 };
 
+const getNameFromCommit = (commit) => {
+  let name = "";
+  if (commit.author == null){
+    name = commit.commit.author.name;
+  } else{
+    name = commit.author.login;
+  }
+
+  return name;
+};
+
 const filterCommitsByAuthor = (monthlyCommits) => {
   const commitDateByAuthor = {};
   const filteredCommits = [];
 
   monthlyCommits.forEach((commit) => {
-    const name = commit.commit.author.name;
+    const name = getNameFromCommit(commit);
 
     const commitDateUTC = new Date(commit.commit.author.date);
     commitDateUTC.setHours(commitDateUTC.getHours() + 9);
@@ -84,7 +95,7 @@ export const getSolveCountByUser = (monthlyCommits) => {
   const solveCountByUser = {};
 
   monthlyCommits.forEach((commit) => {
-    const userName = commit.commit.author.name;
+    const userName = getNameFromCommit(commit);
 
     if (solveCountByUser[userName]) {
       solveCountByUser[userName]++;
@@ -118,7 +129,7 @@ export const getRecentSolved = (monthlyCommits) => {
   const recentSolved = [];
 
   monthlyCommits.forEach((commit) => {
-    const userName = commit.commit.author.name;
+    const userName = getNameFromCommit(commit);
     const commitDate = new Date(commit.commit.author.date);
 
     recentSolved.push({
@@ -131,11 +142,11 @@ export const getRecentSolved = (monthlyCommits) => {
 };
 
 export const filterBlackList = (monthlyCommits) => {
-  const blackList = ["sion-k", "Sion Kim", "Seongbin Hong"];
+  const blackList = ["sion-k", "Sion Kim", "VertexToEdge"];
   const filteredCommits = [];
 
   monthlyCommits.forEach((commit) => {
-    const name = commit.commit.author.name;
+    const name = getNameFromCommit(commit);
 
     if (!blackList.includes(name)) {
       filteredCommits.push(commit);
