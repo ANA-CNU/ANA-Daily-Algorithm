@@ -1,0 +1,25 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+n = int(input())
+a = list(map(int, input().split()))
+a.sort()
+if n == 3:
+    print(a[0],a[1],a[2])
+    exit()
+
+arr = deque([a[0]])
+d = max(a[1]-a[0], a[-1]-a[-2])
+for i in range(n-2):
+    d = max(d, a[i+2]-a[i])
+cnt = 0
+for i in range(1,n):
+    if a[i] - arr[0] <= d:
+        arr.append(a[i])
+    else:
+        arr.appendleft(arr.pop())
+        arr.append(a[i])
+        cnt += 1
+arr = list(arr)
+print(*arr[cnt:], *arr[:cnt])
