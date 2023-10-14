@@ -1,0 +1,25 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+a = list(map(int, input().split()))
+half = sum(a)//2  # 이 값보단 커야됨
+a = list(enumerate(a))
+a.sort(key= lambda x: -x[1])
+dp = [[] for _ in range(half*2 + 2)]
+dp[0].append(0)
+Idx = 0
+for idx, val in a:
+    for i in range(half,-1,-1):
+        if (dp[i]) and (not dp[i+val]):
+            dp[i+val] = list(dp[i])
+            dp[i+val].append(idx+1)
+            Idx = max(Idx, i+val)
+dp[Idx].remove(0)
+print(len(dp[Idx]))
+print(*dp[Idx])
+
+
+
+
+
