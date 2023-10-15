@@ -1,0 +1,35 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
+
+public class Main {
+	static int maxnum = Integer.MAX_VALUE;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		Deque<Integer> q = new ArrayDeque<>();
+		int qmax = 0;
+		while (n-- > 0) {
+			int a = sc.nextInt();
+			if (a == 1) {
+				int b = sc.nextInt();
+				q.add(b);
+				if (qmax <= q.size()) {
+					if (qmax == q.size()) {
+						if (maxnum > q.peekLast())
+							maxnum = q.peekLast();
+
+					} else {
+						qmax = q.size();
+						maxnum = b;
+					}
+				}
+
+			} else if (a == 2) {
+				q.poll();
+			}
+		}
+		System.out.println(qmax + " " + maxnum);
+	}
+}
