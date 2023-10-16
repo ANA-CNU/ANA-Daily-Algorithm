@@ -19,10 +19,8 @@ ANA 하루하나 챌린지는 ANA 부원들이 서로 경쟁하면서 최대한 
 
 ## Git 사용 방법
 1. Git을 설치하고 Git bash를 실행합니다.
-2. git clone
-`cd`를 통해 *ANA 하루 하나 챌린지* 레포지토리를 생성할 위치로 이동해서 `git clone https://github.com/ANA-CNU/ANA-Daily-Algorithm.git`을 입력합니다.
-3. git pull
-다른 부원이 소스코드를 추가했을 수도 있으므로, `git pull`로 원격 레포지토리의 내용을 로컬 레포지토리에 불러옵니다.
+2. `cd`를 통해 *ANA 하루 하나 챌린지* 레포지토리를 생성할 위치로 이동해서 `git clone https://github.com/ANA-CNU/ANA-Daily-Algorithm.git`을 입력합니다.
+3. 다른 부원이 소스코드를 추가했을 수도 있으므로, `git pull`로 원격 레포지토리의 내용을 로컬 레포지토리에 불러옵니다.
 5. 내 소스코드를 레포지토리에 추가
 소스코드를 복사 붙여넣기 등을 통해 내 폴더로 옮깁니다.
 6. `git add -A`
