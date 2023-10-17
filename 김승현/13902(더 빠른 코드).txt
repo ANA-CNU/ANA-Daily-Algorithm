@@ -1,0 +1,29 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+case = set()
+for i in range(m):
+    case.add(a[i])
+    for j in range(i+1,m):
+        case.add(a[i]+a[j])
+Q =deque([0])
+visited = set()
+cnt = 0
+for _ in range(n):
+    cnt += 1
+    L = len(Q)
+    for _ in range(L):
+        b = Q.popleft()
+        for c in case:
+            A = c+b
+            if A == n:
+                print(cnt)
+                exit()
+            if A in visited:
+                continue
+            Q.append(A)
+            visited.add(A)
+print(-1)
