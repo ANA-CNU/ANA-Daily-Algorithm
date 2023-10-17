@@ -1,0 +1,46 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+T =int(input())
+for __ in range(T):
+    Q = deque()
+    V, E = map(int, input().split())
+    graph = [[] for _ in range(V+1)]
+    for _ in range(E):
+        a, b = map(int, input().split())
+        graph[a].append(b)
+        graph[b].append(a)
+    non_visited = set([i for i in range(1,V+1)])
+    key = False
+    Map = [-1 for _ in range(V+1)]
+    while non_visited:
+        if key:
+            break
+        color = 1
+        st = non_visited.pop()
+        Map[st] = color
+        Q.append(st)
+        while Q:
+            if key:
+                break
+            cur = Q.popleft()
+            color = Map[cur]
+            while graph[cur]:
+                next = graph[cur].pop()
+                if Map[next] == -1:
+                    non_visited.remove(next)
+                    Map[next] = abs(color-1)
+                    Q.append(next)
+                else:
+                    if Map[next] == color:
+                        key =True
+                        break
+
+
+    if key:
+        print("NO")
+    else:
+        print("YES")
+
+

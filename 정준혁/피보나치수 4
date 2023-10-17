@@ -1,0 +1,31 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+
+public class 백준_10826번 {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int a = Integer.parseInt(br.readLine());
+		fibo t = new fibo();
+		BigInteger sum = t.cal(a);
+		System.out.println(sum);
+	}
+}
+
+class fibo {
+	static BigInteger cal(int n) {
+		if (n <= 1) {
+			return BigInteger.valueOf(n);
+		}
+		BigInteger[] list = new BigInteger[n + 1];
+		list[0] = BigInteger.ZERO;
+		list[1] = BigInteger.ONE;
+		for (int i = 2; i <= n; i++) {
+			list[i] = list[i - 1].add(list[i - 2]);
+		}
+
+		return list[n];
+	}
+}
