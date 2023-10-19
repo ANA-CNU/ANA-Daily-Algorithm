@@ -1,0 +1,47 @@
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+L = list(map(int, input().split()))
+A = list(map(int, input().split()))
+MAX = [0 for _ in range(n)]
+
+for i in range(n):
+    l = L[i]
+    a = A[i]
+    low =1
+    high = 1000000000000000000
+    while True:
+        if low > high:
+            break
+
+        x = (low+high)//2
+
+        if ((x-l)*(x+l-1))//2 <= a:
+            low = x+ 1
+        else:
+            high = x- 1
+    MAX[i] = high
+# print(MAX)
+low =1
+high = 1000000000000000000
+while True:
+    if low > high:
+        break
+    mid = (low+high)//2
+
+    cnt = 0
+    for i in MAX:
+        cnt += max(0, mid-i)
+
+    if cnt <= m:
+        low = mid +1
+    else:
+        high = mid - 1
+
+if max(L) > high:
+    print(-1)
+else:
+    print(high)
+
+
