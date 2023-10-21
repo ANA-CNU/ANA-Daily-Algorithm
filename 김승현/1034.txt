@@ -1,0 +1,14 @@
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+Map = [list(input().rstrip()) for _ in range(n)]
+a = [Map[i].count("0") for i in range(n)]
+k = int(input())
+ans = 0
+for i in range(n):
+    if a[i] <= k and a[i]%2 == k%2:
+        ans = max(ans, Map.count(Map[i]))
+print(ans)
+
+
