@@ -1,0 +1,24 @@
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+a = list(map(int, input().split()))  # 메모리
+cost = list(map(int, input().split()))
+MAX = sum(cost)+1
+dp = [-1 for _ in range(MAX)]
+dp[0] = 0
+
+for i in range(n):
+    c = cost[i]
+    for j in range(MAX-1,c-1,-1):
+        if dp[j-c] != -1:
+            dp[j] = max(dp[j],dp[j-c] + a[i])
+    # print(dp)
+
+ans = 0
+for i in range(MAX):
+    if dp[i] >= m:
+       ans = i
+       break
+print(ans)
+
