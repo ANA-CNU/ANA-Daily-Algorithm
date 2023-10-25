@@ -1,0 +1,82 @@
+import sys
+input = sys.stdin.readline
+
+r, c, T = map(int, input().split())
+a = [list(map(int, input().split())) for _ in range(r)]
+cleaner = [0,0]  # 청정기 위치
+for i in range(r):
+    if a[i][0] == -1:
+        cleaner = [i, i+1]
+        break
+
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+for __ in range(T):
+    # 1. 확산
+    tmp = [[0 for _ in range(c)] for _ in range(r)]
+    for i in range(r):
+        for j in range(c):
+            if a[i][j] > 0:
+                cnt = 0  # 확산 가능한 방향
+                d = int(a[i][j]//5)  # 확산되는 양
+
+                for k in range(4):
+                    X, Y = i + dx[k], j+dy[k]
+                    if X <0 or Y < 0 or X >= r or Y >= c:
+                        continue
+                    if a[X][Y] == -1:  # 청정기 제외
+                        continue
+
+                    tmp[X][Y] += d
+                    cnt += 1
+                a[i][j] -= cnt*d
+
+    for i in range(r):
+        for j in range(c):
+            a[i][j] += tmp[i][j]
+
+    # 2. 공기 청정기 작동
+    # 위쪽 방향 순환
+    x, y = cleaner[0], 0
+    for i in range(x-1,-1,-1):
+        if i+1 == x:
+            a[i][y] = 0
+        else:
+            a[i+1][y] = a[i][y]
+    x, y = 0, 0
+    for i in range(c-1):
+        a[x][i] = a[x][i+1]
+    x, y = 0, c-1
+    for i in range(cleaner[0]):
+        a[i][y] = a[i+1][y]
+    x, y = cleaner[0], c-1
+    for i in range(c-1,0,-1):
+        a[x][i] = a[x][i-1]
+        if i == 1:
+            a[x][i] = 0
+
+    # 아래쪽 방향 순환
+    x, y = cleaner[1], 0
+    for i in range(x+1,r-1):
+        a[i][y] = a[i+1][y]
+    x, y = r-1, 0
+    for i in range(c-1):
+        a[x][i] = a[x][i + 1]
+    x, y = r-1, c-1
+    for i in range(x,cleaner[1],-1):
+        a[i][y] = a[i-1][y]
+
+    x, y = cleaner[1], c - 1
+    for i in range(c - 1, 0, -1):
+        a[x][i] = a[x][i - 1]
+        if i == 1:
+            a[x][i] = 0
+
+
+ans = 2
+for i in a:
+    ans += sum(i)
+print(ans)
+
+
+
