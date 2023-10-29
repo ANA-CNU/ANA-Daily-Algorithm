@@ -1,0 +1,66 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+
+public class Main {
+	static LinkedList<String> dq;
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		boolean rv;
+		int tmp;
+		String p = "";
+		loop: while (t-- > 0) {
+			dq = new LinkedList<>();
+			rv = false;
+			tmp = 0;
+			p = br.readLine().replace("RR", "");
+			int n = Integer.parseInt(br.readLine());
+			StringTokenizer st = new StringTokenizer(br.readLine().replace("[", "").replace("]", ""), ",");
+			for (int i = 0; i < n; i++) {
+				dq.add(st.nextToken());
+			}
+			for (int i = 0; i < p.length(); i++) {
+				if (p.charAt(i) == 'R') {
+					if (rv == false) {
+						rv = true;
+					} else if (rv == true) {
+						rv = false;
+					}
+				}
+				if (p.charAt(i) == 'D') {
+					if (dq.isEmpty()) {
+						sb.append("error" + "\n");
+						tmp = 1;
+						continue loop;
+					}
+					if (rv == false) {
+						dq.pollFirst();
+					} else {
+						dq.pollLast();
+					}
+				}
+			}
+			sb.append("[");
+			while (!dq.isEmpty()) {
+				if (rv == true) {
+					sb.append(dq.pollLast());
+				} else {
+					sb.append(dq.pollFirst());
+				}
+				if (!dq.isEmpty()) {
+					sb.append(",");
+				}
+			}
+			sb.append("]" + "\n");
+		}
+
+		System.out.println(sb);
+	}
+
+}
