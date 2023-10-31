@@ -29,7 +29,11 @@ export const getMonthlyCommits = async () => {
     // Build the URL to list commits for the current month on the current page
     const commitsUrl = `${baseApiUrl}/repos/${repoOwner}/${repoName}/commits?since=${sinceYear}-${sinceMonth
       .toString()
-      .padStart(2, "0")}-${sinceDate.toString().padStart(2,"0")}T${sinceHours.toString().padStart(2,"0")}:${sinceMinutes.toString().padStart(2,"0")}:00Z&page=${page}&per_page=${perPage}`;
+      .padStart(2, "0")}-${sinceDate.toString().padStart(2, "0")}T${sinceHours
+      .toString()
+      .padStart(2, "0")}:${sinceMinutes
+      .toString()
+      .padStart(2, "0")}:00Z&page=${page}&per_page=${perPage}`;
 
     // Fetch commits for the current page
     const response = await fetch(commitsUrl);
@@ -55,9 +59,9 @@ export const getMonthlyCommits = async () => {
 
 const getNameFromCommit = (commit) => {
   let name = "";
-  if (commit.author == null){
+  if (commit.author == null) {
     name = commit.commit.author.name;
-  } else{
+  } else {
     name = commit.author.login;
   }
 
@@ -104,6 +108,16 @@ export const getSolveCountByUser = (monthlyCommits) => {
     }
   });
 
+  const diff = {
+    JJH123123123: -1,
+  };
+
+  for (const [key, value] of Object.entries(diff)) {
+    if (solveCountByUser[key]) {
+      solveCountByUser[key] += value;
+    }
+  }
+
   return solveCountByUser;
 };
 
@@ -116,8 +130,8 @@ export const getPrizeRank = (solveCountByUser) => {
       weightedUserNames.push(userName);
     }
   }
-  
-  seed = `ANA-${weightedUserNames.length}`
+
+  seed = `ANA-${weightedUserNames.length}`;
   const shuffledUserNames = shuffleWithSeed(weightedUserNames, seed);
   const prizeRank = [...new Set(shuffledUserNames)];
 
@@ -142,7 +156,7 @@ export const getRecentSolved = (monthlyCommits) => {
 };
 
 export const filterBlackList = (monthlyCommits) => {
-  const blackList = ["sion-k", "Sion Kim", "VertexToEdge","spicypotato0823"];
+  const blackList = ["sion-k", "Sion Kim", "VertexToEdge", "spicypotato0823"];
   const filteredCommits = [];
 
   monthlyCommits.forEach((commit) => {
