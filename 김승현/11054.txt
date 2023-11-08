@@ -1,0 +1,31 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+S = [0] + list(map(int, input().split()))
+up = [1001 for _ in range(n+1)]
+up[0] = 0
+down = [0 for _ in range(n+1)]
+down[0] = 1001
+for i in range(1, n+1):
+    cur = S[i]
+    for j in range(i,0,-1):
+        # down check
+        if up[j-1] != 1001 and up[j-1] > cur:
+            down[j] = max(down[j], cur)
+        if down[j - 1] > cur:
+            down[j] = max(down[j], cur)
+        # up check
+        if up[j - 1] < cur:
+            up[j] = min(up[j], cur)
+    ''''
+    for i in range(n + 1):
+        print(up[i], down[i])
+    print()
+    '''
+ans = 1
+for i in range(n,0,-1):
+    if up[i] != 1001 or down[i] != 0:
+        ans = i
+        break
+print(ans)
