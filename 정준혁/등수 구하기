@@ -1,0 +1,38 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Main {
+	static int ranking = 1;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int score = sc.nextInt();
+		int p = sc.nextInt();
+		LinkedList<Integer> list = new LinkedList<>();
+		for (int i = 0; i < n; i++) {
+			list.add(sc.nextInt());
+		}
+		if (n == 0) {
+			System.out.println("1");
+			return;
+		}
+		if (list.size() == p && list.get(list.size() - 1) >= score) {
+			System.out.println("-1");
+			return;
+		}
+		for (int i = 0; i < n; i++) {
+			if (score >= list.get(i)) {
+				ranking = i + 1;
+				break;
+			} else {
+				ranking++;
+			}
+		}
+		if (ranking <= p) {
+			System.out.println(ranking);
+		} else {
+			System.out.println("-1");
+		}
+	}
+}
