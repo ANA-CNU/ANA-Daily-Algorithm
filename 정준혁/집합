@@ -1,0 +1,65 @@
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+	static int tmp;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int m = sc.nextInt();
+		HashSet<Integer> S = new HashSet<>();
+		HashSet<Integer> zero = new HashSet<>();
+		StringBuilder sb = new StringBuilder();
+		while (m-- > 0) {
+			String str = sc.next();
+			switch (str) {
+			case "add":
+				tmp = sc.nextInt();
+				if (S.contains(tmp)) {
+					break;
+				} else {
+					S.add(tmp);
+					break;
+				}
+			case "remove":
+				tmp = sc.nextInt();
+				if (!S.contains(tmp)) {
+					break;
+				} else {
+					S.remove(tmp);
+					break;
+				}
+			case "check":
+				tmp = sc.nextInt();
+				if (S.contains(tmp)) {
+					sb.append("1" + "\n");
+					break;
+				} else {
+					sb.append("0" + "\n");
+					break;
+				}
+			case "toggle":
+				tmp = sc.nextInt();
+				if (S.contains(tmp)) {
+					S.remove(tmp);
+					break;
+				} else {
+					S.add(tmp);
+					break;
+				}
+			case "all":
+				S.clear();
+				for (int i = 1; i <= 20; i++) {
+					S.add(i);
+				}
+				break;
+			case "empty":
+				S = zero;
+				break;
+			}
+		}
+		System.out.println(sb);
+	}
+
+}
