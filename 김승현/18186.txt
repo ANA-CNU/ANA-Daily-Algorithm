@@ -1,0 +1,34 @@
+import sys
+input = sys.stdin.readline
+
+n, b, c = map(int, input().split())
+a = list(map(int, input().split())) + [0, 0]
+ans = 0
+if b < c:
+    print(sum(a)*b)
+else:
+    for i in range(n):
+        # print(i)
+        if a[i] > 0 :
+            if a[i + 1] > a[i + 2]:
+                d = min(a[i], a[i+1]-a[i+2])
+                a[i] -= d
+                a[i+1] -= d
+                ans += (b+c)*d
+                # print(a, ans)
+
+            if a[i]>0:
+                d = min(a[i:i+3])
+                if d > 0:
+                    ans += (b+c+c)*d
+                    a[i] -= d
+                    a[i + 1] -= d
+                    a[i + 2] -= d
+                    # print(a, ans)
+
+                if a[i] > 0:
+                    ans += a[i]*b
+                    a[i] = 0
+                    # print(a, ans)
+    print(ans)
+
