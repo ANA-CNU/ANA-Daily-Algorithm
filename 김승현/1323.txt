@@ -1,0 +1,25 @@
+import sys
+input = sys.stdin.readline
+
+n, k = map(int, input().split())
+ans = 0
+tmp = n
+S = set()
+key = False
+while True:
+    ans += 1
+    tmp %= k
+
+    if tmp == 0:
+        break
+
+    if tmp in S:
+        key = True
+        break
+
+    S.add(tmp)
+    tmp = int(str(tmp) + str(n))
+if key:
+    print(-1)
+else:
+    print(ans)
