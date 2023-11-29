@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		double[][] matrix = new double[10][10];
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j <= n; j++) {
+				matrix[i][j] = scanner.nextDouble();
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			if (matrix[i][i] == 0) {
+				continue;
+			}
+			double div = matrix[i][i];
+			for (int j = i; j <= n; j++) {
+				matrix[i][j] /= div;
+			}
+			for (int j = 0; j < n; j++) {
+				if (i == j)
+					continue;
+				div = -matrix[j][i];
+				for (int k = 0; k <= n; k++) {
+					matrix[j][k] += matrix[i][k] * div;
+				}
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			System.out.printf("%.0f", matrix[i][n]);
+			System.out.print(" ");
+		}
+
+	}
+}

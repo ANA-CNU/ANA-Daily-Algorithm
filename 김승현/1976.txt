@@ -1,0 +1,35 @@
+import sys
+input = sys.stdin.readline
+def find(a):
+    path = []
+    while S[a] != a:
+        path.append(a)
+        a = S[a]
+    for node in path:
+        S[node] = a
+    return a
+
+def union(a, b):
+    root_a = find(a)
+    root_b = find(b)
+    if root_a < root_b:
+        S[root_b] = root_a
+    else:
+        S[root_a] = root_b
+
+
+n = int(input())
+m = int(input())
+S = [i for i in range(n + 1)]
+for i in range(n):
+    a = list(map(int, input().split()))
+    for j in range(n):
+      if a[j]:
+          union(i+1,j+1)
+
+order = list(map(int, input().split()))
+for i in range(m-1):
+    if find(order[i]) != find(order[i+1]):
+        print("NO")
+        exit()
+print("YES")

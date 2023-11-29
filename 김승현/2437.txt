@@ -1,0 +1,15 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+w = list(map(int, input().split()))
+w.sort()
+
+pivot = 0  # 현재까지 가능한 연속적인 무게 최대치
+for cur in w
+    if pivot+1 = cur
+        pivot += cur
+    else
+        break
+
+print(pivot+1)

@@ -1,0 +1,25 @@
+import sys
+import math
+input = sys.stdin.readline
+
+def power(a, b):
+    if b == 1:
+        return a
+
+    if b % 2 == 0:
+        x = power(a, b // 2)
+        return x * x%MOD
+    else:
+        return a*power(a, b - 1)%MOD
+
+n = int(input())
+S = [list(map(int, input().split())) for _ in range(n)]
+ans = 0
+MOD = 1000000007
+for b, a in S:
+    d= math.gcd(a,b)
+    a //= d
+    b //= d
+    ans += a*(power(b,MOD-2))%MOD
+    ans %= MOD
+print(ans)

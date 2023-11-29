@@ -1,0 +1,75 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main {
+	static int n;
+	static int m;
+	static int v;
+	static boolean[] check;
+	static StringBuilder sb;
+	static ArrayList<Integer> list[];
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		v = Integer.parseInt(st.nextToken());
+		list = new ArrayList[n + 1];
+		sb = new StringBuilder();
+		for (int i = 0; i < list.length; i++) {
+			list[i] = new ArrayList<>();
+		}
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine());
+			int k = Integer.parseInt(st.nextToken());
+			int l = Integer.parseInt(st.nextToken());
+			list[k].add(l);
+			list[l].add(k);
+		}
+		for (int i = 0; i < list.length; i++) {
+			Collections.sort(list[i]);
+		}
+		check = new boolean[n + 1];
+		dfs(v);
+		check = new boolean[n + 1];
+		sb.append("\n");
+		bfs(v);
+		System.out.println(sb);
+
+	}
+
+	public static void dfs(int k) {
+		check[k] = true;
+		sb.append(k + " ");
+		for (int i : list[k]) {
+			if (!check[i]) {
+				dfs(i);
+			}
+		}
+	}
+
+	public static void bfs(int k) {
+		check[k] = true;
+		Queue<Integer> q = new LinkedList<>();
+		q.add(k);
+		while (!q.isEmpty()) {
+			int tmp = q.poll();
+			sb.append(tmp + " ");
+			for (int i : list[tmp]) {
+				if (!check[i]) {
+					q.add(i);
+					check[i] = true;
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,31 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] list = new int[n];
+		for (int i = 0; i < n; i++) {
+			list[i] = sc.nextInt();
+		}
+		StringBuilder sb = new StringBuilder();
+		Stack<Integer> st = new Stack<>();
+		for (int i = 0; i < n; i++) {
+
+			while (!st.isEmpty() && list[st.peek()] < list[i]) {
+				list[st.pop()] = list[i];
+			}
+
+			st.add(i);
+		}
+
+		while (!st.isEmpty())
+			list[st.pop()] = -1;
+
+		for (int i = 0; i < n; i++)
+			sb.append(list[i]).append(" ");
+
+		System.out.println(sb);
+	}
+}

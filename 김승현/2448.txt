@@ -1,0 +1,20 @@
+import sys
+input = sys.stdin.readline
+
+def code(st, end, n):
+    if n == 3:
+        for i in range(3):
+            Map[st+i][end-i:end+i+1] = '*' * (2*i + 1)
+        Map[st+1][end] = ' '
+        return
+    d = n // 2
+    code(st, end, d)
+    code(st+d, end-d, d)
+    code(st+d, end+d, d)
+
+n = int(input())
+Map = [[' ' for _ in range(n*2)] for _ in range(n)]
+code(0, n-1, n)
+
+for row in Map:
+    print(''.join(row))
