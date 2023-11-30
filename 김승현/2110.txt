@@ -1,0 +1,28 @@
+import sys
+input = sys.stdin.readline
+
+n,c  = map(int, input().split())
+a = [int(input()) for _ in range(n)]
+a.sort()
+
+st = 1
+end = a[-1]-a[0]
+
+while st <= end:
+    cur = a[0]
+    cnt = 1
+    mid = (st + end ) // 2
+
+    for i in range(1, n):
+        if a[i] >= cur + mid:
+            cnt += 1
+            cur = a[i]
+
+    if cnt >= c:
+        st = mid +1
+    else:
+        end = mid -1
+
+
+
+print(end)
