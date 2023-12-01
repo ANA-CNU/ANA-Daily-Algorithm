@@ -1,0 +1,47 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        while (t-- > 0) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int n = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int[] list = new int[n];
+            int[] list2 = new int[b];
+            st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < n; i++) {
+                list[i] = Integer.parseInt(st.nextToken());
+            }
+            st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < b; i++) {
+                list2[i] = Integer.parseInt(st.nextToken());
+            }
+            Arrays.sort(list2);
+            int cnt = 0;
+            for (int i = 0; i < n; i++) {
+                int low = 0;
+                int end = b - 1;
+                int cnt2 = 0;
+                while (low <= end) {
+                    int mid = (low + end) / 2;
+                    if (list2[mid] < list[i]) {
+                        low = mid + 1;
+                        cnt2 = mid + 1;
+                    } else {
+                        end = mid - 1;
+                    }
+                }
+                cnt += cnt2;
+            }
+            sb.append(cnt + "\n");
+        }
+        System.out.println(sb);
+    }
+}
