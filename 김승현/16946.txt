@@ -1,0 +1,73 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+a = []
+for _ in range(n):
+    tmp = list(input().strip())
+    for i in range(m):
+        tmp[i] = int(tmp[i])
+    a.append(tmp)
+
+
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
+
+count = [0]  # 경우의 수 저장 배열
+idx = 1
+# 0 탐색
+Q = deque()
+visited = [[False for _ in range(m)] for _ in range(n)]  # 0 탐색 방문 처리
+cnt = [[0 for _ in range(m)] for _ in range(n)]   # 경우의 수 주소 저장
+for i in range(n):
+    for j in range(m):
+        if not visited[i][j]:
+            visited[i][j] = True
+            if a[i][j] == 0:
+                Q.append([i, j])
+                tmp = [[i, j]]
+
+                while Q:
+                    x, y = Q.popleft()
+                    for k in range(4):
+                        X, Y = x+dx[k], y+dy[k]
+                        if X < 0 or Y < 0 or X >= n or Y >= m or visited[X][Y]:
+                            continue
+
+                        visited[X][Y] = True
+                        if a[X][Y] == 0:
+                            Q.append([X, Y])
+                            tmp.append([X,Y])
+                l = len(tmp) % 10
+                count.append(l)
+                while tmp:
+                    x, y = tmp.pop()
+                    cnt[x][y] = idx
+                idx += 1
+
+# cnt 합 더하기
+for i in range(n):
+    for j in range(m):
+        if a[i][j] == 1:
+            S = set()
+            for k in range(4):
+                X, Y = i+dx[k], j+dy[k]
+                if X < 0 or Y < 0 or X >= n or Y >= m:
+                    continue
+                S.add(cnt[X][Y])
+            while S:
+                idx = S.pop()
+                a[i][j] += count[idx]
+            a[i][j] %= 10
+
+
+        # 출력
+for p in a:
+    print(*p, sep='')
+"""
+print()
+for p in cnt:
+    print(*p)
+"""
+
