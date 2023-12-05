@@ -1,0 +1,52 @@
+class Disjoint_set:
+    def __init__(self, n):
+        # p[x] = -1 x는 부모가 없음
+	    # p[x] = x의 부모
+        self.p = [-1] * n
+        # s[x] = x가 집합의 식별자라고 가정할 때, 그 집합의 크기
+        self.s = [1] * n
+    # find(x) = x가 속한 집합의 식별자를 반환한다
+    # find(x) = O(log*(n))
+    # 2147483648 log2(2^32) = log2(2^5) = log2(5) = log2(2...) = log2(1)
+    # log2(a) = log_a(b) = log_c(b) / log_c(a) 로그 밑변환 공식
+    # O(16N) = O(4N) = O(N)
+    def find(self, x):
+        if self.p[x] == -1:
+            return x
+        # 경로 압축
+        self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, x, y):
+        x, y = self.find(x), self.find(y)
+        if x != y: # 두 집합이 서로 다른 집합이면 합친다
+            self.p[x] = y
+            self.s[y] += self.s[x]
+
+
+def kruskal(N, edges):
+    edges.sort()
+    ans = 0
+    ds = Disjoint_set(N)
+
+    for c, (a, b) in edges:
+        a, b = ds.find(a-1), ds.find(b-1)
+        if a != b:
+            if a in set(ds.find(i-1) for i in loc) and b in set(ds.find(i-1) for i in loc) :
+                continue
+            ds.union(a, b)
+            ans += c
+
+    return ans #if ds.size(1) == N else -1
+
+
+n, m , k= map(int, input().split())
+loc = list(map(int, input().split()))
+edges = []
+for _ in range(m):
+    a, b, c = map(int, input().split())
+    edges.append((c, (a, b)))
+edges.sort()
+ans = kruskal(n, edges)
+print(ans)
+
