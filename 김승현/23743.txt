@@ -1,0 +1,51 @@
+import sys
+sys.setrecursionlimit(100000)
+input = sys.stdin.readline
+
+class Disjoint_set:
+    def __init__(self, n):
+        self.p = [-1] * n
+        self.s = [1] * n
+
+    def find(self, x):
+        if self.p[x] == -1:
+            return x
+        # 경로 압축
+        self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, x, y):
+        x, y = self.find(x), self.find(y)
+        if x != y:
+            self.p[x] = y
+            self.s[y] += self.s[x]
+
+
+def kruskal(N, edges):
+    global cnt
+    edges.sort()
+    ans = 0
+    ds = Disjoint_set(N)
+
+    for c, (a, b) in edges:
+        a, b = ds.find(a), ds.find(b)
+        if a != b:
+            ds.union(a, b)
+            ans += c
+    return ans
+
+
+n, m = map(int, input().split())
+edges = []
+for _ in range(m):
+    a, b, c = map(int, input().split())
+    edges.append((c, (a, b)))
+loc = list(map(int, input().split()))
+# 가상의 간선 추가 +n
+for i in range(n):
+    idx = i + 1
+    edges.append((loc[i], (0, idx)))
+
+edges.sort()
+ans = kruskal(n+1, edges)
+print(ans)
