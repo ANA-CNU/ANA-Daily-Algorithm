@@ -1,0 +1,37 @@
+import sys
+input =sys.stdin.readline
+
+l, k,c =map(int, input().split())
+a = list(map(int, input().split()))
+a.append(l)
+a = list(set(a))
+a.sort()
+low, high = 1, l
+ans = [0,0]
+while low <= high:  # mid 최적 탐색
+    mid = (low +high)//2
+    # print(low,mid,high)
+    cnt, check = 0, 0
+    key = True
+    last = l
+    for i in range(len(a)-1,-1,-1):
+        # print("+",a[i])
+        if last-a[i] > mid:
+            if a[i+1]-a[i] > mid:
+                key= False
+                break
+            cnt += 1
+            last = a[i+1]
+            if cnt == c:
+                break
+
+    if cnt < c:
+        last = a[0]
+    if last > mid:
+        key = False
+    if key:
+        high = mid -1
+        ans = [mid, last]
+    else:
+        low = mid +1
+print(*ans)
