@@ -14,26 +14,16 @@ for i in range(n):
     else:
         sell.append((i,cur))
 
-    while sell and buy:
-        Idx, need = buy.popleft()
-        while sell:
-            idx, val = sell.popleft()
-            if abs(need) <= abs(val):
-                ans += abs(need * abs(Idx - idx))
-                sell.appendleft((idx, need + val))
-                need = 0
-                # print("kkkkk")
-                break
-            else:
-                need += val
-                ans += abs(val * abs(Idx - idx))
-        if need < 0:
-            buy.appendleft((Idx, need))
-            #print("ppppp")
-    '''
-    print(ans)
-    print(buy)
-    print(sell)
-    print()
-    '''
+while sell and buy:
+    Idx, need = buy.popleft()
+    while sell:
+        idx, val = sell.popleft()
+        if abs(need) <= val:
+            ans += abs(need * (Idx - idx))
+            sell.appendleft((idx, need + val))
+            need = 0
+            break
+        else:
+            need += val
+            ans += val * abs(Idx - idx)
 print(ans)
