@@ -1,0 +1,39 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+n = int(input())
+a = list(map(int, input().split()))
+buy = deque()
+sell = deque()
+ans = 0
+for i in range(n):
+    cur = a[i]
+    if cur < 0:  # buy
+        buy.append((i,cur))
+    else:
+        sell.append((i,cur))
+
+    while sell and buy:
+        Idx, need = buy.popleft()
+        while sell:
+            idx, val = sell.popleft()
+            if abs(need) <= abs(val):
+                ans += abs(need * abs(Idx - idx))
+                sell.appendleft((idx, need + val))
+                need = 0
+                # print("kkkkk")
+                break
+            else:
+                need += val
+                ans += abs(val * abs(Idx - idx))
+        if need < 0:
+            buy.appendleft((Idx, need))
+            #print("ppppp")
+    '''
+    print(ans)
+    print(buy)
+    print(sell)
+    print()
+    '''
+print(ans)
