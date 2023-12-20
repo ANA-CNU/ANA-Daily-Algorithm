@@ -1,0 +1,27 @@
+import sys
+input = sys.stdin.readline
+
+n, k = map(int, input().split())
+S = [[] for _ in range(11)]
+for _ in range(n):
+    c, g = map(int, input().split())
+    S[g].append(c)
+for i in range(1, 11):
+    S[i].sort(reverse=True)
+
+s = [[0] for _ in range(11)]
+for i in range(1, 11):
+    tmp = 0
+    for j in range(len(S[i])):
+        tmp += S[i][j]
+        #s[i].append(S[i][j]+j*(j+1)-(j-1)*j)
+        s[i].append(tmp + (j + 1) * j)
+dp = [[0 for _ in range(k+1)] for _ in range(11)]
+
+for i in range(1,11):  # 종류
+    for j in range(1, k+1):  # 현재 종류의 책 고른 권 수
+        for cur in range(j,-1,-1):
+            if cur >= len(s[i]):
+                continue
+            dp[i][j] = max(dp[i][j], s[i][cur]+dp[i-1][j-cur])
+print(dp[10][k])
