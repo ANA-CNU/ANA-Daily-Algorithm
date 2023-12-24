@@ -1,0 +1,34 @@
+import sys
+n = int(sys.stdin.readline())
+
+str0 = []
+dic = {}
+S=set()
+for i in range(n):
+    a = sys.stdin.readline().rstrip()
+    str0.append(a)
+    for k in range(len(a)):
+        if k == 0:
+            S.add(a[k])
+        if not (a[k] in dic) :
+            dic[a[k]] = 0
+        dic[a[k]] -= 10**(len(a)-k-1)
+tmp = set(dic.items())
+tmp = sorted(tmp, key = lambda x : x[1])
+
+result=0
+k = ""
+if len(tmp) == 10:
+    for o in reversed(tmp):
+        if o[0] not in S:
+            k = o[0]
+            break
+
+num=9
+for o in tmp :
+    if o[0] == k:
+        continue
+    result += num*(-1)*o[1]
+    num-=1
+
+print(result)
