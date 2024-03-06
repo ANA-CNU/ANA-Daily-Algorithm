@@ -1,1 +1,18 @@
-asdf
+
+produ@hyunugbook MINGW64 ~
+$ git config --global --list
+fatal: unable to read config file 'C:/Users/produ/.gitconfig': No such file or directory
+
+produ@hyunugbook MINGW64 ~
+$ git config --global user.email "mail"
+
+produ@hyunugbook MINGW64 ~
+$ git config --global user.name "id"
+
+produ@hyunugbook MINGW64 ~
+$ git config --global --list
+user.email=patek1412@naver.com
+user.name=Eppdeveloper
+
+produ@hyunugbook MINGW64 ~
+$
