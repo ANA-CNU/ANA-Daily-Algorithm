@@ -16,3 +16,13 @@ user.name=Eppdeveloper
 
 produ@hyunugbook MINGW64 ~
 $
+
+
+디렉토리 바꾸기
+git
+git clone url
+pull하고
+직접 디렉토리에서  폴더 만들기
+넣어놓기
+
+
