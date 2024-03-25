@@ -9,3 +9,4 @@ for i in range(T):
         print(j * int(R), end='')
 
     print()
+
