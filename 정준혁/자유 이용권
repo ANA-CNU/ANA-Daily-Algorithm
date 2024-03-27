@@ -1,0 +1,31 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] s) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        long[] list = new long[n];
+        long max = Integer.MIN_VALUE;
+        long total = 0;
+
+        for(int i=0;i<n;i++){
+            list[i]=Integer.parseInt(st.nextToken());
+            total+=list[i];
+            if(list[i]>max){
+                max=list[i];
+            }
+        }
+        if(max<=(total-max+1)){
+            System.out.println(total);
+        }else{
+            System.out.println((total-max)*2+1);
+        }
+    }
+}
