@@ -1,12 +1,12 @@
 input_str = input()
-lower_str = input_str.upper()
+upper_str = input_str.upper()
 max_frequency = 0
 result = 0
 accomplished_char = []
 
-for i in lower_str:
+for i in upper_str:
     if i not in accomplished_char:
-        frequency = lower_str.count(i)
+        frequency = upper_str.count(i)
         accomplished_char.append(i)
 
         if frequency > max_frequency:
