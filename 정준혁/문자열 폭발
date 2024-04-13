@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Stack<Character> s = new Stack<>();
+        String str = br.readLine();
+        String boomstr = br.readLine();
+        for (int i = 0; i < str.length(); i++) {
+            s.push(str.charAt(i));
+            if (s.size() >= boomstr.length()) {
+                boolean same = true;
+                for (int k = 0; k < boomstr.length(); k++) {
+                    char tmp1 = s.get(s.size() - boomstr.length() + k);
+                    char tmp2 = boomstr.charAt(k);
+                    if (tmp1 != tmp2) {
+                        same = false;
+                        break;
+                    }
+                }
+                if (same) {
+                    for (int j = 0; j < boomstr.length(); j++) {
+                        s.pop();
+                    }
+                }
+            }
+        }
+        if (s.size() == 0) {
+            System.out.println("FRULA");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (char c : s) {
+                sb.append(c);
+            }
+            System.out.println(sb);
+        }
+    }
+}
