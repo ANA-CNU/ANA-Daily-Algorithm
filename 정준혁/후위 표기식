@@ -1,0 +1,53 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Stack<Character> s = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        String str = br.readLine();
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            switch (c) {
+                case '*':
+                case '/':
+                case '+':
+                case '-':
+                    while (!s.empty() && first(s.peek()) >= first(c)) {
+                        sb.append(s.pop());
+                    }
+                    s.push(c);
+                    break;
+                case '(':
+                    s.push(c);
+                    break;
+                case ')':
+                    while (!s.empty() && s.peek() != '(') {
+                        sb.append(s.pop());
+                    }
+                    s.pop();
+                    break;
+                default:
+                    sb.append(c);
+            }
+        }
+        while (!s.empty()) {
+            sb.append(s.pop());
+        }
+        System.out.println(sb);
+    }
+
+    public static int first(char c) {
+        if (c == '(' || c == ')') {
+            return 0;
+        } else if (c == '+' || c == '-') {
+            return 1;
+        } else if (c == '*' || c == '/') {
+            return 2;
+        }
+        return -1;
+    }
+}
