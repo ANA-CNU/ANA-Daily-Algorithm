@@ -1,0 +1,27 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class main {
+    public static void main(String[] s)throws IOException {
+        Stack<Integer> st = new Stack<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n;
+        long ans=0;
+        n=Integer.parseInt(br.readLine());
+        for(int i=0;i<n;i++){
+            int num = Integer.parseInt(br.readLine());
+            while(!st.isEmpty()){
+                if(st.peek()<=num){
+                    st.pop();
+                }else{
+                    break;
+                }
+            }
+            ans+=st.size();
+            st.push(num);
+        }
+        System.out.println(ans);
+    }
+}
