@@ -1,0 +1,42 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    	String[] input = br.readLine().split(" ");
+    	int n = Integer.parseInt(input[0]);
+    	int x = Integer.parseInt(input[1]);
+    	int arr[] = new int[n+1]; // 방문자 수 배열
+    	String[] input2 = br.readLine().split(" ");
+    	for(int i=1; i<n+1; i++) {
+    		arr[i] = Integer.parseInt(input2[i-1]);
+    	}
+    	
+    	int cnt = 1;
+    	long sum = 0;
+    	
+    	for(int i=1; i<=x; i++) {
+    		sum += arr[i]; // 첫 번째 합 cnt는 1
+    	}
+    	long max = sum;
+    	for(int i=1; i<=n-x; i++) {
+    		sum += arr[i+x];
+    		sum -= arr[i];
+    		if(sum>max) {
+    			cnt = 1;
+    			max = sum;
+    		}
+    		else if(sum == max)
+    			cnt ++;
+    		
+    	}
+    	
+    	if(max==0)
+    		System.out.println("SAD");
+    	else { 
+    		System.out.println(max);
+    		System.out.println(cnt);
+    	}
+    }
+}
+    
