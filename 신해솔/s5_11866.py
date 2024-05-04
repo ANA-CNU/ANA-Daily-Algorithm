@@ -1,7 +1,3 @@
-"""""""""
-요세푸스 문제 0
-"""""""""
-
 n, k = map(int, input().split())
 num = list(range(1, n+1))
 josephus = []
