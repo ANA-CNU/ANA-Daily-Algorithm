@@ -1,0 +1,20 @@
+import sys
+input = sys.stdin.readline
+com=int(input())
+line = int(input())
+com_ls=[[] for j in range(com+1)]
+enter=[0]*(com+1)
+for i in range(line):
+    a, b = map(int,input().split())
+    com_ls[b].append(a)
+    com_ls[a].append(b)
+ls=[]
+ls.append(1)
+enter[1]=1
+count=0
+while ls:
+    gama = ls.pop(0)
+    print(gama)
+    for j in com_ls[gama]:
+        if enter[j]==0:
+            ls.append(j)
