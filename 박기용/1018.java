@@ -12,79 +12,34 @@ public class Main {
 
         for (int i = 0; i < row; i++) {
             chessboard[i] = sc.nextLine().toCharArray();
-        } // 입력값을 다 넣기
-
-        int min1 = 65;
-
-        for (int i = 0; i < row - 7; i++) {
-            for (int j = 0; j < column - 7; j++) {
-                int count = 0;
-                for (int k = 0; k < 8; k += 2) {
-                    for (int l = 0; l < 8; l += 2) {
-                        if (chessboard[i + k][j + l] == 'B') {
-                            count++;
-                        }
-                    }
-                }
-                for (int k = 1; k < 8; k += 2) {
-                    for (int l = 0; l < 8; l += 2) {
-                        if (chessboard[i + k][j + l] == 'W') {
-                            count++;
-                        }
-                    }
-                }
-                for (int k = 0; k < 8; k += 2) {
-                    for (int l = 1; l < 8; l += 2) {
-                        if (chessboard[i + k][j + l] == 'W') {
-                            count++;
-                        }
-                    }
-                }
-                for (int k = 1; k < 8; k += 2) {
-                    for (int l = 1; l < 8; l += 2) {
-                        if (chessboard[i + k][j + l] == 'B') {
-                            count++;
-                        }
-                    }
-                }
-                min1 = Math.min(min1, count);
-            }
         }
 
+        int min1 = 65;
         int min2 = 65;
 
         for (int i = 0; i < row - 7; i++) {
             for (int j = 0; j < column - 7; j++) {
-                int count = 0;
-                for (int k = 0; k < 8; k += 2) {
-                    for (int l = 0; l < 8; l += 2) {
-                        if (chessboard[i + k][j + l] == 'W') {
-                            count++;
+                int count1 = 0;
+                int count2 = 0;
+                for (int k = 0; k < 8; k++) {
+                    for (int l = 0; l < 8; l++) {
+                        if ((k + l) % 2 == 0) {
+                            if (chessboard[i + k][j + l] == 'B') {
+                                count1++;
+                            } else {
+                                count2++;
+                            }
+                        } else {
+                            if (chessboard[i + k][j + l] == 'W') {
+                                count1++;
+                            } else {
+                                count2++;
+                            }
                         }
                     }
                 }
-                for (int k = 1; k < 8; k += 2) {
-                    for (int l = 0; l < 8; l += 2) {
-                        if (chessboard[i + k][j + l] == 'B') {
-                            count++;
-                        }
-                    }
-                }
-                for (int k = 0; k < 8; k += 2) {
-                    for (int l = 1; l < 8; l += 2) {
-                        if (chessboard[i + k][j + l] == 'B') {
-                            count++;
-                        }
-                    }
-                }
-                for (int k = 1; k < 8; k += 2) {
-                    for (int l = 1; l < 8; l += 2) {
-                        if (chessboard[i + k][j + l] == 'W') {
-                            count++;
-                        }
-                    }
-                }
-                min2 = Math.min(min2, count);
+                min1 = Math.min(min1, count1);
+                min2 = Math.min(min2, count2);
             }
         }
 
