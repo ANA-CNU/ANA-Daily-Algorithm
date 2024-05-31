@@ -6,7 +6,7 @@ n = int(sys.stdin.readline())
 arr = set()
 error = 0
 for _ in range(n):
-    a, b = tuple(map(int, sys.stdin.readline().split()))
+    a, b = map(int, sys.stdin.readline().split())
     if b == 1:
         if a not in arr:
             arr.add(a)
