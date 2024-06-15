@@ -1,0 +1,99 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        Node[] nodes = new Node[N+1];
+        for (int i = 0; i < N+1; i++) {
+            nodes[i] = new Node(i, 0);
+        }
+
+        UnionFind uf = new UnionFind(nodes);
+
+        while (M-- > 0) {
+            st = new StringTokenizer(br.readLine());
+            int command = Integer.parseInt(st.nextToken());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            if (command == 0) {
+                uf.union(a, b);
+            } else {
+                int rootA = uf.find(a);
+                int rootB = uf.find(b);
+                if (rootA == rootB) {
+                    sb.append("YES\n");
+                } else {
+                    sb.append("NO\n");
+                }
+            }
+        }
+        System.out.print(sb.toString());
+    }
+
+    public static class Node {
+        private int parent;
+        private int rank;
+
+        public Node(int parent, int rank) {
+            this.parent = parent;
+            this.rank = rank;
+        }
+
+        public int getParent() {
+            return parent;
+        }
+
+        public int getRank() {
+            return rank;
+        }
+
+        public void setParent(int parent) {
+            this.parent = parent;
+        }
+
+        public void setRank(int rank) {
+            this.rank = rank;
+        }
+    }
+
+    public static class UnionFind {
+        private Node[] nodes;
+
+        public UnionFind(Node[] nodes) {
+            this.nodes = nodes;
+        }
+
+        public int find(int i) {
+            if (i != nodes[i].getParent()) {
+                nodes[i].setParent(find(nodes[i].getParent()));
+            }
+            return nodes[i].getParent();
+        }
+
+        public void union(int i, int j) {
+            int rootI = find(i);
+            int rootJ = find(j);
+
+            if (rootI == rootJ) {
+                return;
+            }
+
+            if (nodes[rootI].getRank() > nodes[rootJ].getRank()) {
+                nodes[rootJ].setParent(rootI);
+            } else if (nodes[rootI].getRank() < nodes[rootJ].getRank()) {
+                nodes[rootI].setParent(rootJ);
+            } else {
+                nodes[rootJ].setParent(rootI);
+                nodes[rootI].setRank(nodes[rootI].getRank() + 1);
+            }
+        }
+    }
+}
