@@ -22,7 +22,7 @@ jobs:
           cd .github/workflows/anabada
           npm install
 
-      - name: Run JavaScript
+      - name: Discord webhook
         run: |
           export DISCORD_WEBHOOK_URL="${{ secrets.DISCORD_WEBHOOK_URL }}"
           node .github/workflows/anabada/main.js
