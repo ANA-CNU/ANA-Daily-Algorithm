@@ -19,7 +19,6 @@ public class baekjoon14501{
     if(index+duration-1<=N){
       PayCount[index+ duration-1] = Math.max(PayCount[index+ duration-1], PayCount[index-1]+Pay[index]);
       }
-      doo(index+duration);
 
     if(index+1<=N){
       PayCount[index+1] = Math.max(PayCount[index+1], PayCount[index]);
