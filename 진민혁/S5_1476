@@ -1,0 +1,32 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input[] = br.readLine().split(" ");
+        int E = Integer.parseInt(input[0]);
+        int S = Integer.parseInt(input[1]);
+        int M = Integer.parseInt(input[2]);
+        
+        int e = 0;
+        int s = 0;
+        int m = 0;
+        int cnt = 0;
+        while(true) {
+        	e ++;
+        	s ++;
+        	m ++;
+        	cnt ++;
+        	if(e == 16)
+        		e -= 15;
+        	if(s == 29)
+        		s -= 28;
+        	if(m == 20)
+        		m -= 19;
+        	
+        	if(e == E && s == S && m == M)
+        		break;
+        }
+        System.out.println(cnt);
+    }
+}
