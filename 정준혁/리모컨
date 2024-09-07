@@ -1,0 +1,47 @@
+import java.util.*;
+
+class Main {
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> brbtn = new ArrayList<>();
+
+        int ch = scanner.nextInt();
+        int brk = scanner.nextInt();
+
+        for (int i = 0; i < brk; i++) {
+            brbtn.add(scanner.nextInt());
+        }
+
+        int ans = Math.abs(100 - ch);
+        int min = Integer.MAX_VALUE;
+        int cnt;
+
+        for (int i = 0; i <= 999999; i++) {
+            String str = String.valueOf(i);
+            boolean isbroken = false;
+
+            for (int k = 0; k < str.length(); k++) {
+                if (brbtn.contains(str.charAt(k) - '0')) {
+                    isbroken = true;
+                    break;
+                }
+            }
+
+            if (isbroken) {
+                continue;
+            }
+
+            cnt = str.length() + Math.abs(i - ch);
+
+            if (cnt < min) {
+                min = cnt;
+            }
+        }
+
+        if (min < ans) {
+            ans = min;
+        }
+
+        System.out.println(ans);
+    }
+}
