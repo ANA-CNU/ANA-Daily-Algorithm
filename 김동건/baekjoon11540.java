@@ -8,7 +8,7 @@
  import java.util.*;
  import java.io.*;
 
- public class Main{
+ public class baekjoon11540{
   public static Deque<Integer> rforA= new LinkedList<>() ;
   public static Deque<Integer> rforB= new LinkedList<>();
   public static int A; 
